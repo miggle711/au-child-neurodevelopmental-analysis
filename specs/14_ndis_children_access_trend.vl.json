@@ -1,0 +1,28 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Children's access to NDIS support, 2019-2023",
+  "description": "Productivity Commission, Report on Government Services 2025, Table 15A.20: NDIS participants aged 0-14 as a proportion of the estimated potential population needing support, Australia (national, all disability types, not neurodevelopmental-specific, though autism and developmental delay make up the large majority of NDIS participants in this age group)",
+  "width": 450,
+  "height": 260,
+  "data": {"url": "../data/processed/ndis_children_access_trend.csv"},
+  "layer": [
+    {
+      "mark": {"type": "line", "point": {"size": 90, "filled": true}, "strokeWidth": 2.5, "color": "#3182bd"}
+    },
+    {
+      "mark": {"type": "text", "dy": -14, "fontSize": 12, "fontWeight": "bold"},
+      "encoding": {
+        "text": {"field": "access_rate_pct", "type": "quantitative", "format": ".1f"}
+      }
+    }
+  ],
+  "encoding": {
+    "x": {"field": "year", "type": "ordinal", "title": "Year (as at 30 June)"},
+    "y": {
+      "field": "access_rate_pct",
+      "type": "quantitative",
+      "title": "% of estimated eligible children (0-14) with an NDIS plan",
+      "scale": {"domain": [50, 100]}
+    }
+  }
+}

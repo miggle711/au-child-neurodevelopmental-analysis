@@ -107,6 +107,7 @@ not longitudinal, but the same underlying question).
 | 11 | 4 | Heatmap (2-column, independent color scales) | Advanced, bonus | ABS Children and Young People with Disability 2022 (Table 4, national only) | Among children aged 0-14 with disability who need assistance, % whose need is actually received vs. not, by activity type — ✅ built & rendered, `specs/11_children_unmet_need_heatmap.vl.json`. **Relevance fix (2026-09-30):** originally used AutismDC01 Table 9 (autism-specific but all-ages) — swapped to this genuinely child-restricted (0-14) table, at the cost of no longer being autism-specific (it covers all disability types). Finding: cognitive/emotional and communication needs are the *best*-met (89%/88%), while self-care and health care are the *worst*-met (72%/70%) — a different, equally real pattern from the all-ages autism version, reflecting a different population, not an error. Old version moved to `deprecated/specs/11_autism_unmet_need_heatmap.vl.json` |
 | 12 | 3 | Streamgraph | Advanced, bonus | AIHW Health (Table 27, national only, 2018) | % of children with each disability group (Intellectual, Sensory & speech, Psychosocial, Physical restriction, Other), by age band 0-4/5-9/10-14 — ✅ built & rendered, `specs/12_disability_by_age_streamgraph.vl.json`. Checked as a ridge-plot candidate first but rejected — the underlying data is discrete categorical %, not a continuous distribution, so a ridge plot would misrepresent its shape. Streamgraph instead directly visualises diagnosis lag: "Intellectual" disability balloons from 1.1% (age 0-4) to 6.9% (age 10-14), while "Sensory and speech" narrows over the same span. This is a **12th, bonus chart** |
 | 13 | 2 | Choropleth map | Map idiom #4 (Advanced, bonus) | NDIS Data Research (state, Dec 2024) + ABS Estimated Resident Population (Dec 2024) | Autism NDIS participants per 1,000 population, by state/territory — ✅ built & rendered, `specs/13_ndis_autism_rate_choropleth.vl.json`. Genuinely autism-specific (unlike the AEDC-based maps) and a real per-capita rate (computed by dividing NDIS's raw participant counts by ABS population — the raw sheet's own "% of all NDIS participants" metric was rejected as it reflects scheme caseload mix, not prevalence). Notable finding: produces an almost inverse pattern to the AEDC choropleth — SA highest (13.6 per 1,000), NT *lowest* (5.9 per 1,000), suggesting NT's high AEDC vulnerability doesn't translate into high NDIS autism access, a possible sign of under-diagnosis/under-service in remote areas rather than lower true prevalence. This is a **4th, bonus map** — genuinely condition-specific, unlike maps 3-5 |
+| 14 | 1/4 | Line chart | Basic, bonus | Productivity Commission, Report on Government Services 2025 (Table 15A.20, national only) | % of estimated eligible children aged 0-14 who have an NDIS plan, 2019-2023 — ✅ built & rendered, `specs/14_ndis_children_access_trend.vl.json`. **Closes the "access to support over time" gap** (see relevance fix #2 below) — a genuine 5-year multi-year trend showing NDIS access for children rose from 60.2% to 90.2% of the estimated eligible population, with a visible dip in 2021 (not smoothed over). Disability-general, not neurodevelopmental-specific, but autism/developmental delay dominate the NDIS 0-14 population so it's a defensible proxy, clearly labelled as such |
 
 **Relevance fix (2026-09-18):** rows 2, 7, and 8 originally used AEDC
 "developmental vulnerability" data (a general school-readiness screen, not
@@ -121,39 +122,37 @@ source with any sub-national geography (see caveat section above for why).
 Every other chart (1, 2, 6, 7, 8, 9, 10) now uses ABS/AIHW data that
 measures autism, disability, or specific support needs directly.
 
-**Idiom count — final:** 1 basic (stacked area chart), 12 advanced (dumbbell,
-choropleth ×2, proportional symbol map, small-multiples map, population
-pyramid, radar chart, beeswarm, icon array, bullet chart, heatmap,
-streamgraph). 13 charts built and rendered total (10 required + 3 bonus),
-4 of them maps (10 required + 1 bonus) — see `specs/previews/` for PNG test
-renders. Comfortably clears the rubric's "≥8 idioms incl. 5-8 advanced" for
-HD range, and now much more directly answers the assignment's actual
-prompt. **Chords/arc diagrams and ridge plots were considered and
-rejected** — no source has genuine pairwise co-occurrence data (needed for
-a chord diagram) or a continuous distribution (needed for a ridge plot);
-forcing either would misrepresent the underlying discrete
+**Idiom count — final:** 2 basic (stacked area chart, NDIS access line
+chart), 12 advanced (dumbbell, choropleth ×2, proportional symbol map,
+small-multiples map, population pyramid, radar chart, beeswarm, icon array,
+bullet chart, heatmap, streamgraph). 14 charts built and rendered total (10
+required + 4 bonus), 4 of them maps (10 required + 1 bonus) — see
+`specs/previews/` for PNG test renders. Comfortably clears the rubric's "≥8
+idioms incl. 5-8 advanced" for HD range, and now much more directly answers
+the assignment's actual prompt. **Chords/arc diagrams and ridge plots were
+considered and rejected** — no source has genuine pairwise co-occurrence
+data (needed for a chord diagram) or a continuous distribution (needed for
+a ridge plot); forcing either would misrepresent the underlying discrete
 categorical/marginal data.
 
-**Relevance fix (2026-09-30):** two further issues identified on review
-against the assignment's actual content prompt ("diagnosis rates, service
-usage or demographic characteristics across age groups or years" /
-"awareness and access to support... over time"):
+**Relevance fix (2026-09-30):** three issues identified on review against
+the assignment's actual content prompt ("diagnosis rates, service usage or
+demographic characteristics across age groups or years" / "awareness and
+access to support... over time"):
 1. Charts #8 and (formerly) #11 used autism data not restricted to children.
    #11 has been swapped to a genuinely child-restricted table (see row 11
    above). #8 has no child-restricted autism-specific equivalent anywhere in
    our sources — a broader search confirmed ABS's SDAC product does not
    cross-tab autism-specific co-occurring types by child age band. Kept as
    national context, explicitly not framed as a children-only statistic.
-2. **No genuine multi-year service-usage or support-access trend exists in
-   any source checked** (AEDC, ABS SDAC ×2, AIHW Health/Education, NDIS). A
-   broad search (AIHW immunisation, injury, school-attendance tables; ABS
-   Table 4/6 schooling support; NDIS quarterly data) found only single-year
-   snapshots for anything support/service-related — multi-year series exist
-   only for prevalence (already used in chart #1) or off-topic measures
-   (e.g. immunisation). **This is a genuine, confirmed gap in Australian
-   public data, not a research shortfall** — worth stating explicitly in
-   the assignment's data description as a demonstrated critical-evaluation
-   point.
+2. **Resolved — a genuine multi-year support-access trend does exist.** An
+   initial search across AEDC, ABS SDAC ×2, and AIHW Health/Education came
+   up empty, but a broader search found it in Productivity Commission's
+   Report on Government Services (ROGS) Table 15A.20: NDIS participants
+   aged 0-14 as a % of the estimated eligible population, 2019-2023 (chart
+   #14). Not neurodevelopmental-specific (it's disability-general), but a
+   defensible proxy given autism/developmental delay dominate the NDIS 0-14
+   cohort — clearly labelled as such in the chart description.
 3. Added chart #13 (NDIS autism rate choropleth, a 4th bonus map) — the
    first genuinely condition-specific (not proxy) map in the set, and it
    surfaces a real, non-obvious contrast with the AEDC-based maps (see row

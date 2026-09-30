@@ -196,6 +196,30 @@ using them in any chart, to stay under the assignment's "few MB total" budget.
   registration for access, probably too heavy a lift for this assignment
 - **Source URL:** https://dataverse.ada.edu.au/dataset.xhtml?persistentId=doi:10.26193/XMLCQP
 
+### 13. Productivity Commission — Report on Government Services (ROGS) 2025
+- **Status:** ✅ downloaded and used (chart #14)
+- **File:** `data/raw/rogs/rogs15.csv` (2.4MB, Part F Section 15 "Services
+  for people with disability," full dataset — only a small slice used)
+- **Geography:** State/territory + national totals
+- **Years:** 2019–2025 (age-band categories vary by year; "0-14 years old"
+  is the consistent category across the full range)
+- **Table used:** 15A.20 "Service use by selected equity groups" — NDIS
+  participants aged 0-14 as a % of the estimated eligible population,
+  2019-2023 (2024-2025 switch to a different metric, "rate per 1,000," not
+  directly comparable, so excluded from the trend chart)
+- **Source URL:** https://www.pc.gov.au/ongoing/report-on-government-services/2025/community-services/services-for-people-with-disability
+- **Use:** this closes the "access to support over time" gap identified on
+  2026-09-30 — found via a broader search after AEDC/ABS/AIHW/NDIS's own
+  autism dashboard were all confirmed to have no multi-year service-usage
+  series. Disability-general, not neurodevelopmental-specific, but a
+  defensible proxy for this age group (see NARRATIVE.md relevance fix)
+- **Processed extract:** `data/processed/ndis_children_access_trend.csv`
+- **Note:** this same file also has Table 15A.6 (NDIS participants by
+  primary disability type, incl. autism, 2019-2025, all ages, not
+  child-restricted) and Table 15A.44/45 (NDIS waiting times by age band,
+  currently only 2024-25 populated) — not currently used but worth
+  revisiting if more charts are wanted later
+
 ---
 
 ## Open questions / next steps
