@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growing Up Different</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+<style>
+  /* Layout concept: a single scrolling editorial column (max 760px) that
+     widens into a full-bleed band for each map/act, so charts get room to
+     breathe without ever requiring horizontal scroll of the page itself. */
+  :root {
+    --bg: #faf7f2;
+    --bg-band: #f0ebe1;
+    --fg: #2a2622;
+    --fg-muted: #6b6459;
+    --accent: #b8501f;
+    --accent-soft: #e8c9ab;
+    --line: #ddd4c4;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Source Sans 3', -apple-system, Helvetica, Arial, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  img { max-width: 100%; }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .band {
+    background: var(--bg-band);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .band-wide {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 48px 20px;
+  }
+
+  header.masthead {
+    padding: 72px 0 48px;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  h1.title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    line-height: 1.05;
+    margin: 0.3em 0 0.2em;
+    text-wrap: balance;
+  }
+
+  .subtitle {
+    font-size: 1.15rem;
+    color: var(--fg-muted);
+    max-width: 58ch;
+  }
+
+  .byline {
+    margin-top: 28px;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--fg-muted);
+  }
+
+  h2.act-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    line-height: 1.15;
+    margin: 0 0 0.4em;
+    text-wrap: balance;
+  }
+
+  .act-number {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.6em;
+  }
+
+  section.act {
+    padding: 56px 0;
+  }
+
+  p.lede {
+    font-size: 1.1rem;
+    color: var(--fg-muted);
+    max-width: 62ch;
+  }
+
+  .prose p {
+    max-width: 65ch;
+  }
+
+  .prose strong { color: var(--fg); }
+
+  .chart-block {
+    margin: 40px 0;
+  }
+
+  .chart-frame {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 20px;
+    overflow-x: auto;
+  }
+
+  .chart-caption {
+    font-size: 0.92rem;
+    color: var(--fg-muted);
+    margin-top: 10px;
+    max-width: 65ch;
+  }
+
+  .chart-caption .callout {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .source-tag {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--fg-muted);
+    letter-spacing: 0.02em;
+    margin-top: 6px;
+  }
+
+  .note-box {
+    background: var(--bg-band);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 0.95rem;
+    color: var(--fg-muted);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .note-box strong { color: var(--fg); }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 0;
+  }
+
+  .maps-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  footer {
+    padding: 56px 0 80px;
+    font-size: 0.85rem;
+    color: var(--fg-muted);
+  }
+
+  footer a { color: var(--accent); }
+
+  @media (max-width: 480px) {
+    header.masthead { padding: 48px 0 32px; }
+    section.act { padding: 40px 0; }
+    .chart-frame { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <span class="eyebrow">Child Development &amp; Learning</span>
+    <h1 class="title">Growing Up Different</h1>
+    <p class="subtitle">What Australian data actually tells us about autism, disability and developmental support in children, and where that data runs out.</p>
+    <p class="byline">Miguel &middot; 2026 &middot; FIT3179 Data Visualisation 2</p>
+  </div>
+</header>
+
+<main>
+
+  <!-- ACT 1 -->
+  <section class="act" id="act1">
+    <div class="wrap prose">
+      <span class="act-number">Act One: The Scale of It</span>
+      <h2 class="act-title">More children are being diagnosed with autism every year</h2>
+      <p class="lede">Between 2015 and 2022, the number of autistic children in Australia rose sharply. That doesn't necessarily mean autism itself is becoming more common. It more likely reflects earlier diagnosis, broader diagnostic criteria and growing awareness.</p>
+
+      <div class="chart-block">
+        <div class="chart-frame"><div id="chart01"></div></div>
+        <p class="chart-caption">Among children aged 5&ndash;14, the estimated number of autistic children grew by more than 70% in seven years.</p>
+        <p class="source-tag">Source: ABS, Survey of Disability, Ageing and Carers, 2022</p>
+      </div>
+
+      <p>Diagnosis is only the start of the story. What actually changes for a child once they're diagnosed? We compared autistic children with other children who have a disability but aren't autistic, across four measures of how school actually goes for them.</p>
+
+      <div class="chart-block">
+        <div class="chart-frame"><div id="chart02"></div></div>
+        <p class="chart-caption">Autistic children face <span class="callout">consistently higher rates</span> of schooling difficulty and need for support than other children with disability, across every measure we checked.</p>
+        <p class="source-tag">Source: ABS, Survey of Disability, Ageing and Carers, 2022 (Autism in Australia)</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ACT 2 -->
+  <section class="act band" id="act2">
+    <div class="band-wide">
+      <div class="prose">
+        <span class="act-number">Act Two: Where It Varies</span>
+        <h2 class="act-title">Where a child grows up shapes what happens next</h2>
+        <p class="lede">No Australian dataset tracks autism or ADHD diagnosis by region. We checked. So the three maps below use the closest available measure: the <strong>Australian Early Development Census (AEDC)</strong>, a national school-entry check that flags children who are "developmentally vulnerable" on one or more of five domains (physical health, social skills, emotional maturity, language and communication).</p>
+        <div class="note-box"><strong>This is not an autism or ADHD map.</strong> A child can be flagged as developmentally vulnerable for many reasons, including health, disadvantage, or an underlying condition. We use it here because it's the only measure with any geography at all, and because the pattern it reveals turns out to matter for the rest of the story.</div>
+      </div>
+
+      <div class="maps-grid">
+        <div class="chart-block">
+          <div class="chart-frame"><div id="chart03"></div></div>
+          <p class="chart-caption">The Northern Territory stands apart: <span class="callout">40.8%</span> of children are developmentally vulnerable, against 21&ndash;26% everywhere else.</p>
+          <p class="source-tag">Source: Australian Early Development Census, 2024</p>
+        </div>
+
+        <div class="chart-block">
+          <div class="chart-frame"><div id="chart04"></div></div>
+          <p class="chart-caption">Zooming into individual local areas shows the state figures hide enormous variation. Some regions inside "average" states are just as vulnerable as anywhere in the NT.</p>
+          <p class="source-tag">Source: AEDC 2024; centroids from HughParsonage/ABS-data (2016 boundaries, 514 of 544 areas matched)</p>
+        </div>
+
+        <div class="chart-block">
+          <div class="chart-frame"><div id="chart05"></div></div>
+          <p class="chart-caption">Splitting those same local areas by remoteness shows why: vulnerability climbs from <span class="callout">22.5%</span> in major cities to <span class="callout">35.8%</span> in remote and very remote communities.</p>
+          <p class="source-tag">Source: AEDC 2024; remoteness classification from Regional Australia Institute</p>
+        </div>
+
+        <div class="chart-block">
+          <div class="chart-frame"><div id="chart13"></div></div>
+          <p class="chart-caption">Here's the twist: when we map actual autism <em>service access</em> (not a proxy) using NDIS participation rates, the pattern flips. The NT, highest on developmental vulnerability, has the <span class="callout">lowest</span> rate of autism support in the country, a sign that remote communities may be under-served rather than less affected.</p>
+          <p class="source-tag">Source: NDIS Data Research, Dec 2024; ABS Estimated Resident Population, Dec 2024</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ACT 3 -->
+  <section class="act" id="act3">
+    <div class="wrap prose">
+      <span class="act-number">Act Three: Who It Affects</span>
+      <h2 class="act-title">The same condition looks different depending on who you ask</h2>
+      <p class="lede">Age, sex and what else a child is dealing with all change the picture, sometimes sharply.</p>
+
+      <div class="chart-block">
+        <div class="chart-frame"><div id="chart06"></div></div>
+        <p class="chart-caption">Boys are diagnosed with autism at roughly <span class="callout">2&ndash;3 times</span> the rate of girls, across every age group.</p>
+        <p class="source-tag">Source: ABS, Survey of Disability, Ageing and Carers, 2022</p>
+      </div>
+
+      <p>Disability doesn't come in one type. Among Australian children aged 0&ndash;14 who have a disability, "learning and understanding" difficulties are the single largest category.</p>
+
+      <div class="chart-block">
+        <div class="chart-frame"><div id="chart07"></div></div>
+        <p class="chart-caption">Learning and understanding difficulties affect <span class="callout">6.5%</span> of children with disability aged 0&ndash;14, more than any other category.</p>
+        <p class="source-tag">Source: ABS, Children and Young People with Disability, 2022</p>
+      </div>
+
+      <div class="note-box">These figures cover autistic Australians of all ages, not just children. No Australian data currently breaks this down by age for autism specifically. We include it because these co-occurring conditions typically emerge in childhood and tend to persist, so the pattern is still directly relevant to understanding autism in children.</div>
+
+      <div class="chart-block">
+        <div class="chart-frame"><div id="chart08"></div></div>
+        <p class="chart-caption">Autism rarely occurs in isolation. <span class="callout">71%</span> of autistic Australians also report difficulty with learning; <span class="callout">62%</span> report social or behavioural difficulties.</p>
+        <p class="source-tag">Source: ABS, Survey of Disability, Ageing and Carers, 2022 (Autism in Australia)</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ACT 4 -->
+  <section class="act" id="act4">
+    <div class="wrap prose">
+      <span class="act-number">Act Four: What Happens Next</span>
+      <h2 class="act-title">Diagnosis lags, support is uneven, and access is slowly improving</h2>
+      <p class="lede">A condition identified early looks very different from one caught late. And once a child is identified, whether they actually get help depends on where they live, what kind of help they need, and when they were born.</p>
+
+      <div class="chart-block">
+        <div class="chart-frame"><div id="chart12"></div></div>
+        <p class="chart-caption">Intellectual disability makes up almost none of diagnoses at age 0&ndash;4, then balloons to <span class="callout">6.9%</span> by age 10&ndash;14. That's a sign of diagnosis catching up with reality as children get older, not a sign that more children are becoming affected.</p>
+        <p class="source-tag">Source: AIHW, Australia's Children, 2018</p>
+      </div>
+
+      <div class="chart-block">
+        <div class="chart-frame"><div id="chart09"></div></div>
+        <p class="chart-caption">Around 1 in 5 students receive a formal educational adjustment for disability, broadly consistent across government, Catholic and independent schools.</p>
+        <p class="source-tag">Source: AIHW, Australia's Children, 2020 (NCCD)</p>
+      </div>
+
+      <div class="chart-block">
+        <div class="chart-frame"><div id="chart11"></div></div>
+        <p class="chart-caption">Among children with disability who need help, practical daily needs like health care and self-care are the <span class="callout">least</span> likely to be fully met, the reverse of what many would expect.</p>
+        <p class="source-tag">Source: ABS, Children and Young People with Disability, 2022</p>
+      </div>
+
+      <div class="chart-block">
+        <div class="chart-frame"><div id="chart10"></div></div>
+        <p class="chart-caption">Boys with disability are almost <span class="callout">twice as likely</span> as girls to have their schooling restricted in some way.</p>
+        <p class="source-tag">Source: AIHW, Australia's Children, 2018</p>
+      </div>
+
+      <p>Has access to support actually improved over time? Two genuinely multi-year measures say yes, with real gaps and setbacks along the way, not a smooth upward line.</p>
+
+      <div class="chart-block">
+        <div class="chart-frame"><div id="chart14"></div></div>
+        <p class="chart-caption">The share of eligible young children with an NDIS plan rose from <span class="callout">60%</span> in 2019 to <span class="callout">90%</span> in 2023, with a real dip in 2021.</p>
+        <p class="source-tag">Source: Productivity Commission, Report on Government Services, 2025</p>
+      </div>
+
+      <div class="chart-block">
+        <div class="chart-frame"><div id="chart15"></div></div>
+        <p class="chart-caption">For families who do get a plan, the wait has fallen sharply: a median of 10 days in 2024&ndash;25, down from 28&ndash;46 days in earlier years. 2023&ndash;24 data is missing from the official record, and the age band tracked changed slightly in the most recent year.</p>
+        <p class="source-tag">Source: Productivity Commission, Report on Government Services, 2025</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>About this visualisation.</strong> Built with Vega-Lite and Vega for FIT3179 Data Visualisation 2, Monash University. All data comes from the Australian Bureau of Statistics, the Australian Institute of Health and Welfare, the Australian Early Development Census, NDIS Data Research, the Productivity Commission and the Regional Australia Institute. The full source list, years and known limitations are documented in <a href="https://github.com/miggle711/au-child-neurodevelopmental-analysis/blob/main/SOURCES.md">SOURCES.md</a>. Every chart specification is published as readable JSON in the <a href="https://github.com/miggle711/au-child-neurodevelopmental-analysis/tree/main/specs">specs/</a> folder of this repository.</p>
+    <p>No data was fabricated or altered. Where the available data has a real gap or limitation, such as a proxy measure standing in for something more specific, an age range that doesn't perfectly match, or a missing year, it is disclosed directly in the chart it affects, not hidden.</p>
+  </div>
+</footer>
+
+<script>
+  var charts = [
+    ['chart01', '../specs/01_autism_trend_area.vl.json'],
+    ['chart02', '../specs/02_autism_schooling_dumbbell.vl.json'],
+    ['chart03', '../specs/03_state_choropleth.vl.json'],
+    ['chart04', '../specs/04_lga_proportional_symbol.vl.json'],
+    ['chart05', '../specs/05_remoteness_small_multiples.vl.json'],
+    ['chart06', '../specs/06_autism_age_sex_pyramid.vl.json'],
+    ['chart07', '../specs/07_disability_groups_radar.vg.json'],
+    ['chart08', '../specs/08_autism_cooccurring_beeswarm.vl.json'],
+    ['chart09', '../specs/09_education_adjustment_icon_array.vl.json'],
+    ['chart10', '../specs/10_schooling_restriction_bullet.vl.json'],
+    ['chart11', '../specs/11_children_unmet_need_heatmap.vl.json'],
+    ['chart12', '../specs/12_disability_by_age_streamgraph.vl.json'],
+    ['chart13', '../specs/13_ndis_autism_rate_choropleth.vl.json'],
+    ['chart14', '../specs/14_ndis_children_access_trend.vl.json'],
+    ['chart15', '../specs/15_ndis_wait_time_multiline.vl.json']
+  ];
+
+  charts.forEach(function (pair) {
+    var id = pair[0], path = pair[1];
+    var opts = { actions: false, renderer: 'svg' };
+    if (path.endsWith('.vg.json')) { opts.mode = 'vega'; }
+    vegaEmbed('#' + id, path, opts).catch(function (err) {
+      document.getElementById(id).innerHTML =
+        '<p style="color:#b8501f;font-family:monospace;font-size:0.8rem;">Failed to load ' + path + ': ' + err.toString() + '</p>';
+    });
+  });
+</script>
+</body>
+</html>
