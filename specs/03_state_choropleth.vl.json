@@ -6,14 +6,14 @@
   "height": 400,
   "projection": {"type": "mercator"},
   "data": {
-    "url": "../data/geo/au_states.topo.json",
+    "url": "data/geo/au_states.topo.json",
     "format": {"type": "topojson", "feature": "au_states_raw"}
   },
   "transform": [
     {
       "lookup": "properties.STATE_NAME",
       "from": {
-        "data": {"url": "../data/processed/aedc_state_2024.csv"},
+        "data": {"url": "data/processed/aedc_state_2024.csv"},
         "key": "state",
         "fields": ["vulnerable_1plus_pct", "abbr"]
       }

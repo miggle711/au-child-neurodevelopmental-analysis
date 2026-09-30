@@ -4,7 +4,7 @@
   "description": "ABS SDAC 2022 (Children and young people with disability): among children aged 0-14 who need assistance with an activity, the share whose need is actually received vs. not received, by activity type (national data only, all disability types, not autism-specific)",
   "width": 300,
   "height": 260,
-  "data": {"url": "../data/processed/abs_children_unmet_need_0_14.csv"},
+  "data": {"url": "data/processed/abs_children_unmet_need_0_14.csv"},
   "transform": [
     {
       "joinaggregate": [

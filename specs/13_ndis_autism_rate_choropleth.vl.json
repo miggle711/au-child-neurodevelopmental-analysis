@@ -6,14 +6,14 @@
   "height": 400,
   "projection": {"type": "mercator"},
   "data": {
-    "url": "../data/geo/au_states.topo.json",
+    "url": "data/geo/au_states.topo.json",
     "format": {"type": "topojson", "feature": "au_states_raw"}
   },
   "transform": [
     {
       "lookup": "properties.STATE_NAME",
       "from": {
-        "data": {"url": "../data/processed/ndis_autism_rate_by_state.csv"},
+        "data": {"url": "data/processed/ndis_autism_rate_by_state.csv"},
         "key": "state",
         "fields": ["rate_per_1000", "abbr", "autism_ndis_participants"]
       }

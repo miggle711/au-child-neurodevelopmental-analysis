@@ -4,7 +4,7 @@
   "description": "Productivity Commission, Report on Government Services 2025, Table 15A.20: NDIS participants aged 0-14 as a proportion of the estimated potential population needing support, Australia (national, all disability types, not neurodevelopmental-specific, though autism and developmental delay make up the large majority of NDIS participants in this age group)",
   "width": 450,
   "height": 260,
-  "data": {"url": "../data/processed/ndis_children_access_trend.csv"},
+  "data": {"url": "data/processed/ndis_children_access_trend.csv"},
   "layer": [
     {
       "mark": {"type": "line", "point": {"size": 90, "filled": true}, "strokeWidth": 2.5, "color": "#3182bd"},

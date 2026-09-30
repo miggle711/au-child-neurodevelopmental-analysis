@@ -4,7 +4,7 @@
   "description": "ABS SDAC 2022: % of autistic people (all ages) also reporting each characteristic — shows autism rarely occurs in isolation (national data only, not age-restricted to children)",
   "width": 520,
   "height": 260,
-  "data": {"url": "../data/processed/abs_autism_cooccurring.csv"},
+  "data": {"url": "data/processed/abs_autism_cooccurring.csv"},
   "layer": [
     {
       "mark": {"type": "circle", "size": 260, "opacity": 0.85, "stroke": "black", "strokeWidth": 0.5},

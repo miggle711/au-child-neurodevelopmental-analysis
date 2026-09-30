@@ -7,14 +7,14 @@
   "layer": [
     {
       "data": {
-        "url": "../data/geo/au_states.topo.json",
+        "url": "data/geo/au_states.topo.json",
         "format": {"type": "topojson", "feature": "au_states_raw"}
       },
       "projection": {"type": "mercator"},
       "mark": {"type": "geoshape", "fill": "#eeeeee", "stroke": "white", "strokeWidth": 1}
     },
     {
-      "data": {"url": "../data/processed/aedc_lga_2024_with_centroids.csv"},
+      "data": {"url": "data/processed/aedc_lga_2024_with_centroids.csv"},
       "transform": [
         {"filter": "datum.vulnerable_1plus_pct != null && datum.vulnerable_1plus_pct !== ''"}
       ],

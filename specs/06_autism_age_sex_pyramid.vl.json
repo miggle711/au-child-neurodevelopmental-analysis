@@ -4,7 +4,7 @@
   "description": "ABS SDAC 2022: estimated number of autistic people aged 0-24, by age group and sex (population pyramid; national data only)",
   "width": 220,
   "height": 220,
-  "data": {"url": "../data/processed/abs_autism_age_sex.csv"},
+  "data": {"url": "data/processed/abs_autism_age_sex.csv"},
   "transform": [
     {
       "calculate": "datum.sex === 'Male' ? -datum.estimate_000 : datum.estimate_000",

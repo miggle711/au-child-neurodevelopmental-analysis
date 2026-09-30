@@ -4,7 +4,7 @@
   "description": "ABS SDAC 2022: % of children/young people aged 5-20 with disability, by schooling restriction/difficulty/support type (national data only)",
   "width": 480,
   "height": 220,
-  "data": {"url": "../data/processed/abs_autism_schooling_support.csv"},
+  "data": {"url": "data/processed/abs_autism_schooling_support.csv"},
   "layer": [
     {
       "mark": {"type": "line", "color": "#cccccc", "strokeWidth": 3},

@@ -4,7 +4,7 @@
   "description": "AIHW/ABS SDAC 2018: % of children with each disability group, by age band (streamgraph; national data only). Shows diagnosis lag — several groups become more prevalent at older ages, likely reflecting when conditions are typically identified/diagnosed rather than later onset.",
   "width": 450,
   "height": 280,
-  "data": {"url": "../data/processed/aihw_disability_by_age.csv"},
+  "data": {"url": "data/processed/aihw_disability_by_age.csv"},
   "mark": {"type": "area", "interpolate": "monotone"},
   "encoding": {
     "x": {

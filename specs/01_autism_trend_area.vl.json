@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Autistic children in Australia, 2015-2022",
   "description": "ABS SDAC: estimated number of autistic children, by age group and survey year (national data only)",
-  "data": {"url": "../data/processed/abs_autism_trend.csv"},
+  "data": {"url": "data/processed/abs_autism_trend.csv"},
   "width": 450,
   "height": 250,
   "mark": {"type": "area", "line": true, "opacity": 0.6},

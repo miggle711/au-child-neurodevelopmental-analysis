@@ -5,7 +5,7 @@
   "width": 450,
   "height": 280,
   "data": {
-    "url": "../data/processed/ndis_wait_time_trend_long.csv",
+    "url": "data/processed/ndis_wait_time_trend_long.csv",
     "format": {"type": "csv", "parse": {"days": "number"}}
   },
   "layer": [
