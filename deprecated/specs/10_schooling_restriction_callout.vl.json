@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Schooling restriction among children with disability, 2018",
+  "description": "AIHW/ABS SDAC: % of children aged 5-14 with a disability who have a schooling restriction, overall and by sex (national data only)",
+  "data": {"url": "../data/processed/aihw_schooling_restriction.csv"},
+  "width": 350,
+  "height": 200,
+  "layer": [
+    {
+      "mark": {"type": "bar", "size": 40, "cornerRadiusEnd": 4},
+      "encoding": {
+        "y": {"field": "group", "type": "nominal", "sort": ["All children", "Boys", "Girls"], "title": null},
+        "x": {"field": "pct", "type": "quantitative", "title": "% with a schooling restriction", "scale": {"domain": [0, 12]}},
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "scale": {
+            "domain": ["All children", "Boys", "Girls"],
+            "range": ["#525252", "#4292c6", "#d94801"]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {"type": "text", "align": "left", "dx": 6, "fontSize": 14, "fontWeight": "bold"},
+      "encoding": {
+        "y": {"field": "group", "type": "nominal", "sort": ["All children", "Boys", "Girls"]},
+        "x": {"field": "pct", "type": "quantitative"},
+        "text": {"field": "pct", "type": "quantitative", "format": ".1f"},
+        "color": {"value": "black"}
+      }
+    }
+  ]
+}

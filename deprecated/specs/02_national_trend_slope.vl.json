@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Developmental vulnerability, Australia 2009-2024",
+  "description": "AEDC: % of children developmentally vulnerable on one or more domains, by census cycle",
+  "data": {
+    "values": [
+      {"cycle": 2009, "vulnerable_1plus_pct": 23.55},
+      {"cycle": 2012, "vulnerable_1plus_pct": 22.01},
+      {"cycle": 2015, "vulnerable_1plus_pct": 22.01},
+      {"cycle": 2018, "vulnerable_1plus_pct": 21.66},
+      {"cycle": 2021, "vulnerable_1plus_pct": 22.03},
+      {"cycle": 2024, "vulnerable_1plus_pct": 23.54}
+    ]
+  },
+  "width": 500,
+  "height": 250,
+  "layer": [
+    {
+      "mark": {"type": "line", "point": {"size": 80, "filled": true}, "strokeWidth": 2}
+    },
+    {
+      "mark": {"type": "text", "dy": -14, "fontSize": 12},
+      "encoding": {
+        "text": {"field": "vulnerable_1plus_pct", "type": "quantitative", "format": ".1f"}
+      }
+    }
+  ],
+  "encoding": {
+    "x": {"field": "cycle", "type": "ordinal", "title": "AEDC census cycle"},
+    "y": {"field": "vulnerable_1plus_pct", "type": "quantitative", "title": "% developmentally vulnerable", "scale": {"domain": [18, 26]}}
+  }
+}

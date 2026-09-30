@@ -1,0 +1,17 @@
+- Investigate statistics relating to neurodevelopmental conditions such as ADHD, autism or learning disabilities in children in Australia.
+- Compare diagnosis rates, service usage or demographic characteristics across different age groups or years.
+- Explore how awareness and access to support have changed over time.
+
+- https://www.abc.net.au/news/2026-04-20/adhd-diagnosis-rates-adults-australia-data-four-corners/106557646
+- https://www.abs.gov.au/statistics/data-integration/integrated-data/person-level-integrated-data-asset-plida
+    - https://www.abs.gov.au/statistics/data-integration/accessing-integrated-data
+- https://www.apsc.gov.au/initiatives-and-programs/workforce-information/research-analysis-and-publications/state-service/state-service-report-2023-24/aps-profile/neurodiversity
+- https://www.abs.gov.au/statistics/health/disability/disability-ageing-and-carers-australia-summary-findings/latest-release
+- Longitudinal Study on Australian Children: https://dataverse.ada.edu.au/dataset.xhtml?persistentId=doi:10.26193/XMLCQP
+- https://www.abs.gov.au/statistics/health/health-conditions-and-risks/national-health-survey
+- https://www.abs.gov.au/statistics/measuring-what-matters/measuring-what-matters-themes-and-indicators/prosperous/childhood-development
+- https://www.aihw.gov.au/reports/children-youth/australias-children/contents/education/child-learning-development
+- https://pmc.ncbi.nlm.nih.gov/articles/PMC12119035/
+- https://theconversation.com/one-quarter-of-australian-kids-are-developmentally-vulnerable-when-they-start-school-quality-childcare-can-catch-them-up-285350
+- https://www.aedc.gov.au/
+    - https://www.aedc.gov.au/data-hub/public-data/2024-aedc-results

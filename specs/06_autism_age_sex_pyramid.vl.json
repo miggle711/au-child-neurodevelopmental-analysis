@@ -1,0 +1,41 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Autistic children and young people, by age and sex, Australia 2022",
+  "description": "ABS SDAC 2022: estimated number of autistic people aged 0-24, by age group and sex (population pyramid; national data only)",
+  "width": 220,
+  "height": 220,
+  "data": {"url": "../data/processed/abs_autism_age_sex.csv"},
+  "transform": [
+    {
+      "calculate": "datum.sex === 'Male' ? -datum.estimate_000 : datum.estimate_000",
+      "as": "signed_estimate"
+    }
+  ],
+  "spec": {},
+  "hconcat": [
+    {
+      "width": 220,
+      "height": 200,
+      "transform": [{"filter": "datum.sex === 'Male'"}],
+      "mark": {"type": "bar", "color": "#4292c6"},
+      "encoding": {
+        "y": {"field": "age_group", "type": "ordinal", "sort": ["15-24", "5-14", "0-4"], "title": null, "axis": {"orient": "right"}},
+        "x": {"field": "estimate_000", "type": "quantitative", "sort": "descending", "title": "Estimate ('000)", "scale": {"domain": [0, 110]}},
+        "tooltip": [{"field": "age_group"}, {"field": "estimate_000", "title": "'000 (Male)"}]
+      }
+    },
+    {
+      "width": 220,
+      "height": 200,
+      "transform": [{"filter": "datum.sex === 'Female'"}],
+      "mark": {"type": "bar", "color": "#d94801"},
+      "encoding": {
+        "y": {"field": "age_group", "type": "ordinal", "sort": ["15-24", "5-14", "0-4"], "title": null, "axis": null},
+        "x": {"field": "estimate_000", "type": "quantitative", "title": "Estimate ('000)", "scale": {"domain": [0, 110]}},
+        "tooltip": [{"field": "age_group"}, {"field": "estimate_000", "title": "'000 (Female)"}]
+      }
+    }
+  ],
+  "resolve": {"scale": {"y": "shared"}},
+  "config": {"view": {"stroke": null}}
+}

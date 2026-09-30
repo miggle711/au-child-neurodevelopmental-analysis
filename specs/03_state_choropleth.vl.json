@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Developmental vulnerability by state/territory, 2024",
+  "description": "AEDC: % of children developmentally vulnerable on one or more domains, by state/territory",
+  "width": 500,
+  "height": 400,
+  "projection": {"type": "mercator"},
+  "data": {
+    "url": "../data/geo/au_states.topo.json",
+    "format": {"type": "topojson", "feature": "au_states_raw"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.STATE_NAME",
+      "from": {
+        "data": {"url": "../data/processed/aedc_state_2024.csv"},
+        "key": "state",
+        "fields": ["vulnerable_1plus_pct", "abbr"]
+      }
+    }
+  ],
+  "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1},
+  "encoding": {
+    "color": {
+      "field": "vulnerable_1plus_pct",
+      "type": "quantitative",
+      "title": "% developmentally vulnerable",
+      "scale": {"scheme": "oranges"}
+    },
+    "tooltip": [
+      {"field": "properties.STATE_NAME", "title": "State"},
+      {"field": "vulnerable_1plus_pct", "title": "% vulnerable", "format": ".1f"}
+    ]
+  }
+}

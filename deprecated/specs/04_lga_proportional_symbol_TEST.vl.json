@@ -1,0 +1,42 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "TEST SPEC — not final data, validating mechanics only",
+  "description": "Proportional symbol map: developmental vulnerability by LGA (sample points)",
+  "width": 500,
+  "height": 400,
+  "layer": [
+    {
+      "data": {
+        "url": "../data/geo/au_states.topo.json",
+        "format": {"type": "topojson", "feature": "au_states_raw"}
+      },
+      "projection": {"type": "mercator"},
+      "mark": {"type": "geoshape", "fill": "#eeeeee", "stroke": "white", "strokeWidth": 1}
+    },
+    {
+      "data": {"url": "../data/processed/_test_lga_sample.csv"},
+      "projection": {"type": "mercator"},
+      "mark": {"type": "circle", "opacity": 0.75, "stroke": "black", "strokeWidth": 0.5},
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "size": {
+          "field": "vulnerable_1plus_pct",
+          "type": "quantitative",
+          "title": "% vulnerable",
+          "scale": {"range": [50, 1200]}
+        },
+        "color": {
+          "field": "vulnerable_1plus_pct",
+          "type": "quantitative",
+          "scale": {"scheme": "oranges"},
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "lga_name", "title": "LGA"},
+          {"field": "vulnerable_1plus_pct", "title": "% vulnerable", "format": ".1f"}
+        ]
+      }
+    }
+  ]
+}

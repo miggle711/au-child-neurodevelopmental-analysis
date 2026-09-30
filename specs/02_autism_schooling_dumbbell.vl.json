@@ -1,0 +1,36 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Schooling difficulties and supports, autistic vs. non-autistic children with disability",
+  "description": "ABS SDAC 2022: % of children/young people aged 5-20 with disability, by schooling restriction/difficulty/support type (national data only)",
+  "width": 480,
+  "height": 220,
+  "data": {"url": "../data/processed/abs_autism_schooling_support.csv"},
+  "layer": [
+    {
+      "mark": {"type": "line", "color": "#cccccc", "strokeWidth": 3},
+      "encoding": {
+        "y": {"field": "category", "type": "nominal", "title": null},
+        "x": {"field": "pct", "type": "quantitative", "title": "% of children with disability"},
+        "detail": {"field": "category"}
+      }
+    },
+    {
+      "mark": {"type": "point", "filled": true, "size": 150, "opacity": 1},
+      "encoding": {
+        "y": {"field": "category", "type": "nominal"},
+        "x": {"field": "pct", "type": "quantitative"},
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "title": null,
+          "scale": {"domain": ["Autistic", "Non-autistic with disability"], "range": ["#d94801", "#9ecae1"]}
+        },
+        "tooltip": [
+          {"field": "category", "title": "Measure"},
+          {"field": "group", "title": "Group"},
+          {"field": "pct", "title": "%"}
+        ]
+      }
+    }
+  ]
+}

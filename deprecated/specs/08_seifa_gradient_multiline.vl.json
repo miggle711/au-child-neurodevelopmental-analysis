@@ -1,0 +1,20 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Developmental vulnerability by socioeconomic quintile, 2009-2024",
+  "description": "AEDC: % of children developmentally vulnerable on one or more domains, by SEIFA quintile and census cycle",
+  "data": {"url": "../data/processed/aedc_seifa_trend.csv"},
+  "width": 500,
+  "height": 300,
+  "mark": {"type": "line", "point": true, "strokeWidth": 2.5},
+  "encoding": {
+    "x": {"field": "cycle", "type": "ordinal", "title": "AEDC census cycle"},
+    "y": {"field": "vulnerable_1plus_pct", "type": "quantitative", "title": "% developmentally vulnerable"},
+    "color": {
+      "field": "quintile",
+      "type": "nominal",
+      "title": "Socioeconomic quintile",
+      "sort": ["Quintile 1 (most disadvantaged)", "Quintile 2", "Quintile 3", "Quintile 4", "Quintile 5 (least disadvantaged)"],
+      "scale": {"scheme": "reds", "reverse": true}
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Vulnerability by developmental domain, Australia 2024",
+  "description": "AEDC: % of children developmentally vulnerable, at risk, or on track, by domain",
+  "data": {
+    "values": [
+      {"domain": "Physical", "vulnerable_pct": 10.04, "at_risk_pct": 11.76, "on_track_pct": 78.2},
+      {"domain": "Social", "vulnerable_pct": 10.72, "at_risk_pct": 15.26, "on_track_pct": 74.02},
+      {"domain": "Emotional", "vulnerable_pct": 9.97, "at_risk_pct": 15.2, "on_track_pct": 74.83},
+      {"domain": "Language", "vulnerable_pct": 7.74, "at_risk_pct": 10.58, "on_track_pct": 81.67},
+      {"domain": "Communication", "vulnerable_pct": 8.86, "at_risk_pct": 15.21, "on_track_pct": 75.92}
+    ]
+  },
+  "width": 450,
+  "height": 220,
+  "encoding": {
+    "y": {
+      "field": "domain",
+      "type": "nominal",
+      "title": null,
+      "sort": {"field": "vulnerable_pct", "order": "descending"}
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "rule", "strokeWidth": 2},
+      "encoding": {
+        "x": {"field": "vulnerable_pct", "type": "quantitative", "title": "% developmentally vulnerable"},
+        "x2": {"datum": 0}
+      }
+    },
+    {
+      "mark": {"type": "point", "filled": true, "size": 120},
+      "encoding": {
+        "x": {"field": "vulnerable_pct", "type": "quantitative"}
+      }
+    }
+  ]
+}

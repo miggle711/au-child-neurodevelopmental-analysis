@@ -1,0 +1,36 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Disability group composition by age, children 0-14",
+  "description": "AIHW/ABS SDAC 2018: % of children with each disability group, by age band (streamgraph; national data only). Shows diagnosis lag — several groups become more prevalent at older ages, likely reflecting when conditions are typically identified/diagnosed rather than later onset.",
+  "width": 450,
+  "height": 280,
+  "data": {"url": "../data/processed/aihw_disability_by_age.csv"},
+  "mark": {"type": "area", "interpolate": "monotone"},
+  "encoding": {
+    "x": {
+      "field": "age_group",
+      "type": "ordinal",
+      "sort": ["0-4", "5-9", "10-14"],
+      "title": "Age group",
+      "scale": {"padding": 0}
+    },
+    "y": {
+      "field": "pct",
+      "type": "quantitative",
+      "stack": "center",
+      "title": null,
+      "axis": null
+    },
+    "color": {
+      "field": "disability_group",
+      "type": "nominal",
+      "title": "Disability group",
+      "scale": {"scheme": "oranges"}
+    },
+    "tooltip": [
+      {"field": "disability_group", "title": "Disability group"},
+      {"field": "age_group", "title": "Age group"},
+      {"field": "pct", "title": "%"}
+    ]
+  }
+}

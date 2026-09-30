@@ -1,0 +1,16 @@
+age_group,disability_group,pct
+0-4,Sensory and speech,2.7
+5-9,Sensory and speech,4.6
+10-14,Sensory and speech,2.4
+0-4,Intellectual,1.1
+5-9,Intellectual,5.2
+10-14,Intellectual,6.9
+0-4,Physical restriction,1.0
+5-9,Physical restriction,1.7
+10-14,Physical restriction,2.4
+0-4,Psychosocial,0.8
+5-9,Psychosocial,3.1
+10-14,Psychosocial,4.3
+0-4,Other,0.5
+5-9,Other,1.8
+10-14,Other,2.3

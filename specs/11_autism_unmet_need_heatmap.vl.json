@@ -1,0 +1,68 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Support needs: fully met vs. not fully met, autistic Australians",
+  "description": "ABS SDAC 2022: extent to which autistic people's support needs are met, by activity type (national data, all ages, not child-restricted)",
+  "width": 300,
+  "height": 300,
+  "data": {"url": "../data/processed/abs_autism_unmet_need.csv"},
+  "transform": [
+    {
+      "joinaggregate": [
+        {"op": "min", "field": "pct", "as": "fully_met_pct"}
+      ],
+      "groupby": ["activity"]
+    }
+  ],
+  "layer": [
+    {
+      "transform": [{"filter": "datum.status === 'Need fully met'"}],
+      "mark": {"type": "rect", "stroke": "white", "strokeWidth": 2},
+      "encoding": {
+        "y": {
+          "field": "activity",
+          "type": "nominal",
+          "title": null,
+          "sort": {"field": "fully_met_pct", "order": "ascending"}
+        },
+        "x": {"field": "status", "type": "nominal", "title": null, "sort": ["Need fully met", "Need not fully met"]},
+        "color": {
+          "field": "pct",
+          "type": "quantitative",
+          "title": "% need fully met",
+          "scale": {"scheme": "blues", "domain": [40, 80]},
+          "legend": {"orient": "right", "titleLimit": 200}
+        },
+        "tooltip": [
+          {"field": "activity", "title": "Activity"},
+          {"field": "status", "title": "Status"},
+          {"field": "pct", "title": "%"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.status === 'Need not fully met'"}],
+      "mark": {"type": "rect", "stroke": "white", "strokeWidth": 2},
+      "encoding": {
+        "y": {
+          "field": "activity",
+          "type": "nominal",
+          "sort": {"field": "fully_met_pct", "order": "ascending"}
+        },
+        "x": {"field": "status", "type": "nominal", "sort": ["Need fully met", "Need not fully met"]},
+        "color": {
+          "field": "pct",
+          "type": "quantitative",
+          "title": "% need not fully met",
+          "scale": {"scheme": "reds", "domain": [15, 50]},
+          "legend": {"orient": "right", "titleLimit": 200}
+        },
+        "tooltip": [
+          {"field": "activity", "title": "Activity"},
+          {"field": "status", "title": "Status"},
+          {"field": "pct", "title": "%"}
+        ]
+      }
+    }
+  ],
+  "resolve": {"scale": {"color": "independent"}}
+}

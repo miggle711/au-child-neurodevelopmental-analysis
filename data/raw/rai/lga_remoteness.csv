@@ -1,0 +1,566 @@
+LGA code,LGA,State,Capital - Rest of state,RAI regional type,ABS remoteness classification
+10050,Albury,NSW,Rest of NSW,Regional City,Inner Regional Australia
+10180,Armidale Regional,NSW,Rest of NSW,Industry & Service Hub,Inner Regional Australia
+10250,Ballina,NSW,Rest of NSW,Regional City,Inner Regional Australia
+10300,Balranald,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+10470,Bathurst Regional,NSW,Rest of NSW,Regional City,Inner Regional Australia
+10500,Bayside (NSW),NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+10550,Bega Valley,NSW,Rest of NSW,Industry & Service Hub,Outer Regional Australia
+10600,Bellingen,NSW,Rest of NSW,Connected Lifestyle Area,Inner Regional Australia
+10650,Berrigan,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+10750,Blacktown,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+10800,Bland,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+10850,Blayney,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+10900,Blue Mountains,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+10950,Bogan,NSW,Rest of NSW,Heartland Region,Remote Australia
+11150,Bourke,NSW,Rest of NSW,Heartland Region,Remote Australia
+11200,Brewarrina,NSW,Rest of NSW,Heartland Region,Very Remote Australia
+11250,Broken Hill,NSW,Rest of NSW,Industry & Service Hub,Outer Regional Australia
+11300,Burwood,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+11350,Byron,NSW,Rest of NSW,Connected Lifestyle Area,Inner Regional Australia
+11400,Cabonne,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+11450,Camden,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+11500,Campbelltown (NSW),NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+11520,Canada Bay,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+11570,Canterbury-Bankstown,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+11600,Carrathool,NSW,Rest of NSW,Heartland Region,Remote Australia
+11650,Central Coast (NSW),NSW,Greater Sydney,Regional City,Major Cities of Australia
+11700,Central Darling,NSW,Rest of NSW,Heartland Region,Very Remote Australia
+11720,Cessnock,NSW,Rest of NSW,Regional City,Major Cities of Australia
+11730,Clarence Valley,NSW,Rest of NSW,Industry & Service Hub,Inner Regional Australia
+11750,Cobar,NSW,Rest of NSW,Heartland Region,Remote Australia
+11800,Coffs Harbour,NSW,Rest of NSW,Regional City,Inner Regional Australia
+12000,Coolamon,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+12150,Coonamble,NSW,Rest of NSW,Heartland Region,Remote Australia
+12160,Cootamundra-Gundagai Regional,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+12350,Cowra,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+12380,Cumberland,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+12390,Dubbo Regional,NSW,Rest of NSW,Industry & Service Hub,Inner Regional Australia
+12700,Dungog,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+12730,Edward River,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+12750,Eurobodalla,NSW,Rest of NSW,Industry & Service Hub,Inner Regional Australia
+12850,Fairfield,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+12870,Federation,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+12900,Forbes,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+12930,Georges River,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+12950,Gilgandra,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+13010,Glen Innes Severn,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+13310,Goulburn Mulwaree,NSW,Rest of NSW,Connected Lifestyle Area,Inner Regional Australia
+13340,Greater Hume Shire,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+13450,Griffith,NSW,Rest of NSW,Industry & Service Hub,Outer Regional Australia
+13550,Gunnedah,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+13660,Gwydir,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+13800,Hawkesbury,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+13850,Hay,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+13910,Hilltops,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+14000,Hornsby,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+14100,Hunters Hill,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+14170,Inner West,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+14220,Inverell,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+14300,Junee,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+14350,Kempsey,NSW,Rest of NSW,Industry & Service Hub,Inner Regional Australia
+14400,Kiama,NSW,Rest of NSW,Connected Lifestyle Area,Major Cities of Australia
+14500,Ku-ring-gai,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+14550,Kyogle,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+14600,Lachlan,NSW,Rest of NSW,Heartland Region,Remote Australia
+14650,Lake Macquarie,NSW,Rest of NSW,Regional City,Major Cities of Australia
+14700,Lane Cove,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+14750,Leeton,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+14850,Lismore,NSW,Rest of NSW,Regional City,Inner Regional Australia
+14870,Lithgow,NSW,Rest of NSW,Connected Lifestyle Area,Inner Regional Australia
+14900,Liverpool,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+14920,Liverpool Plains,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+14950,Lockhart,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+15050,Maitland,NSW,Rest of NSW,Regional City,Major Cities of Australia
+15240,Mid-Coast,NSW,Rest of NSW,Industry & Service Hub,Inner Regional Australia
+15270,Mid-Western Regional,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+15300,Moree Plains,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+15350,Mosman,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+15520,Murray River,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+15560,Murrumbidgee,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+15650,Muswellbrook,NSW,Rest of NSW,Industry & Service Hub,Inner Regional Australia
+15700,Nambucca Valley,NSW,Rest of NSW,Industry & Service Hub,Inner Regional Australia
+15750,Narrabri,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+15800,Narrandera,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+15850,Narromine,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+15900,Newcastle,NSW,Rest of NSW,Regional City,Major Cities of Australia
+15950,North Sydney,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+15990,Northern Beaches,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+16100,Oberon,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+16150,Orange,NSW,Rest of NSW,Regional City,Inner Regional Australia
+16200,Parkes,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+16260,Parramatta,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+16350,Penrith,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+16380,Port Macquarie-Hastings,NSW,Rest of NSW,Regional City,Inner Regional Australia
+16400,Port Stephens,NSW,Rest of NSW,Regional City,Inner Regional Australia
+16490,Queanbeyan-Palerang Regional,NSW,Rest of NSW,Connected Lifestyle Area,Major Cities of Australia
+16550,Randwick,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+16610,Richmond Valley,NSW,Rest of NSW,Connected Lifestyle Area,Inner Regional Australia
+16700,Ryde,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+16900,Shellharbour,NSW,Rest of NSW,Regional City,Major Cities of Australia
+16950,Shoalhaven,NSW,Rest of NSW,Regional City,Inner Regional Australia
+17000,Singleton,NSW,Rest of NSW,Industry & Service Hub,Inner Regional Australia
+17040,Snowy Monaro Regional,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+17080,Snowy Valleys,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+17100,Strathfield,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+17150,Sutherland Shire,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+17200,Sydney,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+17310,Tamworth Regional,NSW,Rest of NSW,Regional City,Inner Regional Australia
+17350,Temora,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+17400,Tenterfield,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+17420,The Hills Shire,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+17550,Tweed,NSW,Rest of NSW,Regional City,Major Cities of Australia
+17620,Upper Hunter Shire,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+17640,Upper Lachlan Shire,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+17650,Uralla,NSW,Rest of NSW,Heartland Region,Inner Regional Australia
+17750,Wagga Wagga,NSW,Rest of NSW,Regional City,Inner Regional Australia
+17850,Walcha,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+17900,Walgett,NSW,Rest of NSW,Heartland Region,Remote Australia
+17950,Warren,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+18020,Warrumbungle Shire,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+18050,Waverley,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+18100,Weddin,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+18200,Wentworth,NSW,Rest of NSW,Heartland Region,Outer Regional Australia
+18250,Willoughby,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+18350,Wingecarribee,NSW,Rest of NSW,Connected Lifestyle Area,Inner Regional Australia
+18400,Wollondilly,NSW,Greater Sydney,Metropolitan,Inner Regional Australia
+18450,Wollongong,NSW,Rest of NSW,Regional City,Major Cities of Australia
+18500,Woollahra,NSW,Greater Sydney,Metropolitan,Major Cities of Australia
+18710,Yass Valley,NSW,Rest of NSW,Connected Lifestyle Area,Inner Regional Australia
+19399,Unincorporated NSW,NSW,Rest of NSW,Heartland Region,Very Remote Australia
+19499,No usual address (NSW),NSW,Rest of NSW,,No usual address (NSW)
+19799,Migratory - Offshore - Shipping (NS,WN)SW,Rest of NSW,,
+20110,Alpine,Vic.,Rest of Vic.,Heartland Region,Inner Regional Australia
+20260,Ararat,Vic.,Rest of Vic.,Heartland Region,Inner Regional Australia
+20570,Ballarat,Vic.,Rest of Vic.,Regional City,Inner Regional Australia
+20660,Banyule,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+20740,Bass Coast,Vic.,Rest of Vic.,Connected Lifestyle Area,Inner Regional Australia
+20830,Baw Baw,Vic.,Rest of Vic.,Connected Lifestyle Area,Inner Regional Australia
+20910,Bayside (Vic.),Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+21010,Benalla,Vic.,Rest of Vic.,Heartland Region,Inner Regional Australia
+21110,Boroondara,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+21180,Brimbank,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+21270,Buloke,Vic.,Rest of Vic.,Heartland Region,Outer Regional Australia
+21370,Campaspe,Vic.,Rest of Vic.,Heartland Region,Inner Regional Australia
+21450,Cardinia,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+21610,Casey,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+21670,Central Goldfields,Vic.,Rest of Vic.,Heartland Region,Inner Regional Australia
+21750,Colac Otway,Vic.,Rest of Vic.,Connected Lifestyle Area,Inner Regional Australia
+21830,Corangamite,Vic.,Rest of Vic.,Heartland Region,Inner Regional Australia
+21890,Darebin,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+22110,East Gippsland,Vic.,Rest of Vic.,Industry & Service Hub,Outer Regional Australia
+22170,Frankston,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+22250,Gannawarra,Vic.,Rest of Vic.,Heartland Region,Outer Regional Australia
+22310,Glen Eira,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+22410,Glenelg,Vic.,Rest of Vic.,Heartland Region,Outer Regional Australia
+22490,Golden Plains,Vic.,Rest of Vic.,Connected Lifestyle Area,Inner Regional Australia
+22620,Greater Bendigo,Vic.,Rest of Vic.,Regional City,Inner Regional Australia
+22670,Greater Dandenong,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+22750,Greater Geelong,Vic.,Rest of Vic.,Regional City,Major Cities of Australia
+22830,Greater Shepparton,Vic.,Rest of Vic.,Regional City,Inner Regional Australia
+22910,Hepburn,Vic.,Rest of Vic.,Connected Lifestyle Area,Inner Regional Australia
+22980,Hindmarsh,Vic.,Rest of Vic.,Heartland Region,Outer Regional Australia
+23110,Hobsons Bay,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+23190,Horsham,Vic.,Rest of Vic.,Industry & Service Hub,Outer Regional Australia
+23270,Hume,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+23350,Indigo,Vic.,Rest of Vic.,Connected Lifestyle Area,Inner Regional Australia
+23430,Kingston (Vic.),Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+23670,Knox,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+23810,Latrobe (Vic.),Vic.,Rest of Vic.,Regional City,Inner Regional Australia
+23940,Loddon,Vic.,Rest of Vic.,Heartland Region,Outer Regional Australia
+24130,Macedon Ranges,Vic.,Greater Melbourne,Connected Lifestyle Area,Inner Regional Australia
+24210,Manningham,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+24250,Mansfield,Vic.,Rest of Vic.,Heartland Region,Outer Regional Australia
+24330,Maribyrnong,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+24410,Maroondah,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+24600,Melbourne,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+24650,Melton,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+24780,Mildura,Vic.,Rest of Vic.,Regional City,Outer Regional Australia
+24850,Mitchell,Vic.,Rest of Vic.,Connected Lifestyle Area,Inner Regional Australia
+24900,Moira,Vic.,Rest of Vic.,Heartland Region,Inner Regional Australia
+24970,Monash,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+25060,Moonee Valley,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+25150,Moorabool,Vic.,Greater Melbourne,Connected Lifestyle Area,Major Cities of Australia
+25250,Moreland,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+25340,Mornington Peninsula,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+25430,Mount Alexander,Vic.,Rest of Vic.,Connected Lifestyle Area,Inner Regional Australia
+25490,Moyne,Vic.,Rest of Vic.,Heartland Region,Inner Regional Australia
+25620,Murrindindi,Vic.,Rest of Vic.,Connected Lifestyle Area,Inner Regional Australia
+25710,Nillumbik,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+25810,Northern Grampians,Vic.,Rest of Vic.,Heartland Region,Inner Regional Australia
+25900,Port Phillip,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+25990,Pyrenees,Vic.,Rest of Vic.,Connected Lifestyle Area,Inner Regional Australia
+26080,Queenscliffe,Vic.,Rest of Vic.,Connected Lifestyle Area,Inner Regional Australia
+26170,South Gippsland,Vic.,Rest of Vic.,Industry & Service Hub,Inner Regional Australia
+26260,Southern Grampians,Vic.,Rest of Vic.,Heartland Region,Inner Regional Australia
+26350,Stonnington,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+26430,Strathbogie,Vic.,Rest of Vic.,Heartland Region,Inner Regional Australia
+26490,Surf Coast,Vic.,Rest of Vic.,Connected Lifestyle Area,Inner Regional Australia
+26610,Swan Hill,Vic.,Rest of Vic.,Heartland Region,Outer Regional Australia
+26670,Towong,Vic.,Rest of Vic.,Heartland Region,Outer Regional Australia
+26700,Wangaratta,Vic.,Rest of Vic.,Industry & Service Hub,Inner Regional Australia
+26730,Warrnambool,Vic.,Rest of Vic.,Industry & Service Hub,Inner Regional Australia
+26810,Wellington,Vic.,Rest of Vic.,Industry & Service Hub,Inner Regional Australia
+26890,West Wimmera,Vic.,Rest of Vic.,Heartland Region,Outer Regional Australia
+26980,Whitehorse,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+27070,Whittlesea,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+27170,Wodonga,Vic.,Rest of Vic.,Regional City,Inner Regional Australia
+27260,Wyndham,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+27350,Yarra,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+27450,Yarra Ranges,Vic.,Greater Melbourne,Metropolitan,Major Cities of Australia
+27630,Yarriambiack,Vic.,Rest of Vic.,Heartland Region,Outer Regional Australia
+29399,Unincorporated Vic,Vic.,Rest of Vic.,Heartland Region,Outer Regional Australia
+29499,No usual address (Vic.),Vic.,Rest of Vic.,,No usual address (Vic.)
+29799,Migratory - Offshore - Shipping (Vic.,)Vic.,Rest of Vic.,,
+30250,Aurukun,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+30300,Balonne,Qld,Rest of Qld,Heartland Region,Remote Australia
+30370,Banana,Qld,Rest of Qld,Heartland Region,Outer Regional Australia
+30410,Barcaldine,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+30450,Barcoo,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+30760,Blackall Tambo,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+30900,Boulia,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+31000,Brisbane,Qld,Greater Brisbane,Metropolitan,Major Cities of Australia
+31750,Bulloo,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+31820,Bundaberg,Qld,Rest of Qld,Regional City,Inner Regional Australia
+31900,Burdekin,Qld,Rest of Qld,Heartland Region,Outer Regional Australia
+31950,Burke,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+32080,Cairns,Qld,Rest of Qld,Regional City,Outer Regional Australia
+32250,Carpentaria,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+32260,Cassowary Coast,Qld,Rest of Qld,Heartland Region,Outer Regional Australia
+32270,Central Highlands (Qld),Qld,Rest of Qld,Industry & Service Hub,Outer Regional Australia
+32310,Charters Towers,Qld,Rest of Qld,Heartland Region,Outer Regional Australia
+32330,Cherbourg,Qld,Rest of Qld,Heartland Region,Inner Regional Australia
+32450,Cloncurry,Qld,Rest of Qld,Heartland Region,Remote Australia
+32500,Cook,Qld,Rest of Qld,Heartland Region,Remote Australia
+32600,Croydon,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+32750,Diamantina,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+32770,Doomadgee,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+32810,Douglas,Qld,Rest of Qld,Heartland Region,Outer Regional Australia
+33100,Etheridge,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+33200,Flinders (Qld),Qld,Rest of Qld,Heartland Region,Very Remote Australia
+33220,Fraser Coast,Qld,Rest of Qld,Regional City,Inner Regional Australia
+33360,Gladstone,Qld,Rest of Qld,Regional City,Inner Regional Australia
+33430,Gold Coast,Qld,Rest of Qld,Regional City,Major Cities of Australia
+33610,Goondiwindi,Qld,Rest of Qld,Heartland Region,Outer Regional Australia
+33620,Gympie,Qld,Rest of Qld,Industry & Service Hub,Inner Regional Australia
+33800,Hinchinbrook,Qld,Rest of Qld,Heartland Region,Outer Regional Australia
+33830,Hope Vale,Qld,Rest of Qld,Heartland Region,Remote Australia
+33960,Ipswich,Qld,Greater Brisbane,Metropolitan,Major Cities of Australia
+33980,Isaac,Qld,Rest of Qld,Heartland Region,Outer Regional Australia
+34420,Kowanyama,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+34530,Livingstone,Qld,Rest of Qld,Connected Lifestyle Area,Inner Regional Australia
+34570,Lockhart River,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+34580,Lockyer Valley,Qld,Greater Brisbane,Connected Lifestyle Area,Inner Regional Australia
+34590,Logan,Qld,Greater Brisbane,Metropolitan,Major Cities of Australia
+34710,Longreach,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+34770,Mackay,Qld,Rest of Qld,Regional City,Inner Regional Australia
+34800,McKinlay,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+34830,Mapoon,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+34860,Maranoa,Qld,Rest of Qld,Heartland Region,Outer Regional Australia
+34880,Mareeba,Qld,Rest of Qld,Heartland Region,Outer Regional Australia
+35010,Moreton Bay,Qld,Greater Brisbane,Metropolitan,Major Cities of Australia
+35250,Mornington,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+35300,Mount Isa,Qld,Rest of Qld,Industry & Service Hub,Remote Australia
+35600,Murweh,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+35670,Napranum,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+35740,Noosa,Qld,Rest of Qld,Regional City,Major Cities of Australia
+35760,North Burnett,Qld,Rest of Qld,Heartland Region,Outer Regional Australia
+35780,Northern Peninsula Area,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+35790,Palm Island,Qld,Rest of Qld,Heartland Region,Remote Australia
+35800,Paroo,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+36070,Pormpuraaw,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+36150,Quilpie,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+36250,Redland,Qld,Greater Brisbane,Metropolitan,Major Cities of Australia
+36300,Richmond,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+36370,Rockhampton,Qld,Rest of Qld,Regional City,Inner Regional Australia
+36510,Scenic Rim,Qld,Greater Brisbane,Connected Lifestyle Area,Inner Regional Australia
+36580,Somerset,Qld,Greater Brisbane,Connected Lifestyle Area,Inner Regional Australia
+36630,South Burnett,Qld,Rest of Qld,Heartland Region,Inner Regional Australia
+36660,Southern Downs,Qld,Rest of Qld,Industry & Service Hub,Inner Regional Australia
+36720,Sunshine Coast,Qld,Rest of Qld,Regional City,Major Cities of Australia
+36820,Tablelands,Qld,Rest of Qld,Heartland Region,Outer Regional Australia
+36910,Toowoomba,Qld,Rest of Qld,Regional City,Inner Regional Australia
+36950,Torres,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+36960,Torres Strait Island,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+37010,Townsville,Qld,Rest of Qld,Regional City,Outer Regional Australia
+37300,Weipa,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+37310,Western Downs,Qld,Rest of Qld,Heartland Region,Outer Regional Australia
+37340,Whitsunday,Qld,Rest of Qld,Heartland Region,Outer Regional Australia
+37400,Winton,Qld,Rest of Qld,Heartland Region,Very Remote Australia
+37550,Woorabinda,Qld,Rest of Qld,Heartland Region,Remote Australia
+37570,Wujal Wujal,Qld,Rest of Qld,Heartland Region,Remote Australia
+37600,Yarrabah,Qld,Rest of Qld,Heartland Region,Outer Regional Australia
+39499,No usual address (Qld),Qld,Rest of Qld,,No usual address (Qld)
+39799,Migratory - Offshore - Shipping (Qld,)Qld,Rest of Qld,,
+40070,Adelaide,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+40120,Adelaide Hills,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+40150,Adelaide Plains,SA,Rest of SA,Connected Lifestyle Area,Inner Regional Australia
+40220,Alexandrina,SA,Rest of SA,Connected Lifestyle Area,Inner Regional Australia
+40250,Anangu Pitjantjatjara Yunkunytjatj,aSraA,Rest of SA,Heartland Region,Very Remote Australia
+40310,Barossa,SA,Rest of SA,Connected Lifestyle Area,Inner Regional Australia
+40430,Barunga West,SA,Rest of SA,Heartland Region,Outer Regional Australia
+40520,Berri Barmera,SA,Rest of SA,Heartland Region,Outer Regional Australia
+40700,Burnside,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+40910,Campbelltown (SA),SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+41010,Ceduna,SA,Rest of SA,Heartland Region,Very Remote Australia
+41060,Charles Sturt,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+41140,Clare and Gilbert Valleys,SA,Rest of SA,Connected Lifestyle Area,Inner Regional Australia
+41190,Cleve,SA,Rest of SA,Heartland Region,Remote Australia
+41330,Coober Pedy,SA,Rest of SA,Heartland Region,Very Remote Australia
+41560,Copper Coast,SA,Rest of SA,Heartland Region,Outer Regional Australia
+41750,Elliston,SA,Rest of SA,Heartland Region,Very Remote Australia
+41830,Flinders Ranges,SA,Rest of SA,Heartland Region,Outer Regional Australia
+41960,Franklin Harbour,SA,Rest of SA,Heartland Region,Remote Australia
+42030,Gawler,SA,Greater Adelaide,Connected Lifestyle Area,Major Cities of Australia
+42110,Goyder,SA,Rest of SA,Heartland Region,Outer Regional Australia
+42250,Grant,SA,Rest of SA,Heartland Region,Outer Regional Australia
+42600,Holdfast Bay,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+42750,Kangaroo Island,SA,Rest of SA,Heartland Region,Remote Australia
+43080,Karoonda East Murray,SA,Rest of SA,Heartland Region,Outer Regional Australia
+43220,Kimba,SA,Rest of SA,Heartland Region,Remote Australia
+43360,Kingston (SA),SA,Rest of SA,Heartland Region,Outer Regional Australia
+43650,Light,SA,Rest of SA,Connected Lifestyle Area,Inner Regional Australia
+43710,Lower Eyre Peninsula,SA,Rest of SA,Heartland Region,Remote Australia
+43790,Loxton Waikerie,SA,Rest of SA,Heartland Region,Outer Regional Australia
+44000,Maralinga Tjarutja,SA,Rest of SA,Heartland Region,Very Remote Australia
+44060,Marion,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+44210,Mid Murray,SA,Rest of SA,Connected Lifestyle Area,Inner Regional Australia
+44340,Mitcham,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+44550,Mount Barker,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+44620,Mount Gambier,SA,Rest of SA,Industry & Service Hub,Outer Regional Australia
+44830,Mount Remarkable,SA,Rest of SA,Heartland Region,Outer Regional Australia
+45040,Murray Bridge,SA,Rest of SA,Connected Lifestyle Area,Inner Regional Australia
+45090,Naracoorte Lucindale,SA,Rest of SA,Heartland Region,Outer Regional Australia
+45120,Northern Areas,SA,Rest of SA,Heartland Region,Outer Regional Australia
+45290,Norwood Payneham and St Peters,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+45340,Onkaparinga,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+45400,Orroroo Carrieton,SA,Rest of SA,Heartland Region,Outer Regional Australia
+45540,Peterborough,SA,Rest of SA,Heartland Region,Outer Regional Australia
+45680,Playford,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+45890,Port Adelaide Enfield,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+46090,Port Augusta,SA,Rest of SA,Heartland Region,Outer Regional Australia
+46300,Port Lincoln,SA,Rest of SA,Heartland Region,Remote Australia
+46450,Port Pirie,SA,Rest of SA,Industry & Service Hub,Outer Regional Australia
+46510,Prospect,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+46670,Renmark Paringa,SA,Rest of SA,Heartland Region,Outer Regional Australia
+46860,Robe,SA,Rest of SA,Heartland Region,Outer Regional Australia
+46970,Roxby Downs,SA,Rest of SA,Heartland Region,Remote Australia
+47140,Salisbury,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+47290,Southern Mallee,SA,Rest of SA,Heartland Region,Remote Australia
+47490,Streaky Bay,SA,Rest of SA,Heartland Region,Very Remote Australia
+47630,Tatiara,SA,Rest of SA,Heartland Region,Outer Regional Australia
+47700,Tea Tree Gully,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+47800,Coorong,SA,Rest of SA,Connected Lifestyle Area,Outer Regional Australia
+47910,Tumby Bay,SA,Rest of SA,Heartland Region,Remote Australia
+47980,Unley,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+48050,Victor Harbor,SA,Rest of SA,Connected Lifestyle Area,Inner Regional Australia
+48130,Wakefield,SA,Rest of SA,Connected Lifestyle Area,Inner Regional Australia
+48260,Walkerville,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+48340,Wattle Range,SA,Rest of SA,Heartland Region,Outer Regional Australia
+48410,West Torrens,SA,Greater Adelaide,Metropolitan,Major Cities of Australia
+48540,Whyalla,SA,Rest of SA,Industry & Service Hub,Outer Regional Australia
+48640,Wudinna,SA,Rest of SA,Heartland Region,Very Remote Australia
+48750,Yankalilla,SA,Rest of SA,Connected Lifestyle Area,Inner Regional Australia
+48830,Yorke Peninsula,SA,Rest of SA,Heartland Region,Outer Regional Australia
+49399,Unincorporated SA,SA,Rest of SA,Heartland Region,Very Remote Australia
+49499,No usual address (SA),SA,Rest of SA,,No usual address (SA)
+49799,Migratory - Offshore - Shipping (SA),SA,Rest of SA,,Migratory - Offshore - Shipping (SA)
+50080,Albany,WA,Rest of WA,Industry & Service Hub,Outer Regional Australia
+50210,Armadale,WA,Greater Perth,Metropolitan,Major Cities of Australia
+50250,Ashburton,WA,Rest of WA,Heartland Region,Very Remote Australia
+50280,Augusta Margaret River,WA,Rest of WA,Heartland Region,Inner Regional Australia
+50350,Bassendean,WA,Greater Perth,Metropolitan,Major Cities of Australia
+50420,Bayswater,WA,Greater Perth,Metropolitan,Major Cities of Australia
+50490,Belmont,WA,Greater Perth,Metropolitan,Major Cities of Australia
+50560,Beverley,WA,Rest of WA,Connected Lifestyle Area,Outer Regional Australia
+50630,Boddington,WA,Rest of WA,Connected Lifestyle Area,Inner Regional Australia
+50770,Boyup Brook,WA,Rest of WA,Heartland Region,Outer Regional Australia
+50840,Bridgetown-Greenbushes,WA,Rest of WA,Heartland Region,Outer Regional Australia
+50910,Brookton,WA,Rest of WA,Connected Lifestyle Area,Outer Regional Australia
+50980,Broome,WA,Rest of WA,Industry & Service Hub,Remote Australia
+51080,Broomehill-Tambellup,WA,Rest of WA,Heartland Region,Outer Regional Australia
+51120,Bruce Rock,WA,Rest of WA,Heartland Region,Remote Australia
+51190,Bunbury,WA,Rest of WA,Regional City,Inner Regional Australia
+51260,Busselton,WA,Rest of WA,Industry & Service Hub,Inner Regional Australia
+51310,Cambridge,WA,Greater Perth,Metropolitan,Major Cities of Australia
+51330,Canning,WA,Greater Perth,Metropolitan,Major Cities of Australia
+51400,Capel,WA,Rest of WA,Regional City,Inner Regional Australia
+51470,Carnamah,WA,Rest of WA,Heartland Region,Remote Australia
+51540,Carnarvon,WA,Rest of WA,Heartland Region,Very Remote Australia
+51610,Chapman Valley,WA,Rest of WA,Heartland Region,Outer Regional Australia
+51680,Chittering,WA,Rest of WA,Connected Lifestyle Area,Inner Regional Australia
+51710,Christmas Island,WA,Rest of WA,Heartland Region,Very Remote Australia
+51750,Claremont,WA,Greater Perth,Metropolitan,Major Cities of Australia
+51820,Cockburn,WA,Greater Perth,Metropolitan,Major Cities of Australia
+51860,Cocos Islands,WA,Rest of WA,Heartland Region,Very Remote Australia
+51890,Collie,WA,Rest of WA,Heartland Region,Inner Regional Australia
+51960,Coolgardie,WA,Rest of WA,Heartland Region,Outer Regional Australia
+52030,Coorow,WA,Rest of WA,Heartland Region,Remote Australia
+52100,Corrigin,WA,Rest of WA,Heartland Region,Remote Australia
+52170,Cottesloe,WA,Greater Perth,Metropolitan,Major Cities of Australia
+52240,Cranbrook,WA,Rest of WA,Heartland Region,Outer Regional Australia
+52310,Cuballing,WA,Rest of WA,Heartland Region,Outer Regional Australia
+52380,Cue,WA,Rest of WA,Heartland Region,Very Remote Australia
+52450,Cunderdin,WA,Rest of WA,Heartland Region,Outer Regional Australia
+52520,Dalwallinu,WA,Rest of WA,Heartland Region,Remote Australia
+52590,Dandaragan,WA,Rest of WA,Heartland Region,Outer Regional Australia
+52660,Dardanup,WA,Rest of WA,Heartland Region,Inner Regional Australia
+52730,Denmark,WA,Rest of WA,Heartland Region,Outer Regional Australia
+52800,Derby-West Kimberley,WA,Rest of WA,Heartland Region,Very Remote Australia
+52870,Donnybrook-Balingup,WA,Rest of WA,Heartland Region,Inner Regional Australia
+52940,Dowerin,WA,Rest of WA,Heartland Region,Outer Regional Australia
+53010,Dumbleyung,WA,Rest of WA,Heartland Region,Remote Australia
+53080,Dundas,WA,Rest of WA,Heartland Region,Very Remote Australia
+53150,East Fremantle,WA,Greater Perth,Metropolitan,Major Cities of Australia
+53220,East Pilbara,WA,Rest of WA,Heartland Region,Very Remote Australia
+53290,Esperance,WA,Rest of WA,Heartland Region,Remote Australia
+53360,Exmouth,WA,Rest of WA,Heartland Region,Very Remote Australia
+53430,Fremantle,WA,Greater Perth,Metropolitan,Major Cities of Australia
+53570,Gingin,WA,Rest of WA,Connected Lifestyle Area,Inner Regional Australia
+53640,Gnowangerup,WA,Rest of WA,Heartland Region,Remote Australia
+53710,Goomalling,WA,Rest of WA,Heartland Region,Outer Regional Australia
+53780,Gosnells,WA,Greater Perth,Metropolitan,Major Cities of Australia
+53800,Greater Geraldton,WA,Rest of WA,Industry & Service Hub,Outer Regional Australia
+53920,Halls Creek,WA,Rest of WA,Heartland Region,Very Remote Australia
+53990,Harvey,WA,Rest of WA,Regional City,Inner Regional Australia
+54060,Irwin,WA,Rest of WA,Heartland Region,Outer Regional Australia
+54130,Jerramungup,WA,Rest of WA,Heartland Region,Remote Australia
+54170,Joondalup,WA,Greater Perth,Metropolitan,Major Cities of Australia
+54200,Kalamunda,WA,Greater Perth,Metropolitan,Major Cities of Australia
+54280,Kalgoorlie-Boulder,WA,Rest of WA,Industry & Service Hub,Outer Regional Australia
+54310,Karratha,WA,Rest of WA,Industry & Service Hub,Remote Australia
+54340,Katanning,WA,Rest of WA,Heartland Region,Outer Regional Australia
+54410,Kellerberrin,WA,Rest of WA,Heartland Region,Outer Regional Australia
+54480,Kent,WA,Rest of WA,Heartland Region,Remote Australia
+54550,Kojonup,WA,Rest of WA,Heartland Region,Outer Regional Australia
+54620,Kondinin,WA,Rest of WA,Heartland Region,Remote Australia
+54690,Koorda,WA,Rest of WA,Heartland Region,Remote Australia
+54760,Kulin,WA,Rest of WA,Heartland Region,Remote Australia
+54830,Kwinana,WA,Greater Perth,Metropolitan,Major Cities of Australia
+54900,Lake Grace,WA,Rest of WA,Heartland Region,Remote Australia
+54970,Laverton,WA,Rest of WA,Heartland Region,Very Remote Australia
+55040,Leonora,WA,Rest of WA,Heartland Region,Very Remote Australia
+55110,Mandurah,WA,Greater Perth,Regional City,Major Cities of Australia
+55180,Manjimup,WA,Rest of WA,Heartland Region,Outer Regional Australia
+55250,Meekatharra,WA,Rest of WA,Heartland Region,Very Remote Australia
+55320,Melville,WA,Greater Perth,Metropolitan,Major Cities of Australia
+55390,Menzies,WA,Rest of WA,Heartland Region,Very Remote Australia
+55460,Merredin,WA,Rest of WA,Heartland Region,Outer Regional Australia
+55530,Mingenew,WA,Rest of WA,Heartland Region,Outer Regional Australia
+55600,Moora,WA,Rest of WA,Heartland Region,Outer Regional Australia
+55670,Morawa,WA,Rest of WA,Heartland Region,Remote Australia
+55740,Mosman Park,WA,Greater Perth,Metropolitan,Major Cities of Australia
+55810,Mount Magnet,WA,Rest of WA,Heartland Region,Very Remote Australia
+55880,Mount Marshall,WA,Rest of WA,Heartland Region,Remote Australia
+55950,Mukinbudin,WA,Rest of WA,Heartland Region,Remote Australia
+56090,Mundaring,WA,Greater Perth,Metropolitan,Major Cities of Australia
+56160,Murchison,WA,Rest of WA,Heartland Region,Very Remote Australia
+56230,Murray,WA,Greater Perth,Connected Lifestyle Area,Major Cities of Australia
+56300,Nannup,WA,Rest of WA,Heartland Region,Outer Regional Australia
+56370,Narembeen,WA,Rest of WA,Heartland Region,Remote Australia
+56460,Narrogin,WA,Rest of WA,Heartland Region,Outer Regional Australia
+56580,Nedlands,WA,Greater Perth,Metropolitan,Major Cities of Australia
+56620,Ngaanyatjarraku,WA,Rest of WA,Heartland Region,Very Remote Australia
+56730,Northam,WA,Rest of WA,Connected Lifestyle Area,Inner Regional Australia
+56790,Northampton,WA,Rest of WA,Heartland Region,Remote Australia
+56860,Nungarin,WA,Rest of WA,Heartland Region,Remote Australia
+56930,Peppermint Grove,WA,Greater Perth,Metropolitan,Major Cities of Australia
+57000,Perenjori,WA,Rest of WA,Heartland Region,Remote Australia
+57080,Perth,WA,Greater Perth,Metropolitan,Major Cities of Australia
+57140,Pingelly,WA,Rest of WA,Heartland Region,Outer Regional Australia
+57210,Plantagenet,WA,Rest of WA,Heartland Region,Outer Regional Australia
+57280,Port Hedland,WA,Rest of WA,Industry & Service Hub,Remote Australia
+57350,Quairading,WA,Rest of WA,Heartland Region,Outer Regional Australia
+57420,Ravensthorpe,WA,Rest of WA,Heartland Region,Very Remote Australia
+57490,Rockingham,WA,Greater Perth,Metropolitan,Major Cities of Australia
+57630,Sandstone,WA,Rest of WA,Heartland Region,Very Remote Australia
+57700,Serpentine-Jarrahdale,WA,Greater Perth,Connected Lifestyle Area,Major Cities of Australia
+57770,Shark Bay,WA,Rest of WA,Heartland Region,Very Remote Australia
+57840,South Perth,WA,Greater Perth,Metropolitan,Major Cities of Australia
+57910,Stirling,WA,Greater Perth,Metropolitan,Major Cities of Australia
+57980,Subiaco,WA,Greater Perth,Metropolitan,Major Cities of Australia
+58050,Swan,WA,Greater Perth,Metropolitan,Major Cities of Australia
+58190,Tammin,WA,Rest of WA,Heartland Region,Outer Regional Australia
+58260,Three Springs,WA,Rest of WA,Heartland Region,Remote Australia
+58330,Toodyay,WA,Rest of WA,Connected Lifestyle Area,Inner Regional Australia
+58400,Trayning,WA,Rest of WA,Heartland Region,Remote Australia
+58470,Upper Gascoyne,WA,Rest of WA,Heartland Region,Very Remote Australia
+58510,Victoria Park,WA,Greater Perth,Metropolitan,Major Cities of Australia
+58540,Victoria Plains,WA,Rest of WA,Heartland Region,Outer Regional Australia
+58570,Vincent,WA,Greater Perth,Metropolitan,Major Cities of Australia
+58610,Wagin,WA,Rest of WA,Heartland Region,Outer Regional Australia
+58680,Wandering,WA,Rest of WA,Connected Lifestyle Area,Outer Regional Australia
+58760,Wanneroo,WA,Greater Perth,Metropolitan,Major Cities of Australia
+58820,Waroona,WA,Rest of WA,Connected Lifestyle Area,Inner Regional Australia
+58890,West Arthur,WA,Rest of WA,Heartland Region,Outer Regional Australia
+59030,Westonia,WA,Rest of WA,Heartland Region,Remote Australia
+59100,Wickepin,WA,Rest of WA,Heartland Region,Outer Regional Australia
+59170,Williams,WA,Rest of WA,Heartland Region,Outer Regional Australia
+59250,Wiluna,WA,Rest of WA,Heartland Region,Very Remote Australia
+59310,Wongan-Ballidu,WA,Rest of WA,Heartland Region,Outer Regional Australia
+59320,Woodanilling,WA,Rest of WA,Heartland Region,Outer Regional Australia
+59330,Wyalkatchem,WA,Rest of WA,Heartland Region,Outer Regional Australia
+59340,Wyndham-East Kimberley,WA,Rest of WA,Heartland Region,Very Remote Australia
+59350,Yalgoo,WA,Rest of WA,Heartland Region,Very Remote Australia
+59360,Yilgarn,WA,Rest of WA,Heartland Region,Remote Australia
+59370,York,WA,Rest of WA,Connected Lifestyle Area,Inner Regional Australia
+59499,No usual address (WA),WA,Rest of WA,,No usual address (WA)
+59799,Migratory - Offshore - Shipping (WA,)WA,Rest of WA,,
+60210,Break O'Day,Tas.,Rest of Tas.,Heartland Region,Outer Regional Australia
+60410,Brighton,Tas.,Greater Hobart,Connected Lifestyle Area,Inner Regional Australia
+60610,Burnie,Tas.,Rest of Tas.,Industry & Service Hub,Outer Regional Australia
+60810,Central Coast (Tas.),Tas.,Rest of Tas.,Industry & Service Hub,Outer Regional Australia
+61010,Central Highlands (Tas.),Tas.,Rest of Tas.,Heartland Region,Outer Regional Australia
+61210,Circular Head,Tas.,Rest of Tas.,Heartland Region,Outer Regional Australia
+61410,Clarence,Tas.,Greater Hobart,Regional City,Inner Regional Australia
+61510,Derwent Valley,Tas.,Greater Hobart,Connected Lifestyle Area,Inner Regional Australia
+61610,Devonport,Tas.,Rest of Tas.,Industry & Service Hub,Outer Regional Australia
+61810,Dorset,Tas.,Rest of Tas.,Heartland Region,Outer Regional Australia
+62010,Flinders (Tas.),Tas.,Rest of Tas.,Heartland Region,Very Remote Australia
+62210,George Town,Tas.,Rest of Tas.,Heartland Region,Outer Regional Australia
+62410,Glamorgan-Spring Bay,Tas.,Rest of Tas.,Heartland Region,Remote Australia
+62610,Glenorchy,Tas.,Greater Hobart,Regional City,Inner Regional Australia
+62810,Hobart,Tas.,Greater Hobart,Regional City,Inner Regional Australia
+63010,Huon Valley,Tas.,Rest of Tas.,Connected Lifestyle Area,Outer Regional Australia
+63210,Kentish,Tas.,Rest of Tas.,Heartland Region,Outer Regional Australia
+63410,King Island,Tas.,Rest of Tas.,Heartland Region,Very Remote Australia
+63610,Kingborough,Tas.,Greater Hobart,Connected Lifestyle Area,Inner Regional Australia
+63810,Latrobe (Tas.),Tas.,Rest of Tas.,Heartland Region,Outer Regional Australia
+64010,Launceston,Tas.,Rest of Tas.,Regional City,Inner Regional Australia
+64210,Meander Valley,Tas.,Rest of Tas.,Connected Lifestyle Area,Inner Regional Australia
+64610,Northern Midlands,Tas.,Rest of Tas.,Heartland Region,Inner Regional Australia
+64810,Sorell,Tas.,Greater Hobart,Connected Lifestyle Area,Inner Regional Australia
+65010,Southern Midlands,Tas.,Rest of Tas.,Heartland Region,Outer Regional Australia
+65210,Tasman,Tas.,Rest of Tas.,Heartland Region,Outer Regional Australia
+65410,Waratah-Wynyard,Tas.,Rest of Tas.,Heartland Region,Outer Regional Australia
+65610,West Coast,Tas.,Rest of Tas.,Heartland Region,Remote Australia
+65810,West Tamar,Tas.,Rest of Tas.,Connected Lifestyle Area,Inner Regional Australia
+69499,No usual address (Tas.),Tas.,Rest of Tas.,,No usual address (Tas.)
+69799,Migratory - Offshore - Shipping (Tas,.T)as.,Rest of Tas.,,
+70200,Alice Springs,NT,Rest of NT,Industry & Service Hub,Remote Australia
+70420,Barkly,NT,Rest of NT,Heartland Region,Very Remote Australia
+70540,Belyuen,NT,Rest of NT,Heartland Region,Remote Australia
+70620,Central Desert,NT,Rest of NT,Heartland Region,Very Remote Australia
+70700,Coomalie,NT,Rest of NT,Heartland Region,Remote Australia
+71000,Darwin,NT,Greater Darwin,Regional City,Outer Regional Australia
+71150,Darwin Waterfront Precinct,NT,Greater Darwin,Regional City,Outer Regional Australia
+71300,East Arnhem,NT,Rest of NT,Heartland Region,Very Remote Australia
+72200,Katherine,NT,Rest of NT,Heartland Region,Remote Australia
+72300,Litchfield,NT,Greater Darwin,Regional City,Outer Regional Australia
+72330,MacDonnell,NT,Rest of NT,Heartland Region,Very Remote Australia
+72800,Palmerston,NT,Greater Darwin,Regional City,Outer Regional Australia
+73600,Roper Gulf,NT,Rest of NT,Heartland Region,Very Remote Australia
+74050,Tiwi Islands,NT,Rest of NT,Heartland Region,Remote Australia
+74550,Victoria Daly,NT,Rest of NT,Heartland Region,Very Remote Australia
+74560,Wagait,NT,Rest of NT,Heartland Region,Remote Australia
+74660,West Arnhem,NT,Rest of NT,Heartland Region,Very Remote Australia
+74680,West Daly,NT,Rest of NT,Heartland Region,Remote Australia
+79399,Unincorporated NT,NT,Rest of NT,Heartland Region,Very Remote Australia
+79499,No usual address (NT),NT,Rest of NT,,No usual address (NT)
+79799,Migratory - Offshore - Shipping (NT),NT,Rest of NT,,
+89399,Unincorporated ACT,ACT,Greater Canberra,Metropolitan,Major Cities of Australia
+89499,No usual address (ACT),ACT,Greater Canberra,,No usual address (ACT)
+89799,Migratory - Offshore - Shipping (AC,TA)CT,Greater Canberra,,
+99399,Unincorp. Other Territories,OT,Rest of Other Territories,Heartland Region,Very Remote Australia
+99499,No usual address (OT),OT,Rest of Other Territories,,No usual address (OT)
+99799,Migratory - Offshore - Shipping (OT),OT,Rest of Other Territories,,

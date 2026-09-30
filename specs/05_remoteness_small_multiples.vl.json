@@ -1,0 +1,56 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Developmental vulnerability by remoteness area, 2024",
+  "description": "AEDC: % of children developmentally vulnerable, LGAs grouped by ABS remoteness classification. Small multiples highlight where each remoteness band sits geographically and how vulnerability compares.",
+  "data": {"url": "../data/processed/aedc_lga_2024_with_remoteness.csv"},
+  "transform": [
+    {"filter": "datum.vulnerable_1plus_pct != null && datum.vulnerable_1plus_pct !== ''"}
+  ],
+  "columns": 3,
+  "facet": {
+    "field": "remoteness",
+    "type": "nominal",
+    "title": null,
+    "sort": ["Major Cities", "Inner Regional", "Outer Regional", "Remote", "Very Remote"],
+    "header": {"labelFontSize": 13, "labelFontWeight": "bold"}
+  },
+  "spec": {
+    "width": 220,
+    "height": 180,
+    "layer": [
+      {
+        "data": {
+          "url": "../data/geo/au_states.topo.json",
+          "format": {"type": "topojson", "feature": "au_states_raw"}
+        },
+        "projection": {"type": "mercator"},
+        "mark": {"type": "geoshape", "fill": "#f2f2f2", "stroke": "white", "strokeWidth": 0.5}
+      },
+      {
+        "projection": {"type": "mercator"},
+        "mark": {"type": "circle", "opacity": 0.75, "stroke": "black", "strokeWidth": 0.2},
+        "encoding": {
+          "longitude": {"field": "lon", "type": "quantitative"},
+          "latitude": {"field": "lat", "type": "quantitative"},
+          "size": {
+            "field": "vulnerable_1plus_pct",
+            "type": "quantitative",
+            "scale": {"range": [10, 300]},
+            "legend": null
+          },
+          "color": {
+            "field": "vulnerable_1plus_pct",
+            "type": "quantitative",
+            "scale": {"scheme": "oranges", "domain": [15, 85]},
+            "title": "% vulnerable"
+          },
+          "tooltip": [
+            {"field": "lga_name", "title": "LGA"},
+            {"field": "vulnerable_1plus_pct", "title": "% vulnerable", "format": ".1f"}
+          ]
+        }
+      }
+    ]
+  },
+  "resolve": {"scale": {"color": "shared", "size": "shared"}}
+}

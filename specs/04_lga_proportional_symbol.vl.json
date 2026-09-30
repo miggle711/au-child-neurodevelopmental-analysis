@@ -1,0 +1,46 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Developmental vulnerability by local area, 2024",
+  "description": "AEDC: % of children developmentally vulnerable on one or more domains, by Local Government Area (proportional symbol map, 514 of 544 LGAs with matched centroids)",
+  "width": 600,
+  "height": 500,
+  "layer": [
+    {
+      "data": {
+        "url": "../data/geo/au_states.topo.json",
+        "format": {"type": "topojson", "feature": "au_states_raw"}
+      },
+      "projection": {"type": "mercator"},
+      "mark": {"type": "geoshape", "fill": "#eeeeee", "stroke": "white", "strokeWidth": 1}
+    },
+    {
+      "data": {"url": "../data/processed/aedc_lga_2024_with_centroids.csv"},
+      "transform": [
+        {"filter": "datum.vulnerable_1plus_pct != null && datum.vulnerable_1plus_pct !== ''"}
+      ],
+      "projection": {"type": "mercator"},
+      "mark": {"type": "circle", "opacity": 0.7, "stroke": "black", "strokeWidth": 0.3},
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "size": {
+          "field": "vulnerable_1plus_pct",
+          "type": "quantitative",
+          "title": "% developmentally vulnerable",
+          "scale": {"range": [20, 900]}
+        },
+        "color": {
+          "field": "vulnerable_1plus_pct",
+          "type": "quantitative",
+          "scale": {"scheme": "oranges"},
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "lga_name", "title": "LGA"},
+          {"field": "state", "title": "State"},
+          {"field": "vulnerable_1plus_pct", "title": "% vulnerable", "format": ".1f"}
+        ]
+      }
+    }
+  ]
+}

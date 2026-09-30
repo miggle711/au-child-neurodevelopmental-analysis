@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Co-occurring characteristics among autistic Australians",
+  "description": "ABS SDAC 2022: % of autistic people (all ages) also reporting each characteristic — shows autism rarely occurs in isolation (national data only, not age-restricted to children)",
+  "width": 520,
+  "height": 260,
+  "data": {"url": "../data/processed/abs_autism_cooccurring.csv"},
+  "layer": [
+    {
+      "mark": {"type": "circle", "size": 260, "opacity": 0.85, "stroke": "black", "strokeWidth": 0.5},
+      "encoding": {
+        "x": {"field": "pct", "type": "quantitative", "title": "% of autistic people also reporting this", "scale": {"domain": [0, 80]}},
+        "y": {"field": "y_pos", "type": "quantitative", "axis": null, "scale": {"domain": [0, 1]}},
+        "color": {
+          "field": "pct",
+          "type": "quantitative",
+          "scale": {"scheme": "oranges"},
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "disability_type", "title": "Characteristic"},
+          {"field": "pct", "title": "%"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "dy": -14, "fontSize": 9, "align": "center"},
+      "encoding": {
+        "x": {"field": "pct", "type": "quantitative"},
+        "y": {"field": "y_pos", "type": "quantitative"},
+        "text": {"field": "disability_type"}
+      }
+    }
+  ]
+}

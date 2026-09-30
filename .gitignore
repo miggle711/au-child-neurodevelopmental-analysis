@@ -1,0 +1,3 @@
+# Raw source files too large to ship in the final deliverable.
+# Keep locally for extraction; commit only cleaned extracts in data/processed/.
+data/raw/phidu/
