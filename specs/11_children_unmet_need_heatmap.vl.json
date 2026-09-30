@@ -1,0 +1,68 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Support needs: met vs. not met, children with disability aged 0-14",
+  "description": "ABS SDAC 2022 (Children and young people with disability): among children aged 0-14 who need assistance with an activity, the share whose need is actually received vs. not received, by activity type (national data only, all disability types, not autism-specific)",
+  "width": 300,
+  "height": 260,
+  "data": {"url": "../data/processed/abs_children_unmet_need_0_14.csv"},
+  "transform": [
+    {
+      "joinaggregate": [
+        {"op": "min", "field": "pct", "as": "met_pct"}
+      ],
+      "groupby": ["activity"]
+    }
+  ],
+  "layer": [
+    {
+      "transform": [{"filter": "datum.status === 'Need met'"}],
+      "mark": {"type": "rect", "stroke": "white", "strokeWidth": 2},
+      "encoding": {
+        "y": {
+          "field": "activity",
+          "type": "nominal",
+          "title": null,
+          "sort": {"field": "met_pct", "order": "ascending"}
+        },
+        "x": {"field": "status", "type": "nominal", "title": null, "sort": ["Need met", "Need not met"]},
+        "color": {
+          "field": "pct",
+          "type": "quantitative",
+          "title": "% need met",
+          "scale": {"scheme": "blues", "domain": [65, 90]},
+          "legend": {"orient": "right", "titleLimit": 200}
+        },
+        "tooltip": [
+          {"field": "activity", "title": "Activity"},
+          {"field": "status", "title": "Status"},
+          {"field": "pct", "title": "%"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.status === 'Need not met'"}],
+      "mark": {"type": "rect", "stroke": "white", "strokeWidth": 2},
+      "encoding": {
+        "y": {
+          "field": "activity",
+          "type": "nominal",
+          "sort": {"field": "met_pct", "order": "ascending"}
+        },
+        "x": {"field": "status", "type": "nominal", "sort": ["Need met", "Need not met"]},
+        "color": {
+          "field": "pct",
+          "type": "quantitative",
+          "title": "% need not met",
+          "scale": {"scheme": "reds", "domain": [10, 35]},
+          "legend": {"orient": "right", "titleLimit": 200}
+        },
+        "tooltip": [
+          {"field": "activity", "title": "Activity"},
+          {"field": "status", "title": "Status"},
+          {"field": "pct", "title": "%"}
+        ]
+      }
+    }
+  ],
+  "resolve": {"scale": {"color": "independent"}}
+}

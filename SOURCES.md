@@ -88,16 +88,34 @@ using them in any chart, to stay under the assignment's "few MB total" budget.
   exclude, don't treat as zero).
 
 ### 5. NDIS Data Research — Autism participant dashboard
-- **Status:** ✅ downloaded, not yet used in map plan
-- **File:** `data/raw/ndis/ndis_autism_data_dec2024.xlsx`
-- **Geography:** State/territory and remoteness category only (no SA3/SA4
-  breakdown by disability type despite site's rollout-metric pages
-  mentioning SA3/SA4 — that's participation rate, not disability type)
-- **Years:** current to Dec 2024, quarterly updates
+- **Status:** ✅ downloaded and used (chart #13)
+- **File:** `data/raw/ndis/ndis_autism_data_dec2024.xlsx`, sheet `7_State`
+- **Geography:** State/territory only (no SA3/SA4 breakdown by disability
+  type despite site's rollout-metric pages mentioning SA3/SA4 — that's
+  participation rate, not disability type)
+- **Years:** as at 31 December 2024
 - **Source URL:** https://dataresearch.ndis.gov.au/reports-and-analyses/participant-dashboards/autism
-- **Use:** possible supplementary chart (autism as largest NDIS primary
-  disability category, 78% of participants ≤18) — optional, not core to map
-  requirement
+- **Use:** chart #13, a 4th (bonus) map — genuinely autism-specific state
+  choropleth of NDIS autism participants per 1,000 population. Raw sheet
+  only gives participant counts and "% share of all NDIS participants"
+  (the latter reflects scheme caseload mix, not prevalence, so it was
+  rejected as misleading for a map). Computed a real per-capita rate instead
+  by dividing by ABS Estimated Resident Population (see #12 below) — this
+  produces a genuinely different pattern from the AEDC maps (SA highest at
+  13.6 per 1,000, NT lowest at 5.9 per 1,000), worth calling out explicitly:
+  NT's high AEDC vulnerability doesn't translate into high NDIS autism
+  access, suggesting possible under-diagnosis/under-service in remote areas
+  rather than lower actual prevalence
+- **Processed extract:** `data/processed/ndis_autism_rate_by_state.csv`
+  (includes raw participant counts, population denominator, and derived
+  rate, all in one file for transparency/reproducibility)
+
+### 12. ABS — National, state and territory population, December 2024
+- **Status:** ✅ used as population denominator for chart #13
+- **Years:** 31 December 2024 (exact date match to the NDIS snapshot)
+- **Source URL:** https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/dec-2024
+- **Use:** population by state/territory, used to convert NDIS autism
+  participant counts into a genuine per-capita rate (per 1,000 population)
 
 ### 6. Atlas of Healthcare Variation — ADHD medicines dispensing (≤17 yrs) by PHN
 - **Status:** ❌ ruled out — page no longer accessible. The Commission's

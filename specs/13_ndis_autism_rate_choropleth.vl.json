@@ -1,0 +1,36 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "NDIS autism participants per 1,000 population, by state, Dec 2024",
+  "description": "NDIS Data Research: active autism participants per 1,000 total population, by state/territory (all ages; population denominator is ABS Estimated Resident Population, 31 Dec 2024, exact date match). Genuinely autism-specific (not a general developmental-vulnerability proxy like the AEDC-based maps), but note this measures NDIS ACCESS/participation, which can reflect service availability as much as underlying prevalence.",
+  "width": 500,
+  "height": 400,
+  "projection": {"type": "mercator"},
+  "data": {
+    "url": "../data/geo/au_states.topo.json",
+    "format": {"type": "topojson", "feature": "au_states_raw"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.STATE_NAME",
+      "from": {
+        "data": {"url": "../data/processed/ndis_autism_rate_by_state.csv"},
+        "key": "state",
+        "fields": ["rate_per_1000", "abbr", "autism_ndis_participants"]
+      }
+    }
+  ],
+  "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1},
+  "encoding": {
+    "color": {
+      "field": "rate_per_1000",
+      "type": "quantitative",
+      "title": "Autism NDIS participants per 1,000 people",
+      "scale": {"scheme": "purples"}
+    },
+    "tooltip": [
+      {"field": "properties.STATE_NAME", "title": "State"},
+      {"field": "rate_per_1000", "title": "Per 1,000 people"},
+      {"field": "autism_ndis_participants", "title": "Total participants"}
+    ]
+  }
+}
