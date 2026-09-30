@@ -33,7 +33,12 @@
           "field": "measure",
           "type": "nominal",
           "scale": {"domain": ["Median (50th percentile)", "90th percentile"], "range": ["#3182bd", "#9ecae1"]}
-        }
+        },
+        "tooltip": [
+          {"field": "year", "title": "Financial year"},
+          {"field": "measure", "title": "Measure"},
+          {"field": "days", "title": "Days to approve"}
+        ]
       }
     },
     {

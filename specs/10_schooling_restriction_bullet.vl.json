@@ -17,7 +17,11 @@
       "mark": {"type": "bar", "size": 22, "color": "#fdae6b"},
       "encoding": {
         "y": {"field": "group", "type": "nominal", "sort": ["All children", "Boys", "Girls"]},
-        "x": {"field": "pct", "type": "quantitative"}
+        "x": {"field": "pct", "type": "quantitative"},
+        "tooltip": [
+          {"field": "group", "title": "Group"},
+          {"field": "pct", "title": "% with a schooling restriction", "format": ".1f"}
+        ]
       }
     },
     {

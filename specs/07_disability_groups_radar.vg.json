@@ -89,6 +89,20 @@
           }
         },
         {
+          "type": "symbol",
+          "name": "category-point",
+          "from": {"data": "facet"},
+          "encode": {
+            "enter": {
+              "x": {"signal": "scale('radial', datum.value) * cos(scale('angular', datum.key))"},
+              "y": {"signal": "scale('radial', datum.value) * sin(scale('angular', datum.key))"},
+              "size": {"value": 40},
+              "fill": {"scale": "color", "field": "category"},
+              "tooltip": {"signal": "{'Disability group': datum.key, '%': format(datum.value, '.1f')}"}
+            }
+          }
+        },
+        {
           "type": "text",
           "name": "value-text",
           "from": {"data": "category-line"},

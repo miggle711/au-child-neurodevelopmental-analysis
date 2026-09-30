@@ -57,6 +57,30 @@ accurate.
 - Single scrollable page, no horizontal scroll, no section-swapping buttons
 - Storytelling: text + charts guide the reader in a logical sequence
 - Avoid statistical jargon; explain any specialised terms
+- "Appropriate level of interactive exploration" — but explicitly NOT an
+  "expert tool for exploring and analysing a dataset." No filters/dropdowns/
+  free querying. Buttons may show/hide elements, never swap major sections
+
+---
+
+## Interactivity (2026-09-30)
+
+Every chart now has a hover tooltip surfacing its exact value(s) — this is
+the "appropriate level" the brief asks for: it deepens understanding of the
+point already being made, without turning the page into an exploration
+tool. Deliberately did NOT add filters, dropdowns, or free-form querying,
+per the brief's explicit "presentation not exploration" principle.
+
+Fixed 4 charts that had no tooltip at all (an inconsistency, not a design
+choice): #7 radar (added a `symbol` mark layer with vertex points + a Vega
+`tooltip` signal — raw Vega needs this added explicitly, unlike Vega-Lite),
+#10 bullet chart, #14 NDIS access trend, #15 NDIS wait-time chart. All 15
+charts are now consistent.
+
+Possible further additions if time allows (optional, not required): a
+show/hide toggle revealing chart #15's detail after chart #14's headline
+story, or a hover-linked highlight between the state choropleth (#3) and
+LGA proportional symbol map (#4). Neither is necessary to meet the brief.
 
 ---
 

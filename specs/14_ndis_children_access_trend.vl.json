@@ -7,7 +7,13 @@
   "data": {"url": "../data/processed/ndis_children_access_trend.csv"},
   "layer": [
     {
-      "mark": {"type": "line", "point": {"size": 90, "filled": true}, "strokeWidth": 2.5, "color": "#3182bd"}
+      "mark": {"type": "line", "point": {"size": 90, "filled": true}, "strokeWidth": 2.5, "color": "#3182bd"},
+      "encoding": {
+        "tooltip": [
+          {"field": "year", "title": "Year (as at 30 June)"},
+          {"field": "access_rate_pct", "title": "% with an NDIS plan", "format": ".1f"}
+        ]
+      }
     },
     {
       "mark": {"type": "text", "dy": -14, "fontSize": 12, "fontWeight": "bold"},
