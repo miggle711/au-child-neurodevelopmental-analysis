@@ -160,6 +160,21 @@ access to support... over time"):
 
 ---
 
+## Annotation copy (drafts, for the final page)
+
+Text that will appear alongside each chart on the page itself — distinct
+from the JSON spec's internal `description` field, which nobody visiting
+the page ever sees. Add one entry per chart as copy is finalised.
+
+**Chart #8 (co-occurring characteristics beeswarm):**
+> These figures are for autistic Australians of all ages, not just
+> children — no Australian data currently breaks this down by age for
+> autism specifically. We include it because these co-occurring
+> conditions typically emerge in childhood and tend to persist, so the
+> pattern is still directly relevant to understanding autism in children.
+
+---
+
 ## Open decisions / things to amend
 
 - [x] Radar chart confirmed feasible using raw Vega (not Vega-Lite) —
