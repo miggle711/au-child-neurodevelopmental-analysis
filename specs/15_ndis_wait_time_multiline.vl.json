@@ -1,0 +1,53 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Time to approve a first NDIS plan for young children (multi-line chart)",
+  "description": "Productivity Commission, Report on Government Services 2025, Table 15A.45: days to complete approval of a first NDIS plan for children aged 0-6 (2020-21 to 2022-23) / 0-8 (2024-25), median and 90th percentile, Australia. Note: 2023-24 is missing from the source itself (shown as a visible gap in the line, not interpolated), and the age band definition changed from 0-6 to 0-8 in the final year, so the last point is not perfectly comparable to earlier ones.",
+  "width": 450,
+  "height": 280,
+  "data": {
+    "url": "../data/processed/ndis_wait_time_trend_long.csv",
+    "format": {"type": "csv", "parse": {"days": "number"}}
+  },
+  "layer": [
+    {
+      "mark": {"type": "line", "strokeWidth": 2, "point": false},
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal", "title": "Financial year"},
+        "y": {"field": "days", "type": "quantitative", "title": "Days to approve first plan"},
+        "detail": {"field": "measure"},
+        "order": {"field": "year"},
+        "color": {
+          "field": "measure",
+          "type": "nominal",
+          "title": null,
+          "scale": {"domain": ["Median (50th percentile)", "90th percentile"], "range": ["#3182bd", "#9ecae1"]}
+        }
+      }
+    },
+    {
+      "mark": {"type": "point", "filled": true, "size": 90},
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {"field": "days", "type": "quantitative"},
+        "color": {
+          "field": "measure",
+          "type": "nominal",
+          "scale": {"domain": ["Median (50th percentile)", "90th percentile"], "range": ["#3182bd", "#9ecae1"]}
+        }
+      }
+    },
+    {
+      "mark": {"type": "text", "dy": -12, "fontSize": 10, "fontWeight": "bold"},
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {"field": "days", "type": "quantitative"},
+        "text": {"field": "days", "type": "quantitative"},
+        "color": {
+          "field": "measure",
+          "type": "nominal",
+          "scale": {"domain": ["Median (50th percentile)", "90th percentile"], "range": ["#3182bd", "#9ecae1"]}
+        }
+      }
+    }
+  ]
+}

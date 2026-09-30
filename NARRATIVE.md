@@ -108,6 +108,7 @@ not longitudinal, but the same underlying question).
 | 12 | 3 | Streamgraph | Advanced, bonus | AIHW Health (Table 27, national only, 2018) | % of children with each disability group (Intellectual, Sensory & speech, Psychosocial, Physical restriction, Other), by age band 0-4/5-9/10-14 — ✅ built & rendered, `specs/12_disability_by_age_streamgraph.vl.json`. Checked as a ridge-plot candidate first but rejected — the underlying data is discrete categorical %, not a continuous distribution, so a ridge plot would misrepresent its shape. Streamgraph instead directly visualises diagnosis lag: "Intellectual" disability balloons from 1.1% (age 0-4) to 6.9% (age 10-14), while "Sensory and speech" narrows over the same span. This is a **12th, bonus chart** |
 | 13 | 2 | Choropleth map | Map idiom #4 (Advanced, bonus) | NDIS Data Research (state, Dec 2024) + ABS Estimated Resident Population (Dec 2024) | Autism NDIS participants per 1,000 population, by state/territory — ✅ built & rendered, `specs/13_ndis_autism_rate_choropleth.vl.json`. Genuinely autism-specific (unlike the AEDC-based maps) and a real per-capita rate (computed by dividing NDIS's raw participant counts by ABS population — the raw sheet's own "% of all NDIS participants" metric was rejected as it reflects scheme caseload mix, not prevalence). Notable finding: produces an almost inverse pattern to the AEDC choropleth — SA highest (13.6 per 1,000), NT *lowest* (5.9 per 1,000), suggesting NT's high AEDC vulnerability doesn't translate into high NDIS autism access, a possible sign of under-diagnosis/under-service in remote areas rather than lower true prevalence. This is a **4th, bonus map** — genuinely condition-specific, unlike maps 3-5 |
 | 14 | 1/4 | Line chart | Basic, bonus | Productivity Commission, Report on Government Services 2025 (Table 15A.20, national only) | % of estimated eligible children aged 0-14 who have an NDIS plan, 2019-2023 — ✅ built & rendered, `specs/14_ndis_children_access_trend.vl.json`. **Closes the "access to support over time" gap** (see relevance fix #2 below) — a genuine 5-year multi-year trend showing NDIS access for children rose from 60.2% to 90.2% of the estimated eligible population, with a visible dip in 2021 (not smoothed over). Disability-general, not neurodevelopmental-specific, but autism/developmental delay dominate the NDIS 0-14 population so it's a defensible proxy, clearly labelled as such |
+| 15 | 4 | Multi-line chart | Basic, bonus | Productivity Commission, Report on Government Services 2025 (Table 15A.45, national only) | Days to approve a first NDIS plan for young children (median and 90th percentile), 2020-21 to 2024-25 — ✅ built & rendered, `specs/15_ndis_wait_time_multiline.vl.json`. A distinct "access to support" story from chart #14 — this is a genuine wait-time reduction (median 28→46→29→10 days; 90th percentile 65→87→69→22 days), and the gap between the two lines shows how unevenly that wait is experienced. **Two honest data quirks disclosed in the chart caption, not hidden:** 2023-24 is missing from the source itself (rendered as a real visual break in the line, not interpolated — required a `format.parse` fix since Vega-Lite otherwise silently coerced the empty CSV value to 0, which would have been a serious, misleading defect), and the age band changed from "0-6" to "0-8" in the final year, so the last point isn't perfectly comparable to earlier ones. Deliberately built as a plain multi-line chart (basic, not advanced) rather than mislabelling it as a "slope chart" — a genuine slope chart is a 2-point before/after comparison, and forcing that framing onto 4 non-consecutive data points would have been dishonest about what the idiom actually is |
 
 **Relevance fix (2026-09-18):** rows 2, 7, and 8 originally used AEDC
 "developmental vulnerability" data (a general school-readiness screen, not
@@ -122,17 +123,18 @@ source with any sub-national geography (see caveat section above for why).
 Every other chart (1, 2, 6, 7, 8, 9, 10) now uses ABS/AIHW data that
 measures autism, disability, or specific support needs directly.
 
-**Idiom count — final:** 2 basic (stacked area chart, NDIS access line
-chart), 12 advanced (dumbbell, choropleth ×2, proportional symbol map,
-small-multiples map, population pyramid, radar chart, beeswarm, icon array,
-bullet chart, heatmap, streamgraph). 14 charts built and rendered total (10
-required + 4 bonus), 4 of them maps (10 required + 1 bonus) — see
-`specs/previews/` for PNG test renders. Comfortably clears the rubric's "≥8
-idioms incl. 5-8 advanced" for HD range, and now much more directly answers
-the assignment's actual prompt. **Chords/arc diagrams and ridge plots were
-considered and rejected** — no source has genuine pairwise co-occurrence
-data (needed for a chord diagram) or a continuous distribution (needed for
-a ridge plot); forcing either would misrepresent the underlying discrete
+**Idiom count — final:** 3 basic (stacked area chart, NDIS access line
+chart, NDIS wait-time multi-line chart), 12 advanced (dumbbell, choropleth
+×2, proportional symbol map, small-multiples map, population pyramid, radar
+chart, beeswarm, icon array, bullet chart, heatmap, streamgraph). 15 charts
+built and rendered total (10 required + 5 bonus), 4 of them maps (10
+required + 1 bonus) — see `specs/previews/` for PNG test renders.
+Comfortably clears the rubric's "≥8 idioms incl. 5-8 advanced" for HD range,
+and now much more directly answers the assignment's actual prompt.
+**Chords/arc diagrams and ridge plots were considered and rejected** — no
+source has genuine pairwise co-occurrence data (needed for a chord diagram)
+or a continuous distribution (needed for a ridge plot); forcing either
+would misrepresent the underlying discrete
 categorical/marginal data.
 
 **Relevance fix (2026-09-30):** three issues identified on review against

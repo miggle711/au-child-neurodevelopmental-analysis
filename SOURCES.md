@@ -197,28 +197,41 @@ using them in any chart, to stay under the assignment's "few MB total" budget.
 - **Source URL:** https://dataverse.ada.edu.au/dataset.xhtml?persistentId=doi:10.26193/XMLCQP
 
 ### 13. Productivity Commission — Report on Government Services (ROGS) 2025
-- **Status:** ✅ downloaded and used (chart #14)
+- **Status:** ✅ downloaded and used (charts #14, #15)
 - **File:** `data/raw/rogs/rogs15.csv` (2.4MB, Part F Section 15 "Services
   for people with disability," full dataset — only a small slice used)
 - **Geography:** State/territory + national totals
-- **Years:** 2019–2025 (age-band categories vary by year; "0-14 years old"
-  is the consistent category across the full range)
-- **Table used:** 15A.20 "Service use by selected equity groups" — NDIS
-  participants aged 0-14 as a % of the estimated eligible population,
-  2019-2023 (2024-2025 switch to a different metric, "rate per 1,000," not
-  directly comparable, so excluded from the trend chart)
+- **Years:** 2019–2025 (age-band categories vary by year and by table)
+- **Table 15A.20 used (chart #14):** "Service use by selected equity
+  groups" — NDIS participants aged 0-14 as a % of the estimated eligible
+  population, 2019-2023 (2024-2025 switch to a different metric, "rate per
+  1,000," not directly comparable, so excluded from the trend chart)
+- **Table 15A.45 used (chart #15):** NDIS first-plan approval wait times
+  (median and 90th percentile, in days) for young children — real years
+  present: 2020-21, 2021-22, 2022-23, 2024-25 (2023-24 is genuinely missing
+  from the source itself, not an extraction error). Age band changes from
+  "0-6 years old" (2020-21 to 2022-23) to "0-8 years old" (2024-25) — a real
+  definitional break, disclosed in the chart caption, not smoothed over.
+  **Build note:** the empty 2023-24 CSV cells were initially silently
+  coerced to 0 by Vega-Lite's default CSV parsing, which would have drawn a
+  false dip to zero — fixed with an explicit `format.parse` directive so
+  the gap renders as a real break in the line instead
 - **Source URL:** https://www.pc.gov.au/ongoing/report-on-government-services/2025/community-services/services-for-people-with-disability
-- **Use:** this closes the "access to support over time" gap identified on
-  2026-09-30 — found via a broader search after AEDC/ABS/AIHW/NDIS's own
-  autism dashboard were all confirmed to have no multi-year service-usage
-  series. Disability-general, not neurodevelopmental-specific, but a
-  defensible proxy for this age group (see NARRATIVE.md relevance fix)
-- **Processed extract:** `data/processed/ndis_children_access_trend.csv`
+- **Use:** these two tables close the "access to support over time" gap
+  identified on 2026-09-30 — found via a broader search after
+  AEDC/ABS/AIHW/NDIS's own autism dashboard were all confirmed to have no
+  multi-year service-usage series. Disability-general, not
+  neurodevelopmental-specific, but a defensible proxy for this age group
+  (see NARRATIVE.md relevance fix)
+- **Processed extracts:** `data/processed/ndis_children_access_trend.csv`,
+  `ndis_wait_time_trend_long.csv`
 - **Note:** this same file also has Table 15A.6 (NDIS participants by
   primary disability type, incl. autism, 2019-2025, all ages, not
-  child-restricted) and Table 15A.44/45 (NDIS waiting times by age band,
-  currently only 2024-25 populated) — not currently used but worth
-  revisiting if more charts are wanted later
+  child-restricted) — checked (2026-09-30) but not used, since it's
+  all-ages and would need combining with something else to add real value;
+  worth revisiting if more charts are wanted later. Table 15A.44 (NDIS
+  waiting times, different measure) checked and confirmed to have only
+  2024-25 populated — not usable for a trend
 
 ---
 
