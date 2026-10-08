@@ -9,23 +9,30 @@ one, and both sit on a warm paper ground.
 
 ## Design tokens (set in index.html's `:root`)
 
-| Token | Light | Dark | Use |
-|---|---|---|---|
-| `--bg` | `#f6f3ec` | `#1d1b17` | Page background |
-| `--bg-band` | `#ece6d8` | `#26231d` | Full-bleed section backgrounds (Act 2) |
-| `--fg` | `#2b2a26` | `#ece7db` | Body text |
-| `--fg-muted` | `#6e6a5e` | `#a39d8c` | Captions, source tags |
-| `--accent` | `#c4703f` | `#e09a62` | Clay: primary accent, callouts |
-| `--accent-soft` | `#e3c4a8` | `#6b4a2f` | Light clay tint |
-| `--sage` | `#6b7c5e` | `#9fb088` | Secondary accent: positive/comparison outcomes |
-| `--sage-soft` | `#c9d2bd` | `#3c4433` | Light sage tint |
-| `--line` | `#d9d1bd` | `#41392d` | Borders, dividers |
-| `--chart-bg` | `#fffdf8` | `#26231d` | Chart frame background (not pure white/black) |
+| Token | Value | Use |
+|---|---|---|
+| `--bg` | `#f6f3ec` | Page background |
+| `--bg-band` | `#ece6d8` | Full-bleed section backgrounds (Act 2) |
+| `--fg` | `#2b2a26` | Body text |
+| `--fg-muted` | `#6e6a5e` | Captions, source tags |
+| `--accent` | `#c4703f` | Clay: primary accent, callouts |
+| `--accent-soft` | `#e3c4a8` | Light clay tint |
+| `--sage` | `#6b7c5e` | Secondary accent: positive/comparison outcomes |
+| `--sage-soft` | `#c9d2bd` | Light sage tint |
+| `--line` | `#d9d1bd` | Borders, dividers |
+| `--chart-bg` | `#fffdf8` | Chart frame background (not pure white) |
 
-The page now declares explicit dark-mode tokens (`prefers-color-scheme`
-media query + `[data-theme]` overrides) rather than leaving dark mode to
-the browser's own auto-darkening, which was producing a washed-out,
-low-contrast result before this fix.
+**Deliberately single-theme (2026-10-08):** the page always renders in
+this light palette, ignoring the visitor's system dark-mode setting. A
+dark-mode version was tried and reverted: the 15 Vega/Vega-Lite chart
+specs all have axis labels, gridlines and text coloured for a light
+background, and none of that recolours per theme. On an actual
+dark-mode device the chart frame went dark but its internal text and
+gridlines stayed dark-on-dark and became nearly illegible. Properly
+supporting dark mode would mean auditing and patching all 15 specs
+individually with theme-aware colours, which couldn't be visually
+verified in this environment, so the page commits to one palette
+instead.
 
 ## Categorical attributes (fixed hex values, chart-level)
 
