@@ -434,7 +434,11 @@
 
   charts.forEach(function (pair) {
     var id = pair[0], path = pair[1];
-    var opts = { actions: false, renderer: 'svg' };
+    var opts = {
+      actions: false,
+      renderer: 'svg',
+      config: { background: 'transparent' }
+    };
     if (path.endsWith('.vg.json')) { opts.mode = 'vega'; }
     vegaEmbed('#' + id, path, opts).then(function (result) {
       if (id === 'chart04' || id === 'chart05' || id === 'chart13') {

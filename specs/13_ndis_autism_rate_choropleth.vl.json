@@ -23,7 +23,7 @@
   "params": [
     {
       "name": "state_select",
-      "select": {"type": "point", "fields": ["properties.STATE_NAME"]}
+      "select": {"type": "point", "fields": ["properties.STATE_NAME"], "empty": "none"}
     }
   ],
   "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1},
@@ -36,11 +36,11 @@
       "legend": {"titleLimit": 140, "gradientLength": 180}
     },
     "strokeWidth": {
-      "condition": {"param": "state_select", "value": 3},
+      "condition": {"param": "state_select", "value": 2.5},
       "value": 1
     },
     "stroke": {
-      "condition": {"param": "state_select", "value": "#2b2a26"},
+      "condition": {"param": "state_select", "value": "#6b7c5e"},
       "value": "white"
     },
     "tooltip": [
