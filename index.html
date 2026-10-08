@@ -36,35 +36,13 @@
     color-scheme: light;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #1d1b17;
-      --bg-band: #26231d;
-      --fg: #ece7db;
-      --fg-muted: #a39d8c;
-      --accent: #e09a62;
-      --accent-soft: #6b4a2f;
-      --sage: #9fb088;
-      --sage-soft: #3c4433;
-      --line: #41392d;
-      --chart-bg: #26231d;
-      color-scheme: dark;
-    }
-  }
-
-  :root[data-theme="dark"] {
-    --bg: #1d1b17;
-    --bg-band: #26231d;
-    --fg: #ece7db;
-    --fg-muted: #a39d8c;
-    --accent: #e09a62;
-    --accent-soft: #6b4a2f;
-    --sage: #9fb088;
-    --sage-soft: #3c4433;
-    --line: #41392d;
-    --chart-bg: #26231d;
-    color-scheme: dark;
-  }
+  /* Deliberately single-theme: the page always renders in the light
+     palette above, regardless of the visitor's system dark-mode setting.
+     The charts' axis labels, gridlines and text are coloured for a light
+     background and are not re-tinted per theme, so a dark variant would
+     need every one of the 15 Vega/Vega-Lite specs updated to stay
+     legible — out of scope here, and safer to commit to one palette
+     that is verified legible than ship an unverified dark mode. */
 
   * { box-sizing: border-box; }
 
