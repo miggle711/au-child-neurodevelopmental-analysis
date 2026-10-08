@@ -295,7 +295,7 @@
       <div class="maps-grid">
         <div class="chart-block">
           <div class="chart-frame"><div id="chart03"></div></div>
-          <p class="chart-caption">The Northern Territory stands apart: <span class="callout">40.8%</span> of children are developmentally vulnerable, against 21&ndash;26% everywhere else.</p>
+          <p class="chart-caption">The Northern Territory stands apart: <span class="callout">40.8%</span> of children are developmentally vulnerable, against 21&ndash;26% everywhere else. <em>Click a state to highlight it on the three maps below.</em></p>
           <p class="source-tag">Source: Australian Early Development Census, 2024</p>
         </div>
 
@@ -364,7 +364,7 @@
 
       <div class="chart-block">
         <div class="chart-frame"><div id="chart12"></div></div>
-        <p class="chart-caption">Intellectual disability makes up almost none of diagnoses at age 0&ndash;4, then balloons to <span class="callout">6.9%</span> by age 10&ndash;14. That's a sign of diagnosis catching up with reality as children get older, not a sign that more children are becoming affected.</p>
+        <p class="chart-caption">Intellectual disability makes up almost none of diagnoses at age 0&ndash;4, then balloons to <span class="callout">6.9%</span> by age 10&ndash;14. That's a sign of diagnosis catching up with reality as children get older, not a sign that more children are becoming affected. <em>Click a group in the legend to trace it on its own.</em></p>
         <p class="source-tag">Source: AIHW, Australia's Children, 2018</p>
       </div>
 
@@ -430,11 +430,36 @@
     ['chart15', 'specs/15_ndis_wait_time_multiline.vl.json']
   ];
 
+  var mapViews = {}; // chart04, chart05, chart13 views, so chart03's click can push a filter into them
+
   charts.forEach(function (pair) {
     var id = pair[0], path = pair[1];
     var opts = { actions: false, renderer: 'svg' };
     if (path.endsWith('.vg.json')) { opts.mode = 'vega'; }
-    vegaEmbed('#' + id, path, opts).catch(function (err) {
+    vegaEmbed('#' + id, path, opts).then(function (result) {
+      if (id === 'chart04' || id === 'chart05' || id === 'chart13') {
+        mapViews[id] = result.view;
+      }
+      if (id === 'chart03') {
+        // Cross-chart highlight: clicking a state on the AEDC choropleth
+        // highlights the same state on the LGA map, the remoteness small
+        // multiples, and the NDIS autism-rate choropleth. Overview (this
+        // map, always fully visible) + focus (the other three, dimmed to
+        // everything except the clicked state) per Shneiderman's
+        // Focus+Context principle.
+        result.view.addSignalListener('state_select', function (name, value) {
+          var stateName = value && value['properties.STATE_NAME'] && value['properties.STATE_NAME'][0];
+          var stateUpper = stateName ? stateName.toUpperCase() : null;
+          var selection = stateUpper ? [stateUpper] : [];
+          ['chart04', 'chart05', 'chart13'].forEach(function (otherId) {
+            var view = mapViews[otherId];
+            if (view) {
+              view.signal('state_select', selection).runAsync();
+            }
+          });
+        });
+      }
+    }).catch(function (err) {
       document.getElementById(id).innerHTML =
         '<p style="color:#b8501f;font-family:monospace;font-size:0.8rem;">Failed to load ' + path + ': ' + err.toString() + '</p>';
     });

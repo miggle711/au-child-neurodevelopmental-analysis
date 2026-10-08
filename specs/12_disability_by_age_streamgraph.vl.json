@@ -5,6 +5,13 @@
   "width": 450,
   "height": 280,
   "data": {"url": "data/processed/aihw_disability_by_age.csv"},
+  "params": [
+    {
+      "name": "group_select",
+      "select": {"type": "point", "fields": ["disability_group"]},
+      "bind": "legend"
+    }
+  ],
   "mark": {"type": "area", "interpolate": "monotone"},
   "encoding": {
     "x": {
@@ -26,6 +33,10 @@
       "type": "nominal",
       "title": "Disability group",
       "scale": {"scheme": "oranges"}
+    },
+    "opacity": {
+      "condition": {"param": "group_select", "value": 1},
+      "value": 0.15
     },
     "tooltip": [
       {"field": "disability_group", "title": "Disability group"},

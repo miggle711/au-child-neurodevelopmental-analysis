@@ -3,8 +3,16 @@
   "title": "Developmental vulnerability by remoteness area, 2024",
   "description": "AEDC: % of children developmentally vulnerable, LGAs grouped by ABS remoteness classification. Small multiples highlight where each remoteness band sits geographically and how vulnerability compares.",
   "data": {"url": "data/processed/aedc_lga_2024_with_remoteness.csv"},
+  "params": [
+    {
+      "name": "state_select",
+      "value": [],
+      "bind": null
+    }
+  ],
   "transform": [
-    {"filter": "datum.vulnerable_1plus_pct != null && datum.vulnerable_1plus_pct !== ''"}
+    {"filter": "datum.vulnerable_1plus_pct != null && datum.vulnerable_1plus_pct !== ''"},
+    {"calculate": "upper(datum.state)", "as": "state_upper"}
   ],
   "columns": 3,
   "facet": {
@@ -28,7 +36,7 @@
       },
       {
         "projection": {"type": "mercator"},
-        "mark": {"type": "circle", "opacity": 0.75, "stroke": "black", "strokeWidth": 0.2},
+        "mark": {"type": "circle", "stroke": "black", "strokeWidth": 0.2},
         "encoding": {
           "longitude": {"field": "lon", "type": "quantitative"},
           "latitude": {"field": "lat", "type": "quantitative"},
@@ -43,6 +51,10 @@
             "type": "quantitative",
             "scale": {"scheme": "oranges", "domain": [15, 85]},
             "title": "% vulnerable"
+          },
+          "opacity": {
+            "condition": {"test": "length(state_select) === 0 || indexof(state_select, datum.state_upper) >= 0", "value": 0.75},
+            "value": 0.1
           },
           "tooltip": [
             {"field": "lga_name", "title": "LGA"},

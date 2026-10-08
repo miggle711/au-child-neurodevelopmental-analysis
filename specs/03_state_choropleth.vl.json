@@ -19,6 +19,12 @@
       }
     }
   ],
+  "params": [
+    {
+      "name": "state_select",
+      "select": {"type": "point", "fields": ["properties.STATE_NAME"]}
+    }
+  ],
   "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1},
   "encoding": {
     "color": {
@@ -26,6 +32,14 @@
       "type": "quantitative",
       "title": "% developmentally vulnerable",
       "scale": {"scheme": "oranges"}
+    },
+    "strokeWidth": {
+      "condition": {"param": "state_select", "value": 3},
+      "value": 1
+    },
+    "stroke": {
+      "condition": {"param": "state_select", "value": "#2b2a26"},
+      "value": "white"
     },
     "tooltip": [
       {"field": "properties.STATE_NAME", "title": "State"},
