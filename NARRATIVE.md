@@ -201,6 +201,30 @@ the page ever sees. Add one entry per chart as copy is finalised.
 
 ---
 
+## Important: data path convention (2026-09-30)
+
+All 14 Vega-Lite specs' `data.url` fields are **page-relative** (e.g.
+`data/processed/abs_autism_trend.csv`, no leading `../`), not
+spec-relative. This is because vega-embed's browser loader resolves a
+spec's internal relative URLs against the *page's* URL (`document.baseURI`),
+not the spec file's own URL, even when the spec itself was loaded from a
+subfolder via `vegaEmbed(selector, 'specs/foo.vl.json')`. This is
+counter-intuitive and caused a real bug: charts loaded and rendered their
+axes/scales but drew no data, because Vega silently swallows failed data
+loads rather than throwing a visible error.
+
+**Practical consequence for local testing:** `vl2png` (Node's file-based
+loader) resolves relative paths differently, relative to the spec file's
+own directory by default. To test locally with the corrected page-relative
+paths, run vl2png with an explicit base directory flag from the repo root:
+```
+npx vega-lite2png -b . specs/06_autism_age_sex_pyramid.vl.json out.png
+```
+Omitting `-b .` will fail with an ENOENT error looking for
+`specs/data/...` instead of `data/...`.
+
+---
+
 ## Open decisions / things to amend
 
 - [x] Radar chart confirmed feasible using raw Vega (not Vega-Lite) —

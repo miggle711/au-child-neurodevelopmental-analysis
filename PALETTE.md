@@ -1,35 +1,49 @@
 # Colour Palette
 
-A fixed set of colours for attributes that repeat across multiple charts,
-so the same thing always looks the same everywhere it appears on the page.
-Sequential/magnitude scales (choropleths, heatmaps) are listed separately
-below and are not part of this fixed categorical palette — each already
-uses an appropriate, distinct scheme for its own metric.
+Updated 2026-10-08 to a clinical/developmental palette, replacing the
+earlier generic orange/blue scheme. Chosen to read as public-health and
+early-childhood-screening reporting (think ABS/AIHW style charts) rather
+than a generic tech or data-journalism look. Soft clay is the primary
+accent, sage green signals a positive/better outcome where a chart has
+one, and both sit on a warm paper ground.
 
-## Categorical attributes (fixed hex values)
+## Design tokens (set in index.html's `:root`)
+
+| Token | Light | Dark | Use |
+|---|---|---|---|
+| `--bg` | `#f6f3ec` | `#1d1b17` | Page background |
+| `--bg-band` | `#ece6d8` | `#26231d` | Full-bleed section backgrounds (Act 2) |
+| `--fg` | `#2b2a26` | `#ece7db` | Body text |
+| `--fg-muted` | `#6e6a5e` | `#a39d8c` | Captions, source tags |
+| `--accent` | `#c4703f` | `#e09a62` | Clay: primary accent, callouts |
+| `--accent-soft` | `#e3c4a8` | `#6b4a2f` | Light clay tint |
+| `--sage` | `#6b7c5e` | `#9fb088` | Secondary accent: positive/comparison outcomes |
+| `--sage-soft` | `#c9d2bd` | `#3c4433` | Light sage tint |
+| `--line` | `#d9d1bd` | `#41392d` | Borders, dividers |
+| `--chart-bg` | `#fffdf8` | `#26231d` | Chart frame background (not pure white/black) |
+
+The page now declares explicit dark-mode tokens (`prefers-color-scheme`
+media query + `[data-theme]` overrides) rather than leaving dark mode to
+the browser's own auto-darkening, which was producing a washed-out,
+low-contrast result before this fix.
+
+## Categorical attributes (fixed hex values, chart-level)
 
 | Attribute | Value | Colour | Hex | Used in |
 |---|---|---|---|---|
 | Sex | Male / Boys | Blue | `#4292c6` | #6 (pyramid), #10 (bullet) |
-| Sex | Female / Girls | Orange | `#d94801` | #6 (pyramid), #10 (bullet) |
-| Condition scope | Autistic / autism-specific | Orange | `#d94801` | #2 (dumbbell) |
-| Condition scope | Non-autistic / general disability | Grey-blue | `#9ecae1` | #2 (dumbbell) |
+| Sex | Female / Girls | Clay | `#d94801` | #6 (pyramid), #10 (bullet) |
+| Condition scope | Autistic | Clay | `#c4703f` | #2 (dumbbell) |
+| Condition scope | Non-autistic / general disability | Sage | `#6b7c5e` | #2 (dumbbell) |
 | Outcome | Need met / good outcome | Blue | `#3182bd` | #11 (heatmap, "need met" side) |
-| Outcome | Need not met / concerning outcome | Red | `#d94801` → see note | #11 (heatmap, "need not met" side) |
+| Outcome | Need not met / concerning outcome | Red | sequential `reds` | #11 (heatmap, "need not met" side) |
 
-**Note on #11:** the heatmap already uses `blues` (met) vs `reds` (not met)
-as two independent sequential scales, which is a different and equally
-valid pattern (severity gradient within each status) — not a plain
-two-colour categorical choice. Left as-is; flagged here only so it's not
-mistaken for an inconsistency.
-
-**Note on orange meaning two different things (Female/Girls AND
-Autistic):** these never appear together in the same chart, so there's no
-direct clash, but it does mean orange isn't a single fixed "meaning" across
-the whole page the way blue mostly is. Acceptable given the alternative
-(inventing a 3rd hue) adds complexity without a real payoff — flagged here
-for visibility, revisit if it reads as confusing once charts are laid out
-together on the actual page.
+**Note:** sex (#6, #10) deliberately keeps the blue/orange pairing rather
+than switching to clay/sage, since that pairing is already locked in and
+consistent across both charts that use it (see commit history) — redoing
+it to match the new palette exactly would only be worth it if it read as
+inconsistent next to the rest of the page. Revisit if it looks out of
+place once viewed on the live site.
 
 ## Sequential / magnitude scales (per-chart, not shared)
 
@@ -43,24 +57,40 @@ and readers interpret them locally within one chart, not across charts:
 | #5 Remoteness small-multiples | `oranges` | Developmental vulnerability % |
 | #8 Beeswarm | `oranges` | % reporting co-occurring characteristic |
 | #12 Streamgraph | `oranges` | % by disability group |
-| #13 NDIS rate choropleth | `purples` | NDIS autism participants per 1,000 |
+| #13 NDIS rate choropleth | custom clay ramp (`#e3c4a8` → `#c4703f` → `#6b3a1f`) | NDIS autism participants per 1,000 |
 
-**Note:** #3, #4, #5, #8, #12 all use `oranges` and are consistent with
-each other already (all developmental-vulnerability-adjacent metrics on
-the same hue family is arguably a feature, not a bug — reinforces that
-these all come from the same AEDC-proxy source, discussed in NARRATIVE.md).
-#13 deliberately uses a different hue (`purples`) specifically because it's
-a genuinely different, condition-specific metric — this is an intentional
-signal, not an inconsistency.
+**Note:** #13 used to use Vega's built-in `purples` scheme, which read as
+an arbitrary, unrelated colour next to the rest of the page. Replaced with
+a custom clay-family ramp so every map on the page sits in the same colour
+family, while #13 staying visually distinguishable from #3/#4/#5 by being
+a flat sequential ramp rather than a graduated `oranges` scheme (and by
+sitting in Act 2 as the explicit "this one is condition-specific, not a
+proxy" map).
 
-## Fixes needed (tracked, not yet applied)
+## Typography
 
-- [ ] Chart #6 (pyramid): confirm Male=blue/Female=orange is the final
-      assignment (matches the table above)
-- [ ] Chart #10 (bullet): currently uses a single flat orange for all 3
-      bars (All children/Boys/Girls aren't colour-differentiated from each
-      other at all) — needs updating so Boys=blue, Girls=orange, matching
-      chart #6. "All children" can stay a neutral grey/black since it's not
-      a sex category
-- [ ] Chart #2 (dumbbell): confirm Autistic=orange/Non-autistic=grey-blue
-      is final (already matches the table above, no change needed)
+| Role | Typeface | Notes |
+|---|---|---|
+| Display (headings) | Lora | Humanist serif, used in public-sector and editorial reporting; pairs with the clinical/developmental direction better than a display serif like Fraunces, which read as more decorative/literary |
+| Body | Public Sans | Designed for US federal government digital services, widely used in public-health and civic data reporting; reads as credible and unobtrusive |
+| Data labels / captions | JetBrains Mono | Unchanged — monospace numerals for source tags and the "Act N" eyebrow labels |
+
+## Whitespace fixes (2026-10-08)
+
+Several charts had excess empty space relative to their actual content,
+most visibly chart #2 (dumbbell, 4 rows in a 220px-tall chart) and chart
+#13 (NDIS choropleth, 500×400 canvas for a map that renders much smaller).
+Fixed by:
+- Chart #2: `"height": 220` → `"height": {"step": 45}`, so the chart
+  height scales with the actual number of categorical rows instead of a
+  guessed fixed value
+- Chart #13: reduced `width`/`height` from 500×400 to 440×350, replaced an
+  `autosize: fit` attempt (which clipped the title) with explicit `padding`
+  instead
+- `.chart-frame` in index.html now uses `display: flex;
+  justify-content: center` so a chart narrower than its frame doesn't look
+  like it's floating in an oversized box
+
+Other charts' heights were checked against their row counts and left
+as-is where the ratio was already reasonable (roughly 45-55px per
+categorical row).

@@ -6,7 +6,7 @@
 <title>Growing Up Different</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -14,18 +14,56 @@
 <style>
   /* Layout concept: a single scrolling editorial column (max 760px) that
      widens into a full-bleed band for each map/act, so charts get room to
-     breathe without ever requiring horizontal scroll of the page itself. */
+     breathe without ever requiring horizontal scroll of the page itself.
+     Palette: clinical/developmental, soft clay accent, sage for positive
+     outcomes, warm paper ground, echoing early-childhood screening
+     materials and Australian public-health reporting rather than a
+     generic tech palette. */
   :root {
-    --bg: #faf7f2;
-    --bg-band: #f0ebe1;
-    --fg: #2a2622;
-    --fg-muted: #6b6459;
-    --accent: #b8501f;
-    --accent-soft: #e8c9ab;
-    --line: #ddd4c4;
-    --display: 'Fraunces', Georgia, serif;
-    --body: 'Source Sans 3', -apple-system, Helvetica, Arial, sans-serif;
+    --bg: #f6f3ec;
+    --bg-band: #ece6d8;
+    --fg: #2b2a26;
+    --fg-muted: #6e6a5e;
+    --accent: #c4703f;
+    --accent-soft: #e3c4a8;
+    --sage: #6b7c5e;
+    --sage-soft: #c9d2bd;
+    --line: #d9d1bd;
+    --chart-bg: #fffdf8;
+    --display: 'Lora', Georgia, serif;
+    --body: 'Public Sans', -apple-system, Helvetica, Arial, sans-serif;
     --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1d1b17;
+      --bg-band: #26231d;
+      --fg: #ece7db;
+      --fg-muted: #a39d8c;
+      --accent: #e09a62;
+      --accent-soft: #6b4a2f;
+      --sage: #9fb088;
+      --sage-soft: #3c4433;
+      --line: #41392d;
+      --chart-bg: #26231d;
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #1d1b17;
+    --bg-band: #26231d;
+    --fg: #ece7db;
+    --fg-muted: #a39d8c;
+    --accent: #e09a62;
+    --accent-soft: #6b4a2f;
+    --sage: #9fb088;
+    --sage-soft: #3c4433;
+    --line: #41392d;
+    --chart-bg: #26231d;
+    color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
@@ -134,11 +172,17 @@
   }
 
   .chart-frame {
-    background: #fff;
+    background: var(--chart-bg);
     border: 1px solid var(--line);
     border-radius: 4px;
     padding: 20px;
     overflow-x: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .chart-frame > div {
+    max-width: 100%;
   }
 
   .chart-caption {
