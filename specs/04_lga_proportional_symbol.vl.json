@@ -34,14 +34,15 @@
         "size": {
           "field": "vulnerable_1plus_pct",
           "type": "quantitative",
-          "title": "% developmentally vulnerable",
-          "scale": {"range": [20, 900]}
+          "scale": {"range": [20, 900]},
+          "legend": null
         },
         "color": {
           "field": "vulnerable_1plus_pct",
           "type": "quantitative",
+          "title": "% developmentally vulnerable",
           "scale": {"scheme": "oranges"},
-          "legend": null
+          "legend": {"orient": "bottom-right"}
         },
         "opacity": {
           "condition": {"test": "length(state_select) === 0 || indexof(state_select, datum.state_upper) >= 0", "value": 0.7},
