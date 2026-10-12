@@ -50,7 +50,8 @@
             "field": "vulnerable_1plus_pct",
             "type": "quantitative",
             "scale": {"scheme": "oranges", "domain": [15, 85]},
-            "title": "% vulnerable"
+            "title": "% developmentally vulnerable",
+            "legend": {"orient": "right", "direction": "vertical"}
           },
           "opacity": {
             "condition": {"test": "length(state_select) === 0 || indexof(state_select, datum.state_upper) >= 0", "value": 0.75},
