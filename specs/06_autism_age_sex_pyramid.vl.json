@@ -11,9 +11,9 @@
       "as": "signed_estimate"
     }
   ],
-  "spec": {},
   "hconcat": [
     {
+      "title": {"text": "Male", "color": "#4292c6", "fontSize": 13},
       "width": 220,
       "height": 200,
       "transform": [{"filter": "datum.sex === 'Male'"}],
@@ -25,6 +25,7 @@
       }
     },
     {
+      "title": {"text": "Female", "color": "#d94801", "fontSize": 13},
       "width": 220,
       "height": 200,
       "transform": [{"filter": "datum.sex === 'Female'"}],
