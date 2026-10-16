@@ -1,260 +1,125 @@
-# Data Sources Tracker
+# Data Sources
 
-Working list of data sources for the FIT3179 Data Visualisation 2 assignment
-(neurodevelopmental conditions in Australian children). Update this file as
-sources are added, dropped, or replaced with cleaned extracts.
+A running record of every data source used in this project, what was checked and ruled out, and why. Update this file whenever a source is added, dropped, or replaced with a cleaned extract.
 
-Raw downloaded files live in `data/raw/<source>/`. **Note:** the two PHIDU
-workbooks are 7–8MB each and must NOT be shipped as-is in the final site —
-extract only the relevant sheet(s) into a small `data/processed/` CSV before
-using them in any chart, to stay under the assignment's "few MB total" budget.
+Raw downloaded files live under `data/raw/<source>/`. The two PHIDU workbooks are 7–8MB each and are never shipped as-is in the final site: only the relevant sheets are extracted into small `data/processed/` CSVs, to stay under the assignment's "few MB total" budget.
+
+**Status key:** ✅ confirmed usable and in use · 🟡 downloaded but not yet inspected in detail · 🔲 a candidate, not yet retrieved · ❌ ruled out
 
 ---
 
-## Status legend
-- ✅ Confirmed usable, downloaded, inspected
-- 🟡 Downloaded, not yet inspected in detail
-- 🔲 Candidate, not yet retrieved
-- ❌ Ruled out / blocked
+## 1. Australian Early Development Census (AEDC)
+
+**Status: ✅.** Files: `data/raw/aedc/AEDC_state_trends_2009_2024.xlsx`, `AEDC_summary_indicators_domains.xlsx`, `AEDC_demographics_by_state.xlsx`, `AEDC_participation_by_state.xlsx`.
+
+This is the national school-entry census of "developmental vulnerability" across five domains (physical, social, emotional, language/cognitive, communication), broken down by state/territory, remoteness category, and SEIFA quintile, across five census waves from 2009 to 2024. It's the only source in this project with any sub-national geography at all, which is why it carries all three required map idioms (state choropleth, LGA proportional symbols, remoteness small-multiples) plus the national trend chart.
+
+Source: https://www.aedc.gov.au/data-hub/public-data/2024-aedc-results
+
+## 2. ABS — Autism in Australia, 2022
+
+**Status: ✅.** File: `data/raw/abs/AutismDC01.xlsx`. National only, by age group and sex, covering the 2015/2018/2022 SDAC cycles.
+
+This file supplies the national autism trend chart (Table 1, chart #1), the age-by-sex population pyramid (Table 2, chart #6), the schooling difficulties/supports comparison between autistic and non-autistic children with disability (Table 4, chart #2), and the co-occurring disability types chart (Table 3, chart #8 — not age-restricted to children, which is disclosed on the page). Two more genuine cross-tabs sit in this file unused — Table 8 (frequency of need for assistance by activity type) and Table 10 (formal/informal provider of assistance by activity type) — worth revisiting if more charts are wanted later.
+
+Processed extracts: `data/processed/abs_autism_trend.csv`, `abs_autism_age_sex.csv`, `abs_autism_schooling_support.csv`, `abs_autism_cooccurring.csv`.
+
+Source: https://www.abs.gov.au/articles/autism-australia-2022
+
+## 3. ABS — Children and Young People with Disability, 2022
+
+**Status: ✅.** File: `data/raw/abs/ChildrenDisability2022.xlsx`. National only, ages 0–24, by disability status and sex, 2015/2018/2022.
+
+Table 3 gives the disability-group breakdown used in chart #7 (% of children aged 0-14 with each disability group — Sensory & speech, Learning & understanding, Physical, Psychosocial, Head injury/ABI, Other), and Table 4 gives the assistance-needed-vs-received breakdown used in chart #11 (support needs not fully met, children aged 0-14).
+
+Processed extracts: `data/processed/abs_disability_groups_0_14.csv`, `abs_children_unmet_need_0_14.csv`.
+
+Source: https://www.abs.gov.au/articles/children-and-young-people-disability-2022
+
+## 4. PHIDU — Social Health Atlas, Child and Youth (Torrens University)
+
+**Status: ✅,** though the raw workbooks are kept locally only and never shipped. Files: `data/raw/phidu/phidu_child_youth_lga.xlsx` (7.5MB) and `phidu_child_youth_phn_lga_parts.xlsx` (8.7MB).
+
+The sheet that matters here is `Early_childhood_development`, which republishes the AEDC vulnerability indicator at LGA level for 2024 — the only source found with finer-than-state geography for this measure. About 19% of the 544 LGAs have suppressed values due to small-area counts; these are treated as nulls (greyed out or excluded), never as zero. The workbook also has an ABS Census 2021 `Disability` sheet and a `Census_health_condition` sheet, kept as context but not used directly.
+
+Processed extract: `data/processed/aedc_lga_2024.csv` (52KB, 544 LGAs across 8 states/territories).
+
+Source: https://phidu.torrens.edu.au/social-health-atlases/data (Child and Youth Atlas)
+
+## 5. NDIS Data Research — Autism Participant Dashboard
+
+**Status: ✅.** File: `data/raw/ndis/ndis_autism_data_dec2024.xlsx`, sheet `7_State`. State/territory only, as at 31 December 2024.
+
+This is the only genuinely autism-specific (not a proxy) source with any geography, and it powers chart #13. The raw sheet gives participant counts and a "% share of all NDIS participants" figure, but that share reflects each state's overall NDIS caseload mix rather than autism prevalence, so it was rejected as a mapping variable. Instead, participant counts were divided by ABS population estimates (source 6 below) to get a genuine rate per 1,000 people. That rate produces a strikingly different pattern from the AEDC maps: South Australia is highest at 13.6 per 1,000, and the Northern Territory is lowest at 5.9 per 1,000 — the opposite of the NT's position on AEDC vulnerability, suggesting under-diagnosis or under-service in remote areas rather than genuinely lower prevalence. Chart #16 (the bivariate choropleth) makes this contrast visible directly on one map.
+
+Processed extract: `data/processed/ndis_autism_rate_by_state.csv` (keeps the raw counts, population denominator, and derived rate together for transparency).
+
+Source: https://dataresearch.ndis.gov.au/reports-and-analyses/participant-dashboards/autism
+
+## 6. ABS — National, State and Territory Population, December 2024
+
+**Status: ✅,** used purely as a population denominator for chart #13's per-capita rate (and, by extension, chart #16). The reference date (31 December 2024) is an exact match to the NDIS snapshot above.
+
+Source: https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/dec-2024
+
+## 7. AIHW — Australia's Children, 2022 Update
+
+**Status: ✅.** Files: `data/raw/aihw/aihw_CWS_69_Health_2022.xlsx` (47 sheets) and `aihw_CWS_69_Education_2022.xlsx` (17 sheets). National only, mostly 2018–2021 with some series back to 2003.
+
+The Health workbook's "Children with disability" tables (25–28) cover prevalence by disability status, sex and age, and whether children aged 5–14 have a schooling restriction (chart #10). Table 27 specifically — disability groups by age band (0-4/5-9/10-14) — is a genuine cross-tab, used for the streamgraph in chart #12 to show diagnosis lag by disability type. The Education workbook's Tables 10–11 (educational adjustment by school sector and by adjustment level) power the icon array in chart #9.
+
+Processed extract: `data/processed/aihw_disability_by_age.csv` (plus `aihw_education_adjustment.csv` and `aihw_schooling_restriction.csv`).
+
+Source: https://www.aihw.gov.au/reports/children-youth/australias-children/data
+
+## 8. HughParsonage/ABS-data — LGA Centroid Coordinates
+
+**Status: ✅.** This isn't a government source but a community-maintained GitHub repository of LGA centroid coordinates, used to place the dots on chart #4's proportional symbol map. The coordinates are 2016-vintage LGA boundaries, joined against the 2024 AEDC data by cleaned LGA name (stripping trailing qualifiers like "(C)" or a state abbreviation). 514 of 544 LGAs matched (95%); the rest are mostly LGAs renamed or amalgamated since 2016, or ambiguous same-name LGAs across different states.
+
+Source: https://raw.githubusercontent.com/HughParsonage/ABS-data/master/LGA_NAME-LGA_CODE-latlon-gpolatlon.csv
+
+## 9. Regional Australia Institute — LGA to Remoteness Classification
+
+**Status: ✅,** extracted from a PDF into `data/raw/rai/lga_remoteness.csv`. ABS doesn't publish a direct LGA-to-Remoteness-Area correspondence file (only LGA-to-LGA and RA-to-RA vintage updates), so this third-party-compiled lookup was the practical path to a clean, single-category remoteness classification (Major Cities / Inner Regional / Outer Regional / Remote / Very Remote) per LGA. It joins by LGA code directly, matching all 514 of the real LGAs in the AEDC data, and powers the remoteness small-multiples map (chart #5).
+
+Source: https://regionalaustralia.org.au/common/Uploaded%20files/Files/2024/Good%20Life%20Guide/LGAs%20to%20RAI%20and%20ABS%20Classifications.pdf
+
+## 10. Productivity Commission — Report on Government Services (ROGS) 2025
+
+**Status: ✅.** File: `data/raw/rogs/rogs15.csv` (2.4MB; only a small slice of the full "Services for people with disability" section is actually used). State/territory and national totals, 2019–2025.
+
+Two tables from this large dataset close the "access to support over time" gap in the narrative, found only after a broad search confirmed none of AEDC, ABS, AIHW or NDIS's own dashboard has any multi-year service-usage series. Table 15A.20 gives NDIS participants aged 0-14 as a share of the estimated eligible population, 2019–2023 (chart #14) — disability-general rather than neurodevelopmental-specific, but a defensible proxy given how much of the NDIS 0-14 population is there for autism or developmental delay. Table 15A.45 gives first-plan approval wait times (median and 90th percentile) for young children, with two honest quirks disclosed on the page rather than hidden: 2023-24 is genuinely missing from the source itself, and the tracked age band shifts from "0-6" to "0-8" in the final year.
+
+One build note worth keeping: the empty 2023-24 cells were initially silently coerced to zero by Vega-Lite's default CSV parsing, which would have drawn a false dip in the line. Fixed with an explicit `format.parse` directive so the gap renders as a real break instead.
+
+The same file also has Table 15A.6 (NDIS participants by primary disability type including autism, 2019–2025, all ages) and Table 15A.44 (a second wait-time measure, only populated for 2024-25) — both checked and set aside for now.
+
+Processed extracts: `data/processed/ndis_children_access_trend.csv`, `ndis_wait_time_trend_long.csv`.
+
+Source: https://www.pc.gov.au/ongoing/report-on-government-services/2025/community-services/services-for-people-with-disability
+
+## 11. Derived — Bivariate Vulnerability/Access Classification
+
+**Status: ✅,** computed rather than sourced externally. Chart #16 combines two already-documented sources — AEDC state vulnerability (source 1) and NDIS autism access rate (source 5) — by ranking each of the 8 states/territories independently into thirds (low/mid/high) on each measure, then assigning one of nine bivariate classes. With only 8 data points the thirds are coarse, landing in groups of roughly two or three; this is disclosed directly in the chart's own description rather than left implicit.
+
+Processed extracts: `data/processed/bivariate_vulnerability_access_state.csv` (per-state class and precomputed colour) and `bivariate_legend_grid.csv` (the nine legend cells). See NARRATIVE.md's entry for chart #16 for the full reasoning behind adding this chart.
 
 ---
 
-## Sources
+## Sources checked and ruled out
 
-### 1. AEDC — Australian Early Development Census
-- **Status:** ✅
-- **Files:** `data/raw/aedc/AEDC_state_trends_2009_2024.xlsx`,
-  `AEDC_summary_indicators_domains.xlsx`, `AEDC_demographics_by_state.xlsx`,
-  `AEDC_participation_by_state.xlsx`
-- **Geography:** State/territory; also remoteness category (Major
-  Cities/Regional/Remote) and SEIFA quintile in `summary_indicators_domains`
-- **Years:** 2009–2024 (5 census waves)
-- **Key indicator:** % of children "developmentally vulnerable" on one or
-  more of 5 domains (physical, social, emotional, language/cognitive,
-  communication)
-- **Source URL:** https://www.aedc.gov.au/data-hub/public-data/2024-aedc-results
-- **Use:** state choropleth + remoteness-category map/small-multiples + time
-  trend chart
+**Atlas of Healthcare Variation — ADHD medicines dispensing (≤17 years) by PHN.** The page is no longer live; the Commission's current "Atlas Focus Reports" list covers five other topics (antipsychotics, COPD, colonoscopy, heavy menstrual bleeding, opioids) and the old Third Atlas 2018 ADHD page is dead. A nearby substitute — "Antipsychotic medicines dispensing, 65 years and over" — was checked and rejected: wrong age group (elderly, not children) and wrong drug class entirely. No PHN-level ADHD-specific dataset is currently available anywhere; PHIDU remains the only source of finer-than-state geography in this project.
 
-### 2. ABS — Autism in Australia, 2022
-- **Status:** ✅
-- **File:** `data/raw/abs/AutismDC01.xlsx`
-- **Geography:** National only, by age group and sex
-- **Years:** 2015, 2018, 2022 (SDAC cycles)
-- **Source URL:** https://www.abs.gov.au/articles/autism-australia-2022
-- **Use:** national trend chart (Table 1, chart #1), population pyramid
-  (Table 2, chart #6), schooling difficulties/supports comparison (Table 4,
-  chart #2 — autistic vs non-autistic children with disability), co-occurring
-  disability types (Table 3, chart #8 — note: not age-restricted to
-  children), unmet support needs by activity type (Table 9, chart #11 —
-  genuine 2-variable cross-tab, note: not age-restricted to children)
-- **Processed extracts:** `data/processed/abs_autism_trend.csv`,
-  `abs_autism_age_sex.csv`, `abs_autism_schooling_support.csv`,
-  `abs_autism_cooccurring.csv`, `abs_autism_unmet_need.csv`
-- **Other real cross-tabs found in this file, not yet used:** Table 8
-  (frequency of need for assistance × activity type), Table 10 (provider of
-  assistance — formal/informal × activity type) — potential future chart
-  material if more idioms are wanted later
+**APSC Neurodiversity in the APS Workforce.** Covers adult public servants, not children. Not relevant.
 
-### 3. ABS — Children and young people with disability, 2022
-- **Status:** ✅
-- **File:** `data/raw/abs/ChildrenDisability2022.xlsx`
-- **Geography:** National only, ages 0–24, by disability status/sex
-- **Years:** 2015, 2018, 2022
-- **Source URL:** https://www.abs.gov.au/articles/children-and-young-people-disability-2022
-- **Use:** disability group radar chart (Table 3, chart #7 — % of children
-  0-14 with each disability group: Sensory & speech, Learning &
-  understanding, Physical, Psychosocial, Head injury/ABI, Other)
-- **Processed extract:** `data/processed/abs_disability_groups_0_14.csv`
+**ABC News / Four Corners — ADHD diagnosis rates.** Covers adults aged 20–64, and the underlying PBS/PLIDA analysis is a custom UNSW study with no public raw data download.
 
-### 4. PHIDU — Social Health Atlas, Child and Youth (Torrens University)
-- **Status:** ✅ downloaded, 🟡 not yet extracted to a clean subset
-- **Files:** `data/raw/phidu/phidu_child_youth_lga.xlsx` (7.5MB),
-  `phidu_child_youth_phn_lga_parts.xlsx` (8.7MB) — **raw only, too large to
-  ship**
-- **Relevant sheet:** `Early_childhood_development` — AEDC vulnerability
-  indicator at **LGA level**, 2024
-- **Also present:** `Disability` sheet (ABS Census 2021, need-for-assistance
-  by age 0–24, LGA), `Census_health_condition` (LGA-level mental health
-  condition prevalence, 2021) — supporting/context data only
-- **Source URL:** https://phidu.torrens.edu.au/social-health-atlases/data (Child and Youth Atlas)
-- **Use:** LGA-level map — finer geography than AEDC's state data, same
-  underlying indicator.
-- **Processed extract:** `data/processed/aedc_lga_2024.csv` (52KB, 544 LGAs
-  across 8 states/territories). Columns: `lga_code`, `lga_name`, `state`,
-  and count/valid-n/% for vulnerable-on-1+-domains, vulnerable-on-2+-domains,
-  and on-track-on-all-5-domains. ~19% of LGAs have suppressed values (blank
-  cells) due to small-area counts — handle nulls in the map (grey out or
-  exclude, don't treat as zero).
+**data.gov.au.** Checked directly; it only re-links to the ABS/AIHW/AEDC sources already listed above, nothing additional.
 
-### 5. NDIS Data Research — Autism participant dashboard
-- **Status:** ✅ downloaded and used (chart #13)
-- **File:** `data/raw/ndis/ndis_autism_data_dec2024.xlsx`, sheet `7_State`
-- **Geography:** State/territory only (no SA3/SA4 breakdown by disability
-  type despite site's rollout-metric pages mentioning SA3/SA4 — that's
-  participation rate, not disability type)
-- **Years:** as at 31 December 2024
-- **Source URL:** https://dataresearch.ndis.gov.au/reports-and-analyses/participant-dashboards/autism
-- **Use:** chart #13, a 4th (bonus) map — genuinely autism-specific state
-  choropleth of NDIS autism participants per 1,000 population. Raw sheet
-  only gives participant counts and "% share of all NDIS participants"
-  (the latter reflects scheme caseload mix, not prevalence, so it was
-  rejected as misleading for a map). Computed a real per-capita rate instead
-  by dividing by ABS Estimated Resident Population (see #12 below) — this
-  produces a genuinely different pattern from the AEDC maps (SA highest at
-  13.6 per 1,000, NT lowest at 5.9 per 1,000), worth calling out explicitly:
-  NT's high AEDC vulnerability doesn't translate into high NDIS autism
-  access, suggesting possible under-diagnosis/under-service in remote areas
-  rather than lower actual prevalence
-- **Processed extract:** `data/processed/ndis_autism_rate_by_state.csv`
-  (includes raw participant counts, population denominator, and derived
-  rate, all in one file for transparency/reproducibility)
-
-### 12. ABS — National, state and territory population, December 2024
-- **Status:** ✅ used as population denominator for chart #13
-- **Years:** 31 December 2024 (exact date match to the NDIS snapshot)
-- **Source URL:** https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/dec-2024
-- **Use:** population by state/territory, used to convert NDIS autism
-  participant counts into a genuine per-capita rate (per 1,000 population)
-
-### 6. Atlas of Healthcare Variation — ADHD medicines dispensing (≤17 yrs) by PHN
-- **Status:** ❌ ruled out — page no longer accessible. The Commission's
-  current "Atlas Focus Reports" list only has 5 actively maintained topics
-  (Antipsychotic medicines dispensing, COPD, Colonoscopy, Heavy menstrual
-  bleeding, Opioid medicines dispensing) — ADHD is not among them and the old
-  Third Atlas 2018 §5.6 ADHD page/data file is dead.
-- Checked and rejected substitute: "Antipsychotic medicines dispensing,
-  65 years and over, 2016–17 to 2020–21" — wrong age group (elderly, not
-  children) and wrong drug class (antipsychotics ≠ ADHD stimulant medicines).
-  Not usable even as a proxy.
-- **Conclusion:** no PHN-level ADHD-specific dataset currently available.
-  PHIDU (#4) is now the sole source for a finer-than-state map idiom.
-
-### 7. APSC Neurodiversity in the APS workforce
-- **Status:** ❌ ruled out — adult public servants only, not children
-- **Source URL:** https://www.apsc.gov.au/initiatives-and-programs/workforce-information/research-analysis-and-publications/state-service/state-service-report-2024-25/aps-workforce/diversity-aps-workforce
-
-### 8. ABC News / Four Corners — ADHD diagnosis rates
-- **Status:** ❌ ruled out — covers adults (20–64), not children; underlying
-  PBS/PLIDA analysis is custom (UNSW), no public raw download
-- **Source URL:** https://www.abc.net.au/news/2026-04-20/adhd-diagnosis-rates-adults-australia-data-four-corners/106557646
-
-### 9. data.gov.au
-- **Status:** ❌ checked — no standalone dataset found beyond re-links to
-  ABS/AIHW/AEDC already listed above
-
-### 10. AIHW — Australia's Children 2022 update, data tables
-- **Status:** ✅ downloaded (Health + Education domains)
-- **Files:** `data/raw/aihw/aihw_CWS_69_Health_2022.xlsx` (47 sheets),
-  `aihw_CWS_69_Education_2022.xlsx` (17 sheets)
-- **Geography:** National only
-- **Years:** mostly 2018–2021, some series back to 2003
-- **Relevant tables (Health):** Table 25–28 "Children with disability" —
-  prevalence by disability status/sex/age (2003–2018), disability groups,
-  and whether children aged 5–14 have a schooling restriction. Table 27
-  (disability groups by age band 0-4/5-9/10-14, chart #12) is a genuine
-  cross-tab used for a streamgraph showing diagnosis lag by disability type
-- **Processed extract:** `data/processed/aihw_disability_by_age.csv`
-- **Relevant tables (Education):** Table 10–11 "School students who received
-  an educational adjustment due to disability" — by school sector and level
-  of adjustment, 2020 — good proxy for learning-disability support/service
-  usage in schools
-- **Source URL:** https://www.aihw.gov.au/reports/children-youth/australias-children/data
-- **Use:** supporting national-level charts (disability prevalence trend,
-  schooling impact, educational adjustment by sector) — not map-eligible
-  (national only)
-
-### 11. HughParsonage/ABS-data — LGA centroid coordinates
-- **Status:** ✅ downloaded and joined
-- **File:** raw source not kept (downloaded directly into
-  `data/processed/aedc_lga_2024_with_centroids.csv`)
-- **Content:** lat/lon centroid per LGA, 2016 LGA vintage, 544 rows
-- **Join method:** matched by cleaned LGA name (stripped trailing
-  "(C)"/"(A)"/state qualifiers) against `aedc_lga_2024.csv` — 514/544
-  matched (95%); unmatched are mostly LGAs renamed/amalgamated since 2016 or
-  ambiguous same-name LGAs across states (e.g. "Campbelltown (NSW)" vs "(SA)")
-- **Source URL:** https://raw.githubusercontent.com/HughParsonage/ABS-data/master/LGA_NAME-LGA_CODE-latlon-gpolatlon.csv
-- **Use:** enables the LGA proportional symbol map (map idiom #2)
-
-### 12. Regional Australia Institute — LGA to remoteness classification
-- **Status:** ✅ downloaded (as PDF) and extracted to CSV
-- **File:** `data/raw/rai/lga_remoteness.csv` (565 rows incl. non-geographic
-  pseudo-LGA codes; 514 real LGAs matched by code against AEDC data)
-- **Content:** one dominant ABS Remoteness Area classification (Major
-  Cities/Inner Regional/Outer Regional/Remote/Very Remote) per LGA code —
-  clean single-category lookup, not a proportional/population-weighted split
-- **Join method:** matched by LGA code directly — 514/514 matched (100%),
-  better than the name-based centroid join
-- **Source URL:** https://regionalaustralia.org.au/common/Uploaded%20files/Files/2024/Good%20Life%20Guide/LGAs%20to%20RAI%20and%20ABS%20Classifications.pdf
-- **Use:** enables the remoteness small-multiples map (map idiom #3). Note:
-  ABS does not publish a direct LGA-to-Remoteness-Area correspondence CSV
-  (only LGA-to-LGA and RA-to-RA vintage-update files), so this
-  third-party-compiled lookup was the practical path
-
-### 11. Longitudinal Study of Australian Children (LSAC)
-- **Status:** 🔲 not evaluated — microdata, likely requires application/
-  registration for access, probably too heavy a lift for this assignment
-- **Source URL:** https://dataverse.ada.edu.au/dataset.xhtml?persistentId=doi:10.26193/XMLCQP
-
-### 13. Productivity Commission — Report on Government Services (ROGS) 2025
-- **Status:** ✅ downloaded and used (charts #14, #15)
-- **File:** `data/raw/rogs/rogs15.csv` (2.4MB, Part F Section 15 "Services
-  for people with disability," full dataset — only a small slice used)
-- **Geography:** State/territory + national totals
-- **Years:** 2019–2025 (age-band categories vary by year and by table)
-- **Table 15A.20 used (chart #14):** "Service use by selected equity
-  groups" — NDIS participants aged 0-14 as a % of the estimated eligible
-  population, 2019-2023 (2024-2025 switch to a different metric, "rate per
-  1,000," not directly comparable, so excluded from the trend chart)
-- **Table 15A.45 used (chart #15):** NDIS first-plan approval wait times
-  (median and 90th percentile, in days) for young children — real years
-  present: 2020-21, 2021-22, 2022-23, 2024-25 (2023-24 is genuinely missing
-  from the source itself, not an extraction error). Age band changes from
-  "0-6 years old" (2020-21 to 2022-23) to "0-8 years old" (2024-25) — a real
-  definitional break, disclosed in the chart caption, not smoothed over.
-  **Build note:** the empty 2023-24 CSV cells were initially silently
-  coerced to 0 by Vega-Lite's default CSV parsing, which would have drawn a
-  false dip to zero — fixed with an explicit `format.parse` directive so
-  the gap renders as a real break in the line instead
-- **Source URL:** https://www.pc.gov.au/ongoing/report-on-government-services/2025/community-services/services-for-people-with-disability
-- **Use:** these two tables close the "access to support over time" gap
-  identified on 2026-09-30 — found via a broader search after
-  AEDC/ABS/AIHW/NDIS's own autism dashboard were all confirmed to have no
-  multi-year service-usage series. Disability-general, not
-  neurodevelopmental-specific, but a defensible proxy for this age group
-  (see NARRATIVE.md relevance fix)
-- **Processed extracts:** `data/processed/ndis_children_access_trend.csv`,
-  `ndis_wait_time_trend_long.csv`
-- **Note:** this same file also has Table 15A.6 (NDIS participants by
-  primary disability type, incl. autism, 2019-2025, all ages, not
-  child-restricted) — checked (2026-09-30) but not used, since it's
-  all-ages and would need combining with something else to add real value;
-  worth revisiting if more charts are wanted later. Table 15A.44 (NDIS
-  waiting times, different measure) checked and confirmed to have only
-  2024-25 populated — not usable for a trend
-
-### 14. Derived — bivariate vulnerability/access classification (chart #16)
-- **Status:** ✅ computed and used (2026-10-16)
-- **Not a new external source** — this combines two already-documented
-  sources: AEDC state-level developmental vulnerability % (#1 above) and
-  NDIS autism participation rate per 1,000 (#5/#12 above)
-- **Method:** each of the 8 states/territories is independently ranked into
-  terciles (low/mid/high thirds) on each measure, then assigned one of 9
-  bivariate classes (e.g. "high vulnerability, low access"). With only 8
-  data points, terciles are coarse (groups of roughly 2-3) — disclosed in
-  the chart's own description, not hidden
-- **Processed extracts:** `data/processed/bivariate_vulnerability_access_state.csv`
-  (per-state class + precomputed hex colour), `bivariate_legend_grid.csv`
-  (the 9 legend-grid cells)
-- **Use:** chart #16, a bivariate choropleth merging charts #3 and #13 into
-  one map — see NARRATIVE.md row 16 for the full reasoning (added to
-  address an idiom-count risk flagged by outside review)
+**Longitudinal Study of Australian Children (LSAC).** Not evaluated in depth — it's microdata requiring an application/registration process, likely too heavy a lift for this assignment's scope.
 
 ---
 
-## Open questions / next steps
-- [x] Atlas of Healthcare Variation PHN-level ADHD file — ruled out, page gone, no viable substitute
-- [x] Extract `Early_childhood_development` sheet from PHIDU LGA workbook into a small clean CSV — done, `data/processed/aedc_lga_2024.csv`
-- [ ] Decide final map idiom set (3 required) once LGA data quality is confirmed
-- [x] Check AIHW Australia's Children data tables — done, Health + Education domains downloaded
-- [ ] Once final source list is locked, delete/gitignore oversized raw PHIDU files, keep only processed extracts in the repo
+## Open items
+
+- Delete or gitignore the oversized raw PHIDU workbooks once the final source list is fully locked in, keeping only the processed extracts in the repository.
