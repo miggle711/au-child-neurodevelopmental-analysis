@@ -42,7 +42,7 @@
           "type": "quantitative",
           "title": "% developmentally vulnerable",
           "scale": {"scheme": "oranges"},
-          "legend": {"orient": "bottom-right"}
+          "legend": {"orient": "right"}
         },
         "opacity": {
           "condition": {"test": "length(state_select) === 0 || indexof(state_select, datum.state_upper) >= 0", "value": 0.7},
