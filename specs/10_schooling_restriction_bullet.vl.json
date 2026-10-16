@@ -17,7 +17,7 @@
       "mark": {"type": "bar", "size": 22},
       "encoding": {
         "y": {"field": "group", "type": "nominal", "sort": ["All children", "Boys", "Girls"]},
-        "x": {"field": "pct", "type": "quantitative"},
+        "x": {"field": "pct", "type": "quantitative", "title": "% with a schooling restriction"},
         "color": {
           "field": "group",
           "type": "nominal",
