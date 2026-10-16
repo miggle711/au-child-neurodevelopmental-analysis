@@ -32,7 +32,8 @@
       "field": "disability_group",
       "type": "nominal",
       "title": "Disability group",
-      "scale": {"scheme": "oranges"}
+      "scale": {"scheme": "oranges"},
+      "legend": {"orient": "bottom", "columns": 2}
     },
     "opacity": {
       "condition": {"param": "group_select", "value": 1},
