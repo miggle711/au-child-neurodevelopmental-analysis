@@ -1,17 +1,23 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Students receiving an educational adjustment for disability, 2020",
-  "description": "AIHW/NCCD: % of enrolled students who received an educational adjustment due to disability, shown two ways — by school sector and by level of adjustment (national data, two separate breakdowns, not a cross-tab)",
+  "description": "AIHW/NCCD: % of enrolled students who received an educational adjustment due to disability, shown two ways — by school sector and by level of adjustment (national data, two separate breakdowns, not a cross-tab). Each square represents 1% of students; filled squares show the actual percentage.",
   "data": {"url": "data/processed/aihw_education_adjustment.csv"},
   "transform": [
     {"calculate": "sequence(0, 100)", "as": "seq"},
     {"flatten": ["seq"]},
     {"calculate": "datum.seq % 10", "as": "col"},
     {"calculate": "floor(datum.seq / 10)", "as": "row"},
-    {"calculate": "datum.seq < round(datum.pct)", "as": "filled"}
+    {"calculate": "datum.seq < round(datum.pct)", "as": "filled"},
+    {"calculate": "datum.group === 'By school sector' ? 'By school sector' : 'By level of adjustment'", "as": "group_label"}
   ],
   "facet": {
-    "row": {"field": "group", "type": "nominal", "title": null, "header": {"labelFontSize": 13, "labelFontWeight": "bold"}}
+    "row": {
+      "field": "group_label",
+      "type": "nominal",
+      "title": null,
+      "header": {"labelFontSize": 13, "labelFontWeight": "bold", "labelAlign": "left", "labelAnchor": "start", "labelPadding": 10}
+    }
   },
   "spec": {
     "width": 160,
@@ -21,28 +27,42 @@
         "field": "category",
         "type": "nominal",
         "title": null,
-        "header": {"labelFontSize": 10, "labelAngle": 0, "labelLimit": 100}
+        "header": {"labelFontSize": 10, "labelAngle": 0, "labelLimit": 100, "labelPadding": 4}
       }
     },
     "spec": {
       "width": 100,
       "height": 100,
-      "mark": {"type": "square", "size": 60},
-      "encoding": {
-        "x": {"field": "col", "type": "ordinal", "axis": null},
-        "y": {"field": "row", "type": "ordinal", "axis": null, "sort": "descending"},
-        "color": {
-          "field": "filled",
-          "type": "nominal",
-          "scale": {"domain": [true, false], "range": ["#d94801", "#f0f0f0"]},
-          "legend": null
+      "layer": [
+        {
+          "mark": {"type": "square", "size": 60},
+          "encoding": {
+            "x": {"field": "col", "type": "ordinal", "axis": null},
+            "y": {"field": "row", "type": "ordinal", "axis": null, "sort": "descending"},
+            "color": {
+              "field": "filled",
+              "type": "nominal",
+              "scale": {"domain": [true, false], "range": ["#c4703f", "#ece6d8"]},
+              "legend": null
+            },
+            "tooltip": [
+              {"field": "category", "title": "Category"},
+              {"field": "pct", "title": "%"}
+            ]
+          }
         },
-        "tooltip": [
-          {"field": "category", "title": "Category"},
-          {"field": "pct", "title": "%"}
-        ]
-      }
+        {
+          "transform": [{"filter": "datum.seq === 0"}],
+          "mark": {"type": "text", "align": "left", "baseline": "top", "fontSize": 20, "fontWeight": "bold", "color": "#2b2a26", "x": 0, "y": -24},
+          "encoding": {
+            "text": {"field": "pct", "type": "quantitative", "format": ".1f"}
+          }
+        }
+      ]
     }
   },
-  "resolve": {"scale": {"color": "independent"}}
+  "resolve": {"scale": {"color": "independent"}},
+  "config": {
+    "text": {"font": "Public Sans"}
+  }
 }
