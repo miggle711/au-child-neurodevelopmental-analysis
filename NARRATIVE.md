@@ -133,6 +133,7 @@ not longitudinal, but the same underlying question).
 | 13 | 2 | Choropleth map | Map idiom #4 (Advanced, bonus) | NDIS Data Research (state, Dec 2024) + ABS Estimated Resident Population (Dec 2024) | Autism NDIS participants per 1,000 population, by state/territory — ✅ built & rendered, `specs/13_ndis_autism_rate_choropleth.vl.json`. Genuinely autism-specific (unlike the AEDC-based maps) and a real per-capita rate (computed by dividing NDIS's raw participant counts by ABS population — the raw sheet's own "% of all NDIS participants" metric was rejected as it reflects scheme caseload mix, not prevalence). Notable finding: produces an almost inverse pattern to the AEDC choropleth — SA highest (13.6 per 1,000), NT *lowest* (5.9 per 1,000), suggesting NT's high AEDC vulnerability doesn't translate into high NDIS autism access, a possible sign of under-diagnosis/under-service in remote areas rather than lower true prevalence. This is a **4th, bonus map** — genuinely condition-specific, unlike maps 3-5 |
 | 14 | 1/4 | Line chart | Basic, bonus | Productivity Commission, Report on Government Services 2025 (Table 15A.20, national only) | % of estimated eligible children aged 0-14 who have an NDIS plan, 2019-2023 — ✅ built & rendered, `specs/14_ndis_children_access_trend.vl.json`. **Closes the "access to support over time" gap** (see relevance fix #2 below) — a genuine 5-year multi-year trend showing NDIS access for children rose from 60.2% to 90.2% of the estimated eligible population, with a visible dip in 2021 (not smoothed over). Disability-general, not neurodevelopmental-specific, but autism/developmental delay dominate the NDIS 0-14 population so it's a defensible proxy, clearly labelled as such |
 | 15 | 4 | Multi-line chart | Basic, bonus | Productivity Commission, Report on Government Services 2025 (Table 15A.45, national only) | Days to approve a first NDIS plan for young children (median and 90th percentile), 2020-21 to 2024-25 — ✅ built & rendered, `specs/15_ndis_wait_time_multiline.vl.json`. A distinct "access to support" story from chart #14 — this is a genuine wait-time reduction (median 28→46→29→10 days; 90th percentile 65→87→69→22 days), and the gap between the two lines shows how unevenly that wait is experienced. **Two honest data quirks disclosed in the chart caption, not hidden:** 2023-24 is missing from the source itself (rendered as a real visual break in the line, not interpolated — required a `format.parse` fix since Vega-Lite otherwise silently coerced the empty CSV value to 0, which would have been a serious, misleading defect), and the age band changed from "0-6" to "0-8" in the final year, so the last point isn't perfectly comparable to earlier ones. Deliberately built as a plain multi-line chart (basic, not advanced) rather than mislabelling it as a "slope chart" — a genuine slope chart is a 2-point before/after comparison, and forcing that framing onto 4 non-consecutive data points would have been dishonest about what the idiom actually is |
+| 16 | 2 | Bivariate choropleth | Map idiom #5 (Advanced, bonus) | AEDC state trends + NDIS Data Research + ABS Estimated Resident Population | Merges charts #3 and #13's two separate measures (developmental vulnerability % and NDIS autism rate per 1,000) into a single map, each state coloured by a precomputed 3×3 tercile-based bivariate class — ✅ built & rendered, `specs/16_bivariate_vulnerability_access_choropleth.vl.json`. **Added 2026-10-16** after an outside review flagged two risks: (1) the idiom count fell into D-band territory once the radar and heatmap were correctly downgraded to basic idioms, and (2) a strict marker could read charts #3 and #13 as the same choropleth idiom, capping the map-idiom score at 4% instead of 8%. This chart addresses both — it's a genuinely distinct idiom from a single-variable choropleth, and it makes the "NT is high-vulnerability but low-access" finding visible in one map instead of requiring a reader to compare two separate charts. Includes a 3×3 legend grid (built as a second small chart, `hconcat`-ed beside the map) since Vega-Lite has no native bivariate colour encoding — colour is precomputed per state in `data/processed/bivariate_vulnerability_access_state.csv` and passed through with `scale: null`. With only 8 states, terciles are coarse (roughly groups of 2-3), disclosed in the chart description, not hidden |
 
 **Relevance fix (2026-09-18):** rows 2, 7, and 8 originally used AEDC
 "developmental vulnerability" data (a general school-readiness screen, not
@@ -147,20 +148,29 @@ source with any sub-national geography (see caveat section above for why).
 Every other chart (1, 2, 6, 7, 8, 9, 10) now uses ABS/AIHW data that
 measures autism, disability, or specific support needs directly.
 
-**Idiom count — final (updated 2026-10-16):** 4 basic (stacked area chart,
-sorted bar chart, NDIS access line chart, NDIS wait-time multi-line chart),
-11 advanced (dumbbell, choropleth ×2, proportional symbol map,
-small-multiples map, population pyramid, lollipop chart, beeswarm, icon
-array, bullet chart, streamgraph). 15 charts built and rendered total (10
-required + 5 bonus), 4 of them maps (10 required + 1 bonus) — see
-`specs/previews/` for PNG test renders. Still comfortably clears the
-rubric's "≥8 idioms incl. 5-8 advanced" for HD range. The radar chart and
-2-colour-scale heatmap were replaced (lollipop, sorted bar) after an
-outside review correctly flagged both as idioms chosen for novelty rather
-than fit to the data — see rows 7 and 11 above for the reasoning. This
-trades 2 "advanced" idioms for 2 honestly "basic" ones, which is the right
-call: a correctly-basic idiom beats an incorrectly-advanced one against the
-rubric's "applied effectively and meaningfully" language.
+**Idiom count — final (updated 2026-10-16, corrected after a second outside
+review):** 6 basic (stacked area, lollipop, beeswarm — a labelled dot plot
+in substance, bar chart, line chart, multi-line chart), up to 10 advanced
+if a marker is generous (dumbbell, choropleth ×2, proportional symbol map,
+small-multiples map, population pyramid, icon array, bullet chart,
+streamgraph, bivariate choropleth). **Important correction:** an earlier
+version of this note incorrectly counted the lollipop (chart #7) as
+advanced — a lollipop/dot plot is explicitly on the rubric's basic list.
+The beeswarm (chart #8) was also flagged by review as "really a labelled
+dot plot" rather than a genuine beeswarm, so it's counted as basic here
+too, pending a possible future fix.
+
+16 charts built and rendered total (10 required + 6 bonus), 5 of them maps
+(10 required + 2 bonus) — see `specs/previews/` for PNG test renders. The
+real, distinct-idiom count for "Idioms and complexity" is closer to 8-9
+than a generous 10, since charts #3 and #13 are the same choropleth idiom
+applied to two different datasets, and a strict marker may only count that
+as one. **Chart #16 (bivariate choropleth) was added specifically to
+address this** — it merges #3 and #13's two measures into one genuinely
+distinct map idiom, both restoring an advanced idiom lost when the radar
+and heatmap were corrected to basic ones, and giving a 3rd/4th distinct map
+idiom beyond "choropleth, counted once" + proportional symbol + small
+multiples. See row 16 below for the full reasoning.
 **Chords/arc diagrams and ridge plots were considered and rejected** — no
 source has genuine pairwise co-occurrence data (needed for a chord diagram)
 or a continuous distribution (needed for a ridge plot); forcing either

@@ -233,6 +233,23 @@ using them in any chart, to stay under the assignment's "few MB total" budget.
   waiting times, different measure) checked and confirmed to have only
   2024-25 populated — not usable for a trend
 
+### 14. Derived — bivariate vulnerability/access classification (chart #16)
+- **Status:** ✅ computed and used (2026-10-16)
+- **Not a new external source** — this combines two already-documented
+  sources: AEDC state-level developmental vulnerability % (#1 above) and
+  NDIS autism participation rate per 1,000 (#5/#12 above)
+- **Method:** each of the 8 states/territories is independently ranked into
+  terciles (low/mid/high thirds) on each measure, then assigned one of 9
+  bivariate classes (e.g. "high vulnerability, low access"). With only 8
+  data points, terciles are coarse (groups of roughly 2-3) — disclosed in
+  the chart's own description, not hidden
+- **Processed extracts:** `data/processed/bivariate_vulnerability_access_state.csv`
+  (per-state class + precomputed hex colour), `bivariate_legend_grid.csv`
+  (the 9 legend-grid cells)
+- **Use:** chart #16, a bivariate choropleth merging charts #3 and #13 into
+  one map — see NARRATIVE.md row 16 for the full reasoning (added to
+  address an idiom-count risk flagged by outside review)
+
 ---
 
 ## Open questions / next steps
