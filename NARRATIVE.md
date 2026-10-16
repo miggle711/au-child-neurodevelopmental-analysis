@@ -124,7 +124,7 @@ not longitudinal, but the same underlying question).
 | 4 | 2 | Proportional symbol map | Map idiom #2 (Advanced) | PHIDU LGA data + HughParsonage/ABS-data centroids | Developmental vulnerability % by LGA (514 of 544 LGAs matched by name to 2016-vintage centroids) — reveals within-state hotspots. ✅ built & rendered, `specs/04_lga_proportional_symbol.vl.json`. Swapped from choropleth to proportional-symbol: no small ready-made LGA boundary TopoJSON with matching codes exists, and a full 544-polygon choropleth would look noisy/patchy given ~19% suppressed LGAs |
 | 5 | 2 | Small-multiples map by remoteness area | Map idiom #3 (Advanced) | AEDC LGA data + Regional Australia Institute LGA-to-remoteness lookup | 5-panel map (Major Cities/Inner Regional/Outer Regional/Remote/Very Remote), each showing LGA points colored+sized by developmental vulnerability % — ✅ built & rendered, `specs/05_remoteness_small_multiples.vl.json`. Strong visual gradient: Very Remote panel clusters in central/northern Australia with darkest, largest circles (up to 83% in Central Desert, NT) |
 | 6 | 3 | Population pyramid | Advanced | ABS AutismDC01 (national only) | Autistic children by age group (0-4, 5-14, 15-24) × sex — ✅ built & rendered, `specs/06_autism_age_sex_pyramid.vl.json`. Shows males diagnosed at ~2-3x the rate of females across all age bands |
-| 7 | 3 | Radar chart (raw Vega) | Advanced | ABS Children and Young People with Disability 2022 (Table 3, national only) | % of children aged 0-14 with each disability group (Sensory & speech, Learning & understanding, Physical, Psychosocial, Head injury/ABI, Other) — ✅ built & rendered, `specs/07_disability_groups_radar.vg.json`. **Replaced AEDC 5-domain version** — this shows genuine condition-adjacent disability groups instead of general developmental screening domains. "Learning and understanding" (6.5%) is the largest slice |
+| 7 | 3 | Sorted lollipop chart | Advanced | ABS Children and Young People with Disability 2022 (Table 3, national only) | % of children aged 0-14 with each disability group (Sensory & speech, Learning & understanding, Physical, Psychosocial, Head injury/ABI, Other) — ✅ built & rendered, `specs/07_disability_groups_lollipop.vl.json`. "Learning and understanding" (6.5%) is the largest slice. **Idiom fix (2026-10-16):** was a radar chart — an outside review correctly identified radar as the weakest idiom choice here, since these 6 categories have no natural circular order, so a radar's polygon shape/area implies a pattern that isn't actually in the data (a well-known general critique of radar charts, not specific to this dataset). Replaced with a sorted lollipop showing the same 6 numbers honestly, with no implied relationship between categories. This also removes the only raw-Vega (non-Vega-Lite) spec from the page, simplifying the embed logic. Old radar kept in `deprecated/specs/07_disability_groups_radar.vg.json` |
 | 8 | 3 | Beeswarm / jittered dot plot | Advanced | ABS Autism in Australia 2022 (Table 3, national, all ages not child-restricted) | Co-occurring characteristics among autistic Australians (e.g. "slow at learning" 71.4%, social/behavioural difficulties 62.4%, mental illness 52.5%) — ✅ built & rendered, `specs/08_autism_cooccurring_beeswarm.vl.json`. **Replaced AEDC SEIFA gradient** — shows autism rarely occurs in isolation. **Known remaining issue:** source table isn't age-restricted to children — a child-restricted equivalent for autism-specific co-occurring types doesn't exist in any source checked (see relevance fix #2 below); this chart stays framed as national context, not a children-only statistic |
 | 9 | 4 | Icon array (two panels) | Advanced | AIHW Education (Table 10–11, national only) | % of students receiving an educational adjustment for disability, by school sector and separately by adjustment level — ✅ built & rendered, `specs/09_education_adjustment_icon_array.vl.json`. Swapped from mosaic plot: Tables 10 & 11 are two separate 1-variable breakdowns, not a real sector×level cross-tab, so a mosaic would require fabricating joint data (against the brief's "no fabricated data" rule) |
 | 10 | 4 | Bullet chart | Advanced | AIHW Health (Table 28, national only) | % of children aged 5-14 with disability who have a schooling restriction — overall (7.8%) vs boys (9.9%) vs girls (5.6%), each measured against the "all children" reference line — ✅ built & rendered, `specs/10_schooling_restriction_bullet.vl.json`. Swapped from waffle chart (same idiom family as #9, would've been repetitive) and from a plain bar chart (basic, not advanced) |
@@ -147,14 +147,20 @@ source with any sub-national geography (see caveat section above for why).
 Every other chart (1, 2, 6, 7, 8, 9, 10) now uses ABS/AIHW data that
 measures autism, disability, or specific support needs directly.
 
-**Idiom count — final:** 3 basic (stacked area chart, NDIS access line
-chart, NDIS wait-time multi-line chart), 12 advanced (dumbbell, choropleth
-×2, proportional symbol map, small-multiples map, population pyramid, radar
-chart, beeswarm, icon array, bullet chart, heatmap, streamgraph). 15 charts
-built and rendered total (10 required + 5 bonus), 4 of them maps (10
-required + 1 bonus) — see `specs/previews/` for PNG test renders.
-Comfortably clears the rubric's "≥8 idioms incl. 5-8 advanced" for HD range,
-and now much more directly answers the assignment's actual prompt.
+**Idiom count — final (updated 2026-10-16):** 4 basic (stacked area chart,
+sorted bar chart, NDIS access line chart, NDIS wait-time multi-line chart),
+11 advanced (dumbbell, choropleth ×2, proportional symbol map,
+small-multiples map, population pyramid, lollipop chart, beeswarm, icon
+array, bullet chart, streamgraph). 15 charts built and rendered total (10
+required + 5 bonus), 4 of them maps (10 required + 1 bonus) — see
+`specs/previews/` for PNG test renders. Still comfortably clears the
+rubric's "≥8 idioms incl. 5-8 advanced" for HD range. The radar chart and
+2-colour-scale heatmap were replaced (lollipop, sorted bar) after an
+outside review correctly flagged both as idioms chosen for novelty rather
+than fit to the data — see rows 7 and 11 above for the reasoning. This
+trades 2 "advanced" idioms for 2 honestly "basic" ones, which is the right
+call: a correctly-basic idiom beats an incorrectly-advanced one against the
+rubric's "applied effectively and meaningfully" language.
 **Chords/arc diagrams and ridge plots were considered and rejected** — no
 source has genuine pairwise co-occurrence data (needed for a chord diagram)
 or a continuous distribution (needed for a ridge plot); forcing either
