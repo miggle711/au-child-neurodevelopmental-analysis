@@ -103,6 +103,28 @@
     max-width: 58ch;
   }
 
+  .hero-stat {
+    margin-top: 28px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat .number {
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .hero-stat .context {
+    font-size: 1rem;
+    color: var(--fg-muted);
+    max-width: 32ch;
+  }
+
   .byline {
     margin-top: 28px;
     font-family: var(--mono);
@@ -229,6 +251,10 @@
     <span class="eyebrow">Child Development &amp; Learning</span>
     <h1 class="title">Growing Up Different</h1>
     <p class="subtitle">What Australian data actually tells us about autism, disability and developmental support in children, and where that data runs out.</p>
+    <div class="hero-stat">
+      <span class="number">70%</span>
+      <span class="context">more autistic children aged 5&ndash;14 in Australia in 2022 than in 2015, the fastest-growing age group in the data.</span>
+    </div>
     <p class="byline">Miguel &middot; 2026 &middot; FIT3179 Data Visualisation 2</p>
   </div>
 </header>
@@ -386,12 +412,23 @@
     </div>
   </section>
 
+  <hr class="divider">
+
+  <section class="act" id="conclusion">
+    <div class="wrap prose">
+      <h2 class="act-title">What this adds up to</h2>
+      <p class="lede">More children are being identified earlier, and the system is getting faster at processing them once they are. But where a child lives still does more to determine whether they're seen at all than how severe their needs are.</p>
+      <p>The Northern Territory is the clearest example in this data: the most developmentally vulnerable children in the country, and the lowest rate of autism support access of any state. That's not a contradiction, it's a gap. If the rest of Australia's progress on earlier diagnosis and faster NDIS plans reached remote communities the same way it's reached the cities, the biggest single improvement in this story probably wouldn't be a new program. It would be making the existing one actually reach everyone it's meant to.</p>
+    </div>
+  </section>
+
 </main>
 
 <footer>
   <div class="wrap">
     <p><strong>About this visualisation.</strong> Built with Vega-Lite and Vega for FIT3179 Data Visualisation 2, Monash University. All data comes from the Australian Bureau of Statistics, the Australian Institute of Health and Welfare, the Australian Early Development Census, NDIS Data Research, the Productivity Commission and the Regional Australia Institute. The full source list, years and known limitations are documented in <a href="https://github.com/miggle711/au-child-neurodevelopmental-analysis/blob/main/SOURCES.md">SOURCES.md</a>. Every chart specification is published as readable JSON in the <a href="https://github.com/miggle711/au-child-neurodevelopmental-analysis/tree/main/specs">specs/</a> folder of this repository.</p>
     <p>No data was fabricated or altered. Where the available data has a real gap or limitation, such as a proxy measure standing in for something more specific, an age range that doesn't perfectly match, or a missing year, it is disclosed directly in the chart it affects, not hidden.</p>
+    <p><strong>Use of AI.</strong> This project was built with the assistance of Claude (Anthropic), used throughout for data sourcing and cleaning, chart specification authoring, page construction, and editing. All data sourcing decisions, chart design choices, and factual claims were reviewed and verified against the original data before publication.</p>
   </div>
 </footer>
 
