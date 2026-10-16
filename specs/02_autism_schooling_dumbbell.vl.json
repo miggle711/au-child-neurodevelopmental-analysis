@@ -23,8 +23,8 @@
           "field": "group",
           "type": "nominal",
           "title": null,
-          "scale": {"domain": ["Autistic", "Non-autistic with disability"], "range": ["#c4703f", "#6b7c5e"]},
-          "legend": {"orient": "bottom", "columns": 1}
+          "scale": {"domain": ["Autistic", "Other disability"], "range": ["#c4703f", "#6b7c5e"]},
+          "legend": {"orient": "bottom", "columns": 1, "direction": "vertical", "symbolLimit": 0}
         },
         "tooltip": [
           {"field": "category", "title": "Measure"},
