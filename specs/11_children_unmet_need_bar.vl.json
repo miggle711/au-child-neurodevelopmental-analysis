@@ -1,0 +1,41 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Support needs not fully met, children with disability aged 0-14",
+  "description": "ABS SDAC 2022 (Children and young people with disability): among children aged 0-14 who need assistance with an activity, the share whose need is NOT fully met, by activity type, sorted highest to lowest (national data only, all disability types, not autism-specific)",
+  "width": 350,
+  "height": 220,
+  "data": {"url": "data/processed/abs_children_unmet_need_0_14.csv"},
+  "transform": [
+    {"filter": "datum.status === 'Need not met'"}
+  ],
+  "encoding": {
+    "y": {
+      "field": "activity",
+      "type": "nominal",
+      "title": null,
+      "sort": "-x"
+    },
+    "x": {
+      "field": "pct",
+      "type": "quantitative",
+      "title": "% of children whose need is not fully met"
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "bar", "color": "#c4703f"},
+      "encoding": {
+        "tooltip": [
+          {"field": "activity", "title": "Activity"},
+          {"field": "pct", "title": "% not fully met", "format": ".1f"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "align": "left", "dx": 5, "fontWeight": "bold"},
+      "encoding": {
+        "text": {"field": "pct", "type": "quantitative", "format": ".0f"}
+      }
+    }
+  ]
+}
