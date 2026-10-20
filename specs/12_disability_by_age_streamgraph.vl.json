@@ -41,8 +41,13 @@
       "field": "pct",
       "type": "quantitative",
       "stack": "center",
-      "title": null,
-      "axis": null
+      "title": "% of children (stacked)",
+      "axis": {
+        "labels": false,
+        "ticks": false,
+        "domain": false,
+        "grid": false
+      }
     },
     "color": {
       "field": "disability_group",
