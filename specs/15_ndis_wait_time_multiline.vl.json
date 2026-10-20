@@ -6,54 +6,171 @@
   "height": 280,
   "data": {
     "url": "data/processed/ndis_wait_time_trend_long.csv",
-    "format": {"type": "csv", "parse": {"days": "number"}}
+    "format": {
+      "type": "csv",
+      "parse": {
+        "days": "number"
+      }
+    }
   },
   "layer": [
     {
-      "mark": {"type": "line", "strokeWidth": 2, "point": false},
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2,
+        "point": false
+      },
       "encoding": {
-        "x": {"field": "year", "type": "ordinal", "title": "Financial year"},
-        "y": {"field": "days", "type": "quantitative", "title": "Days to approve first plan"},
-        "detail": {"field": "measure"},
-        "order": {"field": "year"},
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": "Financial year"
+        },
+        "y": {
+          "field": "days",
+          "type": "quantitative",
+          "title": "Days to approve first plan"
+        },
+        "detail": {
+          "field": "measure"
+        },
+        "order": {
+          "field": "year"
+        },
         "color": {
           "field": "measure",
           "type": "nominal",
           "title": null,
-          "scale": {"domain": ["Typical wait (median)", "Longest 10% of waits"], "range": ["#3182bd", "#c4703f"]},
-          "legend": {"orient": "bottom", "columns": 1}
+          "scale": {
+            "domain": [
+              "Typical wait (median)",
+              "Longest 10% of waits"
+            ],
+            "range": [
+              "#3182bd",
+              "#c4703f"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "columns": 1
+          }
         }
       }
     },
     {
-      "mark": {"type": "point", "filled": true, "size": 90},
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 90
+      },
       "encoding": {
-        "x": {"field": "year", "type": "ordinal"},
-        "y": {"field": "days", "type": "quantitative"},
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "days",
+          "type": "quantitative"
+        },
         "color": {
           "field": "measure",
           "type": "nominal",
-          "scale": {"domain": ["Typical wait (median)", "Longest 10% of waits"], "range": ["#3182bd", "#c4703f"]}
+          "scale": {
+            "domain": [
+              "Typical wait (median)",
+              "Longest 10% of waits"
+            ],
+            "range": [
+              "#3182bd",
+              "#c4703f"
+            ]
+          }
         },
         "tooltip": [
-          {"field": "year", "title": "Financial year"},
-          {"field": "measure", "title": "Measure"},
-          {"field": "days", "title": "Days to approve"}
+          {
+            "field": "year",
+            "title": "Financial year"
+          },
+          {
+            "field": "measure",
+            "title": "Measure"
+          },
+          {
+            "field": "days",
+            "title": "Days to approve"
+          }
         ]
       }
     },
     {
-      "mark": {"type": "text", "dy": -12, "fontSize": 10, "fontWeight": "bold"},
+      "mark": {
+        "type": "text",
+        "dy": -12,
+        "fontSize": 10,
+        "fontWeight": "bold"
+      },
       "encoding": {
-        "x": {"field": "year", "type": "ordinal"},
-        "y": {"field": "days", "type": "quantitative"},
-        "text": {"field": "days", "type": "quantitative"},
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "days",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "days",
+          "type": "quantitative"
+        },
         "color": {
           "field": "measure",
           "type": "nominal",
-          "scale": {"domain": ["Typical wait (median)", "Longest 10% of waits"], "range": ["#3182bd", "#c4703f"]}
+          "scale": {
+            "domain": [
+              "Typical wait (median)",
+              "Longest 10% of waits"
+            ],
+            "range": [
+              "#3182bd",
+              "#c4703f"
+            ]
+          }
         }
       }
     }
-  ]
+  ],
+  "config": {
+    "title": {
+      "font": "Lora",
+      "fontSize": 15,
+      "fontWeight": 700,
+      "color": "#2b2a26",
+      "anchor": "start"
+    },
+    "axis": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "legend": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "header": {
+      "labelFont": "Public Sans",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600
+    }
+  }
 }

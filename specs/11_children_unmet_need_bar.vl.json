@@ -4,9 +4,13 @@
   "description": "ABS SDAC 2022 (Children and young people with disability): among children aged 0-14 who need assistance with an activity, the share whose need is NOT fully met, by activity type, sorted highest to lowest (national data only, all disability types, not autism-specific)",
   "width": 350,
   "height": 220,
-  "data": {"url": "data/processed/abs_children_unmet_need_0_14.csv"},
+  "data": {
+    "url": "data/processed/abs_children_unmet_need_0_14.csv"
+  },
   "transform": [
-    {"filter": "datum.status === 'Need not met'"}
+    {
+      "filter": "datum.status === 'Need not met'"
+    }
   ],
   "encoding": {
     "y": {
@@ -23,19 +27,71 @@
   },
   "layer": [
     {
-      "mark": {"type": "bar", "color": "#c4703f"},
+      "mark": {
+        "type": "bar",
+        "color": "#c4703f"
+      },
       "encoding": {
         "tooltip": [
-          {"field": "activity", "title": "Activity"},
-          {"field": "pct", "title": "% not fully met", "format": ".1f"}
+          {
+            "field": "activity",
+            "title": "Activity"
+          },
+          {
+            "field": "pct",
+            "title": "% not fully met",
+            "format": ".1f"
+          }
         ]
       }
     },
     {
-      "mark": {"type": "text", "align": "left", "dx": 5, "fontWeight": "bold"},
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5,
+        "fontWeight": "bold"
+      },
       "encoding": {
-        "text": {"field": "pct", "type": "quantitative", "format": ".0f"}
+        "text": {
+          "field": "pct",
+          "type": "quantitative",
+          "format": ".0f"
+        }
       }
     }
-  ]
+  ],
+  "config": {
+    "title": {
+      "font": "Lora",
+      "fontSize": 15,
+      "fontWeight": 700,
+      "color": "#2b2a26",
+      "anchor": "start"
+    },
+    "axis": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "legend": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "header": {
+      "labelFont": "Public Sans",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600
+    }
+  }
 }

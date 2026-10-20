@@ -2,7 +2,9 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Developmental vulnerability by remoteness area, 2024",
   "description": "AEDC: % of children developmentally vulnerable, LGAs grouped by ABS remoteness classification. Small multiples highlight where each remoteness band sits geographically and how vulnerability compares. Colour encodes the vulnerability rate; size encodes the number of children surveyed.",
-  "data": {"url": "data/processed/aedc_lga_2024_with_remoteness.csv"},
+  "data": {
+    "url": "data/processed/aedc_lga_2024_with_remoteness.csv"
+  },
   "params": [
     {
       "name": "state_select",
@@ -11,16 +13,30 @@
     }
   ],
   "transform": [
-    {"filter": "datum.vulnerable_1plus_pct != null && datum.vulnerable_1plus_pct !== ''"},
-    {"calculate": "upper(datum.state)", "as": "state_upper"}
+    {
+      "filter": "datum.vulnerable_1plus_pct != null && datum.vulnerable_1plus_pct !== ''"
+    },
+    {
+      "calculate": "upper(datum.state)",
+      "as": "state_upper"
+    }
   ],
   "columns": 3,
   "facet": {
     "field": "remoteness",
     "type": "nominal",
     "title": null,
-    "sort": ["Major Cities", "Inner Regional", "Outer Regional", "Remote", "Very Remote"],
-    "header": {"labelFontSize": 13, "labelFontWeight": "bold"}
+    "sort": [
+      "Major Cities",
+      "Inner Regional",
+      "Outer Regional",
+      "Remote",
+      "Very Remote"
+    ],
+    "header": {
+      "labelFontSize": 13,
+      "labelFontWeight": "bold"
+    }
   },
   "spec": {
     "width": 220,
@@ -29,43 +45,133 @@
       {
         "data": {
           "url": "data/geo/au_states.topo.json",
-          "format": {"type": "topojson", "feature": "au_states_raw"}
+          "format": {
+            "type": "topojson",
+            "feature": "au_states_raw"
+          }
         },
-        "projection": {"type": "mercator"},
-        "mark": {"type": "geoshape", "fill": "#f2f2f2", "stroke": "white", "strokeWidth": 0.5}
+        "projection": {
+          "type": "mercator"
+        },
+        "mark": {
+          "type": "geoshape",
+          "fill": "#f2f2f2",
+          "stroke": "white",
+          "strokeWidth": 0.5
+        }
       },
       {
-        "projection": {"type": "mercator"},
-        "mark": {"type": "circle", "stroke": "black", "strokeWidth": 0.2},
+        "projection": {
+          "type": "mercator"
+        },
+        "mark": {
+          "type": "circle",
+          "stroke": "black",
+          "strokeWidth": 0.2
+        },
         "encoding": {
-          "longitude": {"field": "lon", "type": "quantitative"},
-          "latitude": {"field": "lat", "type": "quantitative"},
+          "longitude": {
+            "field": "lon",
+            "type": "quantitative"
+          },
+          "latitude": {
+            "field": "lat",
+            "type": "quantitative"
+          },
           "size": {
             "field": "vulnerable_1plus_valid_n",
             "type": "quantitative",
             "title": "Children surveyed",
-            "scale": {"range": [8, 200]},
-            "legend": {"orient": "right", "direction": "vertical"}
+            "scale": {
+              "range": [
+                8,
+                200
+              ]
+            },
+            "legend": {
+              "orient": "right",
+              "direction": "vertical"
+            }
           },
           "color": {
             "field": "vulnerable_1plus_pct",
             "type": "quantitative",
-            "scale": {"scheme": "oranges", "domain": [15, 85]},
+            "scale": {
+              "scheme": "oranges",
+              "domain": [
+                15,
+                85
+              ]
+            },
             "title": "% developmentally vulnerable",
-            "legend": {"orient": "right", "direction": "vertical"}
+            "legend": {
+              "orient": "right",
+              "direction": "vertical"
+            }
           },
           "opacity": {
-            "condition": {"test": "length(state_select) === 0 || indexof(state_select, datum.state_upper) >= 0", "value": 0.75},
+            "condition": {
+              "test": "length(state_select) === 0 || indexof(state_select, datum.state_upper) >= 0",
+              "value": 0.75
+            },
             "value": 0.1
           },
           "tooltip": [
-            {"field": "lga_name", "title": "LGA"},
-            {"field": "vulnerable_1plus_pct", "title": "% vulnerable", "format": ".1f"},
-            {"field": "vulnerable_1plus_valid_n", "title": "Children surveyed"}
+            {
+              "field": "lga_name",
+              "title": "LGA"
+            },
+            {
+              "field": "vulnerable_1plus_pct",
+              "title": "% vulnerable",
+              "format": ".1f"
+            },
+            {
+              "field": "vulnerable_1plus_valid_n",
+              "title": "Children surveyed"
+            }
           ]
         }
       }
     ]
   },
-  "resolve": {"scale": {"color": "shared", "size": "shared"}}
+  "resolve": {
+    "scale": {
+      "color": "shared",
+      "size": "shared"
+    }
+  },
+  "config": {
+    "title": {
+      "font": "Lora",
+      "fontSize": 15,
+      "fontWeight": 700,
+      "color": "#2b2a26",
+      "anchor": "start"
+    },
+    "axis": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "legend": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "header": {
+      "labelFont": "Public Sans",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600
+    }
+  }
 }

@@ -2,23 +2,85 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Autistic children in Australia, 2015-2022",
   "description": "ABS SDAC: estimated number of autistic children, by age group and survey year (national data only)",
-  "data": {"url": "data/processed/abs_autism_trend.csv"},
+  "data": {
+    "url": "data/processed/abs_autism_trend.csv"
+  },
   "width": 450,
   "height": 250,
-  "mark": {"type": "area", "line": true, "opacity": 0.6},
+  "mark": {
+    "type": "area",
+    "line": true,
+    "opacity": 0.6
+  },
   "encoding": {
-    "x": {"field": "year", "type": "ordinal", "title": "Survey year"},
-    "y": {"field": "estimate_000", "type": "quantitative", "title": "Estimated number ('000)", "stack": true},
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": "Survey year"
+    },
+    "y": {
+      "field": "estimate_000",
+      "type": "quantitative",
+      "title": "Estimated number ('000)",
+      "stack": true
+    },
     "color": {
       "field": "age_group",
       "type": "nominal",
       "title": "Age group",
-      "scale": {"range": ["#fdae6b", "#d94801"]}
+      "scale": {
+        "range": [
+          "#fdae6b",
+          "#d94801"
+        ]
+      }
     },
     "tooltip": [
-      {"field": "age_group", "title": "Age group"},
-      {"field": "year", "title": "Year"},
-      {"field": "estimate_000", "title": "Estimate ('000)"}
+      {
+        "field": "age_group",
+        "title": "Age group"
+      },
+      {
+        "field": "year",
+        "title": "Year"
+      },
+      {
+        "field": "estimate_000",
+        "title": "Estimate ('000)"
+      }
     ]
+  },
+  "config": {
+    "title": {
+      "font": "Lora",
+      "fontSize": 15,
+      "fontWeight": 700,
+      "color": "#2b2a26",
+      "anchor": "start"
+    },
+    "axis": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "legend": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "header": {
+      "labelFont": "Public Sans",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600
+    }
   }
 }

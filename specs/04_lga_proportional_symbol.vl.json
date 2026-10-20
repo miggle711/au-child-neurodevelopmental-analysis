@@ -15,51 +15,144 @@
     {
       "data": {
         "url": "data/geo/au_states.topo.json",
-        "format": {"type": "topojson", "feature": "au_states_raw"}
+        "format": {
+          "type": "topojson",
+          "feature": "au_states_raw"
+        }
       },
-      "projection": {"type": "mercator"},
-      "mark": {"type": "geoshape", "fill": "#eeeeee", "stroke": "white", "strokeWidth": 1}
+      "projection": {
+        "type": "mercator"
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#eeeeee",
+        "stroke": "white",
+        "strokeWidth": 1
+      }
     },
     {
-      "data": {"url": "data/processed/aedc_lga_2024_with_centroids.csv"},
+      "data": {
+        "url": "data/processed/aedc_lga_2024_with_centroids.csv"
+      },
       "transform": [
-        {"filter": "datum.vulnerable_1plus_pct != null && datum.vulnerable_1plus_pct !== ''"},
-        {"calculate": "upper(datum.state)", "as": "state_upper"}
+        {
+          "filter": "datum.vulnerable_1plus_pct != null && datum.vulnerable_1plus_pct !== ''"
+        },
+        {
+          "calculate": "upper(datum.state)",
+          "as": "state_upper"
+        }
       ],
-      "projection": {"type": "mercator"},
-      "mark": {"type": "circle", "stroke": "black"},
+      "projection": {
+        "type": "mercator"
+      },
+      "mark": {
+        "type": "circle",
+        "stroke": "black"
+      },
       "encoding": {
-        "longitude": {"field": "lon", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
         "size": {
           "field": "vulnerable_1plus_valid_n",
           "type": "quantitative",
           "title": "Children surveyed",
-          "scale": {"range": [15, 500]},
-          "legend": {"orient": "right", "direction": "vertical"}
+          "scale": {
+            "range": [
+              15,
+              500
+            ]
+          },
+          "legend": {
+            "orient": "right",
+            "direction": "vertical"
+          }
         },
         "color": {
           "field": "vulnerable_1plus_pct",
           "type": "quantitative",
           "title": "% developmentally vulnerable",
-          "scale": {"scheme": "oranges"},
-          "legend": {"orient": "right", "direction": "vertical"}
+          "scale": {
+            "scheme": "oranges"
+          },
+          "legend": {
+            "orient": "right",
+            "direction": "vertical"
+          }
         },
         "opacity": {
-          "condition": {"test": "length(state_select) === 0 || indexof(state_select, datum.state_upper) >= 0", "value": 0.7},
+          "condition": {
+            "test": "length(state_select) === 0 || indexof(state_select, datum.state_upper) >= 0",
+            "value": 0.7
+          },
           "value": 0.12
         },
         "strokeWidth": {
-          "condition": {"test": "length(state_select) > 0 && indexof(state_select, datum.state_upper) >= 0", "value": 1.2},
+          "condition": {
+            "test": "length(state_select) > 0 && indexof(state_select, datum.state_upper) >= 0",
+            "value": 1.2
+          },
           "value": 0.3
         },
         "tooltip": [
-          {"field": "lga_name", "title": "LGA"},
-          {"field": "state", "title": "State"},
-          {"field": "vulnerable_1plus_pct", "title": "% vulnerable", "format": ".1f"},
-          {"field": "vulnerable_1plus_valid_n", "title": "Children surveyed"}
+          {
+            "field": "lga_name",
+            "title": "LGA"
+          },
+          {
+            "field": "state",
+            "title": "State"
+          },
+          {
+            "field": "vulnerable_1plus_pct",
+            "title": "% vulnerable",
+            "format": ".1f"
+          },
+          {
+            "field": "vulnerable_1plus_valid_n",
+            "title": "Children surveyed"
+          }
         ]
       }
     }
-  ]
+  ],
+  "config": {
+    "title": {
+      "font": "Lora",
+      "fontSize": 15,
+      "fontWeight": 700,
+      "color": "#2b2a26",
+      "anchor": "start"
+    },
+    "axis": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "legend": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "header": {
+      "labelFont": "Public Sans",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600
+    }
+  }
 }

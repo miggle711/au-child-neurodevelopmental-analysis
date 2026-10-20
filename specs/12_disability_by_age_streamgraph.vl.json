@@ -1,25 +1,41 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Disability group composition by age, children 0-14",
-  "description": "AIHW/ABS SDAC 2018: % of children with each disability group, by age band (streamgraph; national data only). Shows diagnosis lag — several groups become more prevalent at older ages, likely reflecting when conditions are typically identified/diagnosed rather than later onset.",
+  "description": "AIHW/ABS SDAC 2018: % of children with each disability group, by age band (streamgraph; national data only). Shows diagnosis lag \u2014 several groups become more prevalent at older ages, likely reflecting when conditions are typically identified/diagnosed rather than later onset.",
   "width": 450,
   "height": 280,
-  "data": {"url": "data/processed/aihw_disability_by_age.csv"},
+  "data": {
+    "url": "data/processed/aihw_disability_by_age.csv"
+  },
   "params": [
     {
       "name": "group_select",
-      "select": {"type": "point", "fields": ["disability_group"]},
+      "select": {
+        "type": "point",
+        "fields": [
+          "disability_group"
+        ]
+      },
       "bind": "legend"
     }
   ],
-  "mark": {"type": "area", "interpolate": "monotone"},
+  "mark": {
+    "type": "area",
+    "interpolate": "monotone"
+  },
   "encoding": {
     "x": {
       "field": "age_group",
       "type": "ordinal",
-      "sort": ["0-4", "5-9", "10-14"],
+      "sort": [
+        "0-4",
+        "5-9",
+        "10-14"
+      ],
       "title": "Age group",
-      "scale": {"padding": 0}
+      "scale": {
+        "padding": 0
+      }
     },
     "y": {
       "field": "pct",
@@ -32,17 +48,67 @@
       "field": "disability_group",
       "type": "nominal",
       "title": "Disability group",
-      "scale": {"scheme": "oranges"},
-      "legend": {"orient": "bottom", "columns": 2}
+      "scale": {
+        "scheme": "oranges"
+      },
+      "legend": {
+        "orient": "bottom",
+        "columns": 2
+      }
     },
     "opacity": {
-      "condition": {"param": "group_select", "value": 1},
+      "condition": {
+        "param": "group_select",
+        "value": 1
+      },
       "value": 0.15
     },
     "tooltip": [
-      {"field": "disability_group", "title": "Disability group"},
-      {"field": "age_group", "title": "Age group"},
-      {"field": "pct", "title": "%"}
+      {
+        "field": "disability_group",
+        "title": "Disability group"
+      },
+      {
+        "field": "age_group",
+        "title": "Age group"
+      },
+      {
+        "field": "pct",
+        "title": "%"
+      }
     ]
+  },
+  "config": {
+    "title": {
+      "font": "Lora",
+      "fontSize": 15,
+      "fontWeight": 700,
+      "color": "#2b2a26",
+      "anchor": "start"
+    },
+    "axis": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "legend": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "header": {
+      "labelFont": "Public Sans",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600
+    }
   }
 }

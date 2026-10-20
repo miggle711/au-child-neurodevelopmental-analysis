@@ -3,35 +3,120 @@
   "title": "Schooling difficulties and supports, autistic vs. non-autistic children with disability",
   "description": "ABS SDAC 2022: % of children/young people aged 5-20 with disability, by schooling restriction/difficulty/support type (national data only)",
   "width": 350,
-  "height": {"step": 45},
-  "data": {"url": "data/processed/abs_autism_schooling_support.csv"},
+  "height": {
+    "step": 45
+  },
+  "data": {
+    "url": "data/processed/abs_autism_schooling_support.csv"
+  },
   "layer": [
     {
-      "mark": {"type": "line", "color": "#d9d1bd", "strokeWidth": 3},
+      "mark": {
+        "type": "line",
+        "color": "#d9d1bd",
+        "strokeWidth": 3
+      },
       "encoding": {
-        "y": {"field": "category", "type": "nominal", "title": null},
-        "x": {"field": "pct", "type": "quantitative", "title": "% of children with disability"},
-        "detail": {"field": "category"}
+        "y": {
+          "field": "category",
+          "type": "nominal",
+          "title": null
+        },
+        "x": {
+          "field": "pct",
+          "type": "quantitative",
+          "title": "% of children with disability"
+        },
+        "detail": {
+          "field": "category"
+        }
       }
     },
     {
-      "mark": {"type": "point", "filled": true, "size": 150, "opacity": 1},
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 150,
+        "opacity": 1
+      },
       "encoding": {
-        "y": {"field": "category", "type": "nominal"},
-        "x": {"field": "pct", "type": "quantitative"},
+        "y": {
+          "field": "category",
+          "type": "nominal"
+        },
+        "x": {
+          "field": "pct",
+          "type": "quantitative"
+        },
         "color": {
           "field": "group",
           "type": "nominal",
           "title": null,
-          "scale": {"domain": ["Autistic", "Other disability"], "range": ["#c4703f", "#6b7c5e"]},
-          "legend": {"orient": "bottom", "columns": 1, "direction": "vertical", "symbolLimit": 0}
+          "scale": {
+            "domain": [
+              "Autistic",
+              "Other disability"
+            ],
+            "range": [
+              "#c4703f",
+              "#6b7c5e"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "columns": 1,
+            "direction": "vertical",
+            "symbolLimit": 0
+          }
         },
         "tooltip": [
-          {"field": "category", "title": "Measure"},
-          {"field": "group", "title": "Group"},
-          {"field": "pct", "title": "%"}
+          {
+            "field": "category",
+            "title": "Measure"
+          },
+          {
+            "field": "group",
+            "title": "Group"
+          },
+          {
+            "field": "pct",
+            "title": "%"
+          }
         ]
       }
     }
-  ]
+  ],
+  "config": {
+    "title": {
+      "font": "Lora",
+      "fontSize": 15,
+      "fontWeight": 700,
+      "color": "#2b2a26",
+      "anchor": "start"
+    },
+    "axis": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "legend": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "header": {
+      "labelFont": "Public Sans",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600
+    }
+  }
 }

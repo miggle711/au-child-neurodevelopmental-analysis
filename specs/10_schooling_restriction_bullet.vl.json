@@ -2,50 +2,174 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Schooling restriction among children with disability, 2018",
   "description": "AIHW/ABS SDAC: % of children aged 5-14 with a disability who have a schooling restriction, overall and by sex (bullet chart; national data only)",
-  "data": {"url": "data/processed/aihw_schooling_restriction.csv"},
+  "data": {
+    "url": "data/processed/aihw_schooling_restriction.csv"
+  },
   "width": 400,
   "height": 140,
   "layer": [
     {
-      "mark": {"type": "bar", "size": 22, "color": "#e0e0e0"},
+      "mark": {
+        "type": "bar",
+        "size": 22,
+        "color": "#e0e0e0"
+      },
       "encoding": {
-        "y": {"field": "group", "type": "nominal", "sort": ["All children", "Boys", "Girls"], "title": null},
-        "x": {"datum": 12, "type": "quantitative", "title": "% with a schooling restriction"}
+        "y": {
+          "field": "group",
+          "type": "nominal",
+          "sort": [
+            "All children",
+            "Boys",
+            "Girls"
+          ],
+          "title": null
+        },
+        "x": {
+          "datum": 12,
+          "type": "quantitative",
+          "title": "% with a schooling restriction"
+        }
       }
     },
     {
-      "mark": {"type": "bar", "size": 22},
+      "mark": {
+        "type": "bar",
+        "size": 22
+      },
       "encoding": {
-        "y": {"field": "group", "type": "nominal", "sort": ["All children", "Boys", "Girls"]},
-        "x": {"field": "pct", "type": "quantitative", "title": "% with a schooling restriction"},
+        "y": {
+          "field": "group",
+          "type": "nominal",
+          "sort": [
+            "All children",
+            "Boys",
+            "Girls"
+          ]
+        },
+        "x": {
+          "field": "pct",
+          "type": "quantitative",
+          "title": "% with a schooling restriction"
+        },
         "color": {
           "field": "group",
           "type": "nominal",
           "title": null,
-          "scale": {"domain": ["Boys", "Girls", "All children"], "range": ["#4292c6", "#d94801", "#969696"]},
+          "scale": {
+            "domain": [
+              "Boys",
+              "Girls",
+              "All children"
+            ],
+            "range": [
+              "#4292c6",
+              "#d94801",
+              "#969696"
+            ]
+          },
           "legend": null
         },
         "tooltip": [
-          {"field": "group", "title": "Group"},
-          {"field": "pct", "title": "% with a schooling restriction", "format": ".1f"}
+          {
+            "field": "group",
+            "title": "Group"
+          },
+          {
+            "field": "pct",
+            "title": "% with a schooling restriction",
+            "format": ".1f"
+          }
         ]
       }
     },
     {
-      "mark": {"type": "tick", "thickness": 3, "size": 30, "color": "#525252"},
+      "mark": {
+        "type": "tick",
+        "thickness": 3,
+        "size": 30,
+        "color": "#525252"
+      },
       "encoding": {
-        "y": {"field": "group", "type": "nominal", "sort": ["All children", "Boys", "Girls"]},
-        "x": {"datum": 7.8, "type": "quantitative"}
+        "y": {
+          "field": "group",
+          "type": "nominal",
+          "sort": [
+            "All children",
+            "Boys",
+            "Girls"
+          ]
+        },
+        "x": {
+          "datum": 7.8,
+          "type": "quantitative"
+        }
       }
     },
     {
-      "mark": {"type": "text", "align": "left", "dx": 8, "fontSize": 13, "fontWeight": "bold"},
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 13,
+        "fontWeight": "bold"
+      },
       "encoding": {
-        "y": {"field": "group", "type": "nominal", "sort": ["All children", "Boys", "Girls"]},
-        "x": {"field": "pct", "type": "quantitative"},
-        "text": {"field": "pct", "type": "quantitative", "format": ".1f"},
-        "color": {"value": "black"}
+        "y": {
+          "field": "group",
+          "type": "nominal",
+          "sort": [
+            "All children",
+            "Boys",
+            "Girls"
+          ]
+        },
+        "x": {
+          "field": "pct",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "pct",
+          "type": "quantitative",
+          "format": ".1f"
+        },
+        "color": {
+          "value": "black"
+        }
       }
     }
-  ]
+  ],
+  "config": {
+    "title": {
+      "font": "Lora",
+      "fontSize": 15,
+      "fontWeight": 700,
+      "color": "#2b2a26",
+      "anchor": "start"
+    },
+    "axis": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "legend": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "header": {
+      "labelFont": "Public Sans",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600
+    }
+  }
 }

@@ -4,7 +4,9 @@
   "description": "ABS SDAC 2022: estimated number of autistic people aged 0-24, by age group and sex (population pyramid; national data only)",
   "width": 220,
   "height": 220,
-  "data": {"url": "data/processed/abs_autism_age_sex.csv"},
+  "data": {
+    "url": "data/processed/abs_autism_age_sex.csv"
+  },
   "transform": [
     {
       "calculate": "datum.sex === 'Male' ? -datum.estimate_000 : datum.estimate_000",
@@ -13,30 +15,150 @@
   ],
   "hconcat": [
     {
-      "title": {"text": "Male", "color": "#4292c6", "fontSize": 13},
+      "title": {
+        "text": "Male",
+        "color": "#4292c6",
+        "fontSize": 13
+      },
       "width": 220,
       "height": 200,
-      "transform": [{"filter": "datum.sex === 'Male'"}],
-      "mark": {"type": "bar", "color": "#4292c6"},
+      "transform": [
+        {
+          "filter": "datum.sex === 'Male'"
+        }
+      ],
+      "mark": {
+        "type": "bar",
+        "color": "#4292c6"
+      },
       "encoding": {
-        "y": {"field": "age_group", "type": "ordinal", "sort": ["15-24", "5-14", "0-4"], "title": null, "axis": {"orient": "right"}},
-        "x": {"field": "estimate_000", "type": "quantitative", "sort": "descending", "title": "Estimate ('000)", "scale": {"domain": [0, 110]}},
-        "tooltip": [{"field": "age_group"}, {"field": "estimate_000", "title": "'000 (Male)"}]
+        "y": {
+          "field": "age_group",
+          "type": "ordinal",
+          "sort": [
+            "15-24",
+            "5-14",
+            "0-4"
+          ],
+          "title": null,
+          "axis": {
+            "orient": "right"
+          }
+        },
+        "x": {
+          "field": "estimate_000",
+          "type": "quantitative",
+          "sort": "descending",
+          "title": "Estimate ('000)",
+          "scale": {
+            "domain": [
+              0,
+              110
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "age_group"
+          },
+          {
+            "field": "estimate_000",
+            "title": "'000 (Male)"
+          }
+        ]
       }
     },
     {
-      "title": {"text": "Female", "color": "#d94801", "fontSize": 13},
+      "title": {
+        "text": "Female",
+        "color": "#d94801",
+        "fontSize": 13
+      },
       "width": 220,
       "height": 200,
-      "transform": [{"filter": "datum.sex === 'Female'"}],
-      "mark": {"type": "bar", "color": "#d94801"},
+      "transform": [
+        {
+          "filter": "datum.sex === 'Female'"
+        }
+      ],
+      "mark": {
+        "type": "bar",
+        "color": "#d94801"
+      },
       "encoding": {
-        "y": {"field": "age_group", "type": "ordinal", "sort": ["15-24", "5-14", "0-4"], "title": null, "axis": null},
-        "x": {"field": "estimate_000", "type": "quantitative", "title": "Estimate ('000)", "scale": {"domain": [0, 110]}},
-        "tooltip": [{"field": "age_group"}, {"field": "estimate_000", "title": "'000 (Female)"}]
+        "y": {
+          "field": "age_group",
+          "type": "ordinal",
+          "sort": [
+            "15-24",
+            "5-14",
+            "0-4"
+          ],
+          "title": null,
+          "axis": null
+        },
+        "x": {
+          "field": "estimate_000",
+          "type": "quantitative",
+          "title": "Estimate ('000)",
+          "scale": {
+            "domain": [
+              0,
+              110
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "age_group"
+          },
+          {
+            "field": "estimate_000",
+            "title": "'000 (Female)"
+          }
+        ]
       }
     }
   ],
-  "resolve": {"scale": {"y": "shared"}},
-  "config": {"view": {"stroke": null}}
+  "resolve": {
+    "scale": {
+      "y": "shared"
+    }
+  },
+  "config": {
+    "title": {
+      "font": "Lora",
+      "fontSize": 15,
+      "fontWeight": 700,
+      "color": "#2b2a26",
+      "anchor": "start"
+    },
+    "axis": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "legend": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "header": {
+      "labelFont": "Public Sans",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600
+    },
+    "view": {
+      "stroke": null
+    }
+  }
 }
