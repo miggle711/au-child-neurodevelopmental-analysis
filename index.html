@@ -104,10 +104,12 @@
   }
 
   .hero-stat {
-    margin-top: 28px;
+    margin-top: 32px;
+    padding-left: 18px;
+    border-left: 3px solid var(--accent);
     display: flex;
-    align-items: baseline;
-    gap: 14px;
+    align-items: center;
+    gap: 18px;
     flex-wrap: wrap;
   }
 
@@ -117,12 +119,14 @@
     font-weight: 700;
     color: var(--accent);
     line-height: 1;
+    white-space: nowrap;
   }
 
   .hero-stat .context {
     font-size: 1rem;
     color: var(--fg-muted);
     max-width: 32ch;
+    line-height: 1.4;
   }
 
   .byline {
