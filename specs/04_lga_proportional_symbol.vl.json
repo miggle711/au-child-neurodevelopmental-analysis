@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Developmental vulnerability by local area, 2024",
-  "description": "AEDC: % of children developmentally vulnerable on one or more domains, by Local Government Area (proportional symbol map, 514 of 544 LGAs with matched centroids)",
+  "description": "AEDC: % of children developmentally vulnerable on one or more domains, by Local Government Area (proportional symbol map, 514 of 544 LGAs with matched centroids). Colour encodes the vulnerability rate; size encodes the number of children surveyed, so a small, high-rate LGA doesn't read as visually equivalent to a large one.",
   "width": 600,
   "height": 500,
   "params": [
@@ -32,17 +32,18 @@
         "longitude": {"field": "lon", "type": "quantitative"},
         "latitude": {"field": "lat", "type": "quantitative"},
         "size": {
-          "field": "vulnerable_1plus_pct",
+          "field": "vulnerable_1plus_valid_n",
           "type": "quantitative",
-          "scale": {"range": [20, 900]},
-          "legend": null
+          "title": "Children surveyed",
+          "scale": {"range": [15, 500]},
+          "legend": {"orient": "right", "direction": "vertical"}
         },
         "color": {
           "field": "vulnerable_1plus_pct",
           "type": "quantitative",
           "title": "% developmentally vulnerable",
           "scale": {"scheme": "oranges"},
-          "legend": {"orient": "right"}
+          "legend": {"orient": "right", "direction": "vertical"}
         },
         "opacity": {
           "condition": {"test": "length(state_select) === 0 || indexof(state_select, datum.state_upper) >= 0", "value": 0.7},
@@ -55,7 +56,8 @@
         "tooltip": [
           {"field": "lga_name", "title": "LGA"},
           {"field": "state", "title": "State"},
-          {"field": "vulnerable_1plus_pct", "title": "% vulnerable", "format": ".1f"}
+          {"field": "vulnerable_1plus_pct", "title": "% vulnerable", "format": ".1f"},
+          {"field": "vulnerable_1plus_valid_n", "title": "Children surveyed"}
         ]
       }
     }
