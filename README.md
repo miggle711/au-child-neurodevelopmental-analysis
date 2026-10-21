@@ -6,7 +6,7 @@ A data visualisation exploring autism, disability and developmental support in A
 
 ## What this is
 
-The assignment brief asked for a visualisation investigating neurodevelopmental conditions in Australian children: diagnosis rates, service usage, demographic characteristics, and how access to support has changed over time. This project pulls together data from the Australian Bureau of Statistics, the Australian Institute of Health and Welfare, the Australian Early Development Census, NDIS Data Research, the Productivity Commission and a couple of smaller supporting sources into 16 charts and maps, built entirely in Vega-Lite and Vega, telling that story on a single scrollable page.
+The assignment brief asked for a visualisation investigating neurodevelopmental conditions in Australian children: diagnosis rates, service usage, demographic characteristics, and how access to support has changed over time. This project pulls together data from the Australian Bureau of Statistics, the Australian Institute of Health and Welfare, the Australian Early Development Census, NDIS Data Research, the Productivity Commission and a couple of smaller supporting sources into 15 charts and maps, built entirely in Vega-Lite and Vega, telling that story on a single scrollable page.
 
 ## Repository structure
 
@@ -20,4 +20,4 @@ The assignment brief asked for a visualisation investigating neurodevelopmental 
 
 ## A note on the data
 
-Three of the five map idioms rely on the Australian Early Development Census as a proxy for developmental vulnerability, because no Australian dataset publicly tracks autism or ADHD diagnosis by region. Where a chart uses a proxy measure, an age range that doesn't line up exactly, or has a genuine gap in the underlying data, that limitation is disclosed directly on the page next to the chart it affects, rather than left for a reader to discover on their own. See [NARRATIVE.md](NARRATIVE.md) for the full reasoning behind each of these calls.
+Three of the four map idioms rely on the Australian Early Development Census as a proxy for developmental vulnerability, because no Australian dataset publicly tracks autism or ADHD diagnosis by region. Where a chart uses a proxy measure, an age range that doesn't line up exactly, or has a genuine gap in the underlying data, that limitation is disclosed directly on the page next to the chart it affects, rather than left for a reader to discover on their own. See [NARRATIVE.md](NARRATIVE.md) for the full reasoning behind each of these calls.

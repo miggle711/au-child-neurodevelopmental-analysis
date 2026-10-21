@@ -121,8 +121,8 @@ not longitudinal, but the same underlying question).
 | 1 | 1 | Stacked area chart | Basic | ABS Autism in Australia 2022 | Autism prevalence in Australian children, 2015/2018/2022 (national only) — ✅ built & rendered, `specs/01_autism_trend_area.vl.json` |
 | 2 | 1 | Dumbbell / connected dot plot | Advanced | ABS Autism in Australia 2022 (Table 4, national only) | Schooling difficulties/supports, autistic vs. non-autistic children with disability aged 5-20 (attends special classes, needs day off, has difficulty, uses assistance) — ✅ built & rendered, `specs/02_autism_schooling_dumbbell.vl.json`. **Replaced AEDC national trend** — this is genuinely condition-specific service-usage data instead of a general vulnerability proxy |
 | 3 | 2 | Choropleth map | Map idiom #1 (Advanced) | AEDC state trends | Developmental vulnerability % by state/territory (AEDC, general screening measure) — ✅ built & rendered, `specs/03_state_choropleth.vl.json`. NT stands out sharply (40.8% vs next-highest 25.9%) |
-| 4 | 2 | Proportional symbol map | Map idiom #2 (Advanced) | PHIDU LGA data + HughParsonage/ABS-data centroids | Developmental vulnerability % by LGA (514 of 544 LGAs matched by name to 2016-vintage centroids) — reveals within-state hotspots. ✅ built & rendered, `specs/04_lga_proportional_symbol.vl.json`. Swapped from choropleth to proportional-symbol: no small ready-made LGA boundary TopoJSON with matching codes exists, and a full 544-polygon choropleth would look noisy/patchy given ~19% suppressed LGAs. **Fixed (2026-10-20):** size and colour originally both mapped to `vulnerable_1plus_pct` — textbook double encoding, flagged by the lecturer as redundant/confusing. Size now maps to `vulnerable_1plus_valid_n` (children surveyed) instead, so the two channels carry genuinely different information and a small, extreme-reading LGA no longer looks visually equivalent to a large, reliable one |
-| 5 | 2 | Small-multiples map by remoteness area | Map idiom #3 (Advanced) | AEDC LGA data + Regional Australia Institute LGA-to-remoteness lookup | 5-panel map (Major Cities/Inner Regional/Outer Regional/Remote/Very Remote), each showing LGA points colored+sized by developmental vulnerability % — ✅ built & rendered, `specs/05_remoteness_small_multiples.vl.json`. Strong visual gradient: Very Remote panel clusters in central/northern Australia with darkest, largest circles (up to 83% in Central Desert, NT). **Fixed (2026-10-20):** same double-encoding bug as chart #4 (size and colour both on `vulnerable_1plus_pct`); size now maps to `vulnerable_1plus_valid_n` for the same reason |
+| 4 | 2 | Proportional symbol map | Map idiom #2 (Advanced) | PHIDU LGA data + HughParsonage/ABS-data centroids | Developmental vulnerability % by LGA (514 of 544 LGAs matched by name to 2016-vintage centroids) — reveals within-state hotspots. ✅ built & rendered, `specs/04_lga_proportional_symbol.vl.json`. Swapped from choropleth to proportional-symbol: no small ready-made LGA boundary TopoJSON with matching codes exists, and a full 544-polygon choropleth would look noisy/patchy given ~19% suppressed LGAs. **Fixed (2026-10-20):** size and colour originally both mapped to `vulnerable_1plus_pct` — textbook double encoding, flagged by the lecturer as redundant/confusing. Size now maps to `vulnerable_1plus_valid_n` (children surveyed) instead, so the two channels carry genuinely different information and a small, extreme-reading LGA no longer looks visually equivalent to a large, reliable one. **Caption updated (2026-10-21)** to fold in chart #5's remoteness-gradient finding after #5 was removed as a redundant idiom (see note above) |
+| ~~5~~ | — | ~~Small-multiples map by remoteness area~~ | **Removed (2026-10-21)** | — | Mechanically the same idiom as chart #4 (LGA points sized/coloured by vulnerability %), just faceted by remoteness band — not a genuinely distinct map idiom on honest review. Its finding (22.5% major cities → 35.8% remote/very remote) was folded into chart #4's caption instead of being lost. Old spec in `deprecated/specs/05_remoteness_small_multiples.vl.json`; see idiom-count note above for the two replacements considered and rejected (tile-grid cartogram, hex-bin) |
 | 6 | 3 | Population pyramid | Advanced | ABS AutismDC01 (national only) | Autistic children by age group (0-4, 5-14, 15-24) × sex — ✅ built & rendered, `specs/06_autism_age_sex_pyramid.vl.json`. Shows males diagnosed at ~2-3x the rate of females across all age bands |
 | 7 | 3 | Sorted lollipop chart | Advanced | ABS Children and Young People with Disability 2022 (Table 3, national only) | % of children aged 0-14 with each disability group (Sensory & speech, Learning & understanding, Physical, Psychosocial, Head injury/ABI, Other) — ✅ built & rendered, `specs/07_disability_groups_lollipop.vl.json`. "Learning and understanding" (6.5%) is the largest slice. **Idiom fix (2026-10-16):** was a radar chart — an outside review correctly identified radar as the weakest idiom choice here, since these 6 categories have no natural circular order, so a radar's polygon shape/area implies a pattern that isn't actually in the data (a well-known general critique of radar charts, not specific to this dataset). Replaced with a sorted lollipop showing the same 6 numbers honestly, with no implied relationship between categories. This also removes the only raw-Vega (non-Vega-Lite) spec from the page, simplifying the embed logic. Old radar kept in `deprecated/specs/07_disability_groups_radar.vg.json` |
 | 8 | 3 | Beeswarm / jittered dot plot | Advanced | ABS Autism in Australia 2022 (Table 3, national, all ages not child-restricted) | Co-occurring characteristics among autistic Australians (e.g. "slow at learning" 71.4%, social/behavioural difficulties 62.4%, mental illness 52.5%) — ✅ built & rendered, `specs/08_autism_cooccurring_beeswarm.vl.json`. **Replaced AEDC SEIFA gradient** — shows autism rarely occurs in isolation. **Known remaining issue:** source table isn't age-restricted to children — a child-restricted equivalent for autism-specific co-occurring types doesn't exist in any source checked (see relevance fix #2 below); this chart stays framed as national context, not a children-only statistic |
@@ -148,29 +148,46 @@ source with any sub-national geography (see caveat section above for why).
 Every other chart (1, 2, 6, 7, 8, 9, 10) now uses ABS/AIHW data that
 measures autism, disability, or specific support needs directly.
 
-**Idiom count — final (updated 2026-10-16, corrected after a second outside
-review):** 6 basic (stacked area, lollipop, beeswarm — a labelled dot plot
-in substance, bar chart, line chart, multi-line chart), up to 10 advanced
-if a marker is generous (dumbbell, choropleth ×2, proportional symbol map,
-small-multiples map, population pyramid, icon array, bullet chart,
-streamgraph, bivariate choropleth). **Important correction:** an earlier
-version of this note incorrectly counted the lollipop (chart #7) as
-advanced — a lollipop/dot plot is explicitly on the rubric's basic list.
-The beeswarm (chart #8) was also flagged by review as "really a labelled
-dot plot" rather than a genuine beeswarm, so it's counted as basic here
-too, pending a possible future fix.
+**Idiom count — final (updated 2026-10-21, after chart #5 was removed):** 6
+basic (stacked area, lollipop, beeswarm — a labelled dot plot in substance,
+bar chart, line chart, multi-line chart), up to 9 advanced if a marker is
+generous (dumbbell, choropleth ×2, proportional symbol map, population
+pyramid, icon array, bullet chart, streamgraph, bivariate choropleth).
+**Important correction:** an earlier version of this note incorrectly
+counted the lollipop (chart #7) as advanced — a lollipop/dot plot is
+explicitly on the rubric's basic list. The beeswarm (chart #8) was also
+flagged by review as "really a labelled dot plot" rather than a genuine
+beeswarm, so it's counted as basic here too, pending a possible future fix.
 
-16 charts built and rendered total (10 required + 6 bonus), 5 of them maps
-(10 required + 2 bonus) — see `specs/previews/` for PNG test renders. The
-real, distinct-idiom count for "Idioms and complexity" is closer to 8-9
-than a generous 10, since charts #3 and #13 are the same choropleth idiom
+**Chart #5 removed (2026-10-21):** the small-multiples remoteness map was
+mechanically the same idiom as chart #4 (LGA points sized/coloured by
+vulnerability %), just faceted by remoteness band — a repeat, not a
+distinct idiom, once reviewed honestly. Considered two replacements first
+(a tile-grid cartogram, a hex-binned aggregate of the same 514 LGA points)
+and rejected both: the tile-grid told the same story as chart #3's
+choropleth but worse (NT's large landmass in the real map is not a
+distortion worth correcting — NT genuinely has a small population on a
+large landmass, so letting it dominate visually is honest, not misleading),
+and the hex-bin would blur the same 514 named LGAs into unnamed regional
+averages without revealing anything chart #4 doesn't already show.
+Rather than force in a 6th map idiom the data didn't call for, chart #5
+was cut outright and its one genuinely distinct finding (vulnerability
+climbs from 22.5% in major cities to 35.8% in remote/very remote areas)
+was folded into chart #4's caption as prose, so the insight survives
+without the redundant idiom. Old spec kept in
+`deprecated/specs/05_remoteness_small_multiples.vl.json`.
+
+15 charts built and rendered total (10 required + 5 bonus), 4 of them maps
+(10 required + 1 bonus) — see `specs/previews/` for PNG test renders. The
+real, distinct-idiom count for "Idioms and complexity" is closer to 7-8
+than a generous 9, since charts #3 and #13 are the same choropleth idiom
 applied to two different datasets, and a strict marker may only count that
 as one. **Chart #16 (bivariate choropleth) was added specifically to
 address this** — it merges #3 and #13's two measures into one genuinely
 distinct map idiom, both restoring an advanced idiom lost when the radar
-and heatmap were corrected to basic ones, and giving a 3rd/4th distinct map
-idiom beyond "choropleth, counted once" + proportional symbol + small
-multiples. See row 16 below for the full reasoning.
+and heatmap were corrected to basic ones, and giving a 3rd distinct map
+idiom beyond "choropleth, counted once" + proportional symbol. See row 16
+below for the full reasoning.
 **Chords/arc diagrams and ridge plots were considered and rejected** — no
 source has genuine pairwise co-occurrence data (needed for a chord diagram)
 or a continuous distribution (needed for a ridge plot); forcing either

@@ -296,27 +296,21 @@
       <div class="prose">
         <span class="act-number">Where It Varies</span>
         <h2 class="act-title">Where a child lives affects what support they get</h2>
-        <p class="lede"> Datasets that track autism or ADHD diagnosis by region in Australia do not exist. So the three maps below use the <strong>Australian Early Development Census (AEDC)</strong>, a national school-entry check that flags children who are "developmentally vulnerable" on one or more of five domains (physical health, social skills, emotional maturity, language and communication).</p>
+        <p class="lede"> Datasets that track autism or ADHD diagnosis by region in Australia do not exist. So the maps below use the <strong>Australian Early Development Census (AEDC)</strong>, a national school-entry check that flags children who are "developmentally vulnerable" on one or more of five domains (physical health, social skills, emotional maturity, language and communication).</p>
         <div class="note-box"><strong>This is not an autism or ADHD map.</strong> A child can be flagged as developmentally vulnerable for many reasons, including health, disadvantage, or an underlying condition. It is used here because it's the only measure with geography available.</div>
       </div>
 
       <div class="maps-grid">
         <div class="chart-block">
           <div class="chart-frame"><div id="chart03"></div></div>
-          <p class="chart-caption">The Northern Territory is far higher than anywhere else: <span class="callout">40.8%</span> of children are developmentally vulnerable, compared with 21&ndash;26% in every other state and territory. <em>Click a state to highlight it on the three maps below.</em></p>
+          <p class="chart-caption">The Northern Territory is far higher than anywhere else: <span class="callout">40.8%</span> of children are developmentally vulnerable, compared with 21&ndash;26% in every other state and territory. <em>Click a state to highlight it on the maps below.</em></p>
           <p class="source-tag">Source: Australian Early Development Census, 2024</p>
         </div>
 
         <div class="chart-block">
           <div class="chart-frame"><div id="chart04"></div></div>
-          <p class="chart-caption">Zooming into individual local areas shows the state figures hide enormous variation. Some regions inside "average" states are just as vulnerable as anywhere in the NT. <em>Circle size shows how many children were surveyed in that area, so a small, extreme reading doesn't visually outweigh a large, reliable one.</em></p>
-          <p class="source-tag">Source: AEDC 2024; centroids from HughParsonage/ABS-data (2016 boundaries, 514 of 544 areas matched)</p>
-        </div>
-
-        <div class="chart-block">
-          <div class="chart-frame"><div id="chart05"></div></div>
-          <p class="chart-caption">Splitting those same local areas by remoteness shows why: vulnerability climbs from <span class="callout">22.5%</span> in major cities to <span class="callout">35.8%</span> in remote and very remote communities.</p>
-          <p class="source-tag">Source: AEDC 2024; remoteness classification from Regional Australia Institute</p>
+          <p class="chart-caption">Zooming into individual local areas shows the state figures hide enormous variation. Some regions inside "average" states are just as vulnerable as anywhere in the NT &mdash; and much of that variation tracks remoteness: vulnerability climbs from <span class="callout">22.5%</span> in major cities to <span class="callout">35.8%</span> in remote and very remote communities. <em>Circle size shows how many children were surveyed in that area, so a small, extreme reading doesn't visually outweigh a large, reliable one.</em></p>
+          <p class="source-tag">Source: AEDC 2024; centroids from HughParsonage/ABS-data (2016 boundaries, 514 of 544 areas matched); remoteness classification from Regional Australia Institute</p>
         </div>
 
         <div class="chart-block">
@@ -442,7 +436,6 @@
     ['chart02', 'specs/02_autism_schooling_dumbbell.vl.json'],
     ['chart03', 'specs/03_state_choropleth.vl.json'],
     ['chart04', 'specs/04_lga_proportional_symbol.vl.json'],
-    ['chart05', 'specs/05_remoteness_small_multiples.vl.json'],
     ['chart06', 'specs/06_autism_age_sex_pyramid.vl.json'],
     ['chart07', 'specs/07_disability_groups_lollipop.vl.json'],
     ['chart08', 'specs/08_autism_cooccurring_beeswarm.vl.json'],
@@ -456,7 +449,7 @@
     ['chart16', 'specs/16_bivariate_vulnerability_access_choropleth.vl.json']
   ];
 
-  var mapViews = {}; // chart04, chart05, chart13 views, so chart03's click can push a filter into them
+  var mapViews = {}; // chart04, chart13 views, so chart03's click can push a filter into them
 
   charts.forEach(function (pair) {
     var id = pair[0], path = pair[1];
@@ -467,21 +460,20 @@
     };
     if (path.endsWith('.vg.json')) { opts.mode = 'vega'; }
     vegaEmbed('#' + id, path, opts).then(function (result) {
-      if (id === 'chart04' || id === 'chart05' || id === 'chart13') {
+      if (id === 'chart04' || id === 'chart13') {
         mapViews[id] = result.view;
       }
       if (id === 'chart03') {
         // Cross-chart highlight: clicking a state on the AEDC choropleth
-        // highlights the same state on the LGA map, the remoteness small
-        // multiples, and the NDIS autism-rate choropleth. Overview (this
-        // map, always fully visible) + focus (the other three, dimmed to
-        // everything except the clicked state) per Shneiderman's
-        // Focus+Context principle.
+        // highlights the same state on the LGA map and the NDIS
+        // autism-rate choropleth. Overview (this map, always fully
+        // visible) + focus (the other two, dimmed to everything except
+        // the clicked state) per Shneiderman's Focus+Context principle.
         result.view.addSignalListener('state_select', function (name, value) {
           var stateName = value && value['properties.STATE_NAME'] && value['properties.STATE_NAME'][0];
           var stateUpper = stateName ? stateName.toUpperCase() : null;
           var selection = stateUpper ? [stateUpper] : [];
-          ['chart04', 'chart05', 'chart13'].forEach(function (otherId) {
+          ['chart04', 'chart13'].forEach(function (otherId) {
             var view = mapViews[otherId];
             if (view) {
               view.signal('state_select', selection).runAsync();
