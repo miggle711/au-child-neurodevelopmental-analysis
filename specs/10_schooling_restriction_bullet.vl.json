@@ -5,7 +5,7 @@
   "data": {
     "url": "data/processed/aihw_schooling_restriction.csv"
   },
-  "width": 400,
+  "width": "container",
   "height": 140,
   "layer": [
     {

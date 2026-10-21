@@ -258,6 +258,49 @@ Omitting `-b .` will fail with an ENOENT error looking for
 
 ---
 
+## Important: chart widths and `"width": "container"` (2026-10-21)
+
+All 15 Vega-Lite specs were converted from arbitrary hardcoded pixel
+widths (previously ranging 160–600px per chart, chosen independently per
+spec) to `"width": "container"`, so every chart fills its `.chart-frame`
+consistently rather than some charts (notably the maps) looking wider
+than others for no real design reason. The 3 geo/map specs (03, 04, 13)
+keep a fixed `height` tuned to the container's typical rendered width so
+Australia's shape doesn't distort; the 3 facet/concat specs (06 pyramid,
+09 icon array, 16 bivariate choropleth) use fixed per-sub-panel pixel
+widths instead, since `"width": "container"` does not reliably resolve
+inside Vega-Lite's `hconcat`/`facet` nesting.
+
+**A critical bug was caught before this shipped:** `"width": "container"`
+only works if the vega-embed target `<div>` has a real, explicit CSS
+`width` *before* vega-embed measures it. The page's `.chart-frame` is
+`display: flex; justify-content: center`, and its child div only had
+`max-width: 100%` (no explicit `width`), which let it collapse to 0 width
+in a flex row with no content yet — a circular dependency, since
+vega-embed needs a real width to know how wide to draw `"width":
+"container"`, but the div had no width until something was drawn into
+it. Result: every non-facet/concat chart on the page rendered as a
+literal empty 0×H SVG (`viewBox="0 0 0 H"`), i.e. **10 of 15 charts
+invisible**, only caught by rendering the actual page in a real browser
+(Playwright) — the headless Node `vl2png` CLI used to build the
+specs/previews/ PNGs has no real flex layout engine and does not
+reproduce this failure mode, so it rendered fine there and looked
+"verified" without actually being tested in a browser. Fixed by changing
+`.chart-frame > div { max-width: 100%; }` to `{ width: 100%; }`.
+**Lesson: `vl2png` renders are not a substitute for testing the live page
+in an actual browser when a change touches container-relative sizing or
+flex/grid layout — static-file rendering and a real flex layout engine do
+not fail the same way.**
+
+A second bug from the same pass: `.prose p { max-width: 65ch; }` was
+unintentionally capping `.chart-caption` and `.source-tag` width too
+(since both are `<p>` tags nested inside `.prose`), making captions wrap
+narrower than their own chart above them — the opposite sightline problem
+from the width-unification's own stated goal. Fixed with `.prose
+p:not(.chart-caption):not(.source-tag)`.
+
+---
+
 ## Open decisions / things to amend
 
 - [x] Radar chart confirmed feasible using raw Vega (not Vega-Lite) —

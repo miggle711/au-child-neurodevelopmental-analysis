@@ -28,7 +28,7 @@
       "as": "filled"
     },
     {
-      "calculate": "datum.group === 'By school sector' ? 'By school sector' : 'By level of adjustment'",
+      "calculate": "datum.group === 'By school sector' ? 'School sector' : 'Adjustment level'",
       "as": "group_label"
     }
   ],
@@ -47,8 +47,8 @@
     }
   },
   "spec": {
-    "width": 160,
-    "height": 160,
+    "width": 246,
+    "height": 246,
     "facet": {
       "column": {
         "field": "category",
@@ -57,14 +57,14 @@
         "header": {
           "labelFontSize": 10,
           "labelAngle": 0,
-          "labelLimit": 100,
+          "labelLimit": 140,
           "labelPadding": 4
         }
       }
     },
     "spec": {
-      "width": 100,
-      "height": 100,
+      "width": 153,
+      "height": 153,
       "layer": [
         {
           "mark": {
@@ -148,7 +148,8 @@
       "fontSize": 15,
       "fontWeight": 700,
       "color": "#2b2a26",
-      "anchor": "start"
+      "anchor": "start",
+      "offset": 16
     },
     "axis": {
       "labelFont": "Public Sans",

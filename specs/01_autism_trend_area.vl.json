@@ -5,7 +5,7 @@
   "data": {
     "url": "data/processed/abs_autism_trend.csv"
   },
-  "width": 450,
+  "width": "container",
   "height": 250,
   "mark": {
     "type": "area",

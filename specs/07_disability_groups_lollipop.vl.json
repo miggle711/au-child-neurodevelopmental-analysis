@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Disability groups among children aged 0-14, Australia 2022",
   "description": "ABS SDAC 2022 (Children and Young People with Disability): % of all children aged 0-14 with each disability group, sorted highest to lowest (national data only). Replaced a radar/spider chart: these six categories have no natural circular order, so a radar's polygon area and shape would have implied a pattern that isn't in the data. A sorted lollipop shows the same six numbers honestly.",
-  "width": 420,
+  "width": "container",
   "height": 220,
   "data": {
     "url": "data/processed/abs_disability_groups_0_14.csv"

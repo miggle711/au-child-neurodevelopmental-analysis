@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Co-occurring characteristics among autistic Australians",
   "description": "ABS SDAC 2022: % of autistic people (all ages) also reporting each characteristic \u2014 shows autism rarely occurs in isolation (national data only, not age-restricted to children)",
-  "width": 520,
+  "width": "container",
   "height": 260,
   "data": {
     "url": "data/processed/abs_autism_cooccurring.csv"

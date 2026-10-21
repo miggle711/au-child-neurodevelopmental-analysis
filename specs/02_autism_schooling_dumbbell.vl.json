@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Schooling difficulties and supports, autistic vs. non-autistic children with disability",
   "description": "ABS SDAC 2022: % of children/young people aged 5-20 with disability, by schooling restriction/difficulty/support type (national data only)",
-  "width": 350,
+  "width": "container",
   "height": {
     "step": 45
   },

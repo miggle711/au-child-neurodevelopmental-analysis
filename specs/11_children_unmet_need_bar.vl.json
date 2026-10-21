@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Support needs not fully met, children with disability aged 0-14",
   "description": "ABS SDAC 2022 (Children and young people with disability): among children aged 0-14 who need assistance with an activity, the share whose need is NOT fully met, by activity type, sorted highest to lowest (national data only, all disability types, not autism-specific)",
-  "width": 350,
+  "width": "container",
   "height": 220,
   "data": {
     "url": "data/processed/abs_children_unmet_need_0_14.csv"
