@@ -7,12 +7,6 @@
   "data": {
     "url": "data/processed/abs_autism_age_sex.csv"
   },
-  "transform": [
-    {
-      "calculate": "datum.sex === 'Male' ? -datum.estimate_000 : datum.estimate_000",
-      "as": "signed_estimate"
-    }
-  ],
   "hconcat": [
     {
       "title": {
