@@ -3,7 +3,7 @@
   "title": "Developmental vulnerability by state/territory, 2024",
   "description": "AEDC: % of children developmentally vulnerable on one or more domains, by state/territory",
   "width": "container",
-  "height": 576,
+  "height": 664,
   "projection": {
     "type": "albers",
     "rotate": [

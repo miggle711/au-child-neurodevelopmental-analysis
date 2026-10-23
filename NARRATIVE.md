@@ -369,6 +369,30 @@ symbol maps — losing the cross-filter doesn't remove any chart or any
 finding from the page, each map's own caption already states its own
 story independently.
 
+**Inconsistent map sizes fixed (2026-10-23):** charts #3, #4, #13, and
+#16's map panel all drew Australia at visibly different sizes relative
+to their frame — flagged on review by comparing two screenshots side by
+side. Root cause: each map's `height` had been independently hand-tuned
+against its *original pre-Albers* aspect ratio (03: 500:400 = 1.25, 04:
+600:500 = 1.2, 13: 440:350 ≈ 1.257, 16's map sub-panel: 522:457 ≈ 1.142)
+and never recalculated after the Mercator→Albers switch earlier in this
+same session — so none of the four were using the actual, correct
+aspect ratio for Australia under Albers, and naturally none matched each
+other either. Measured the true ratio empirically by rendering the
+TopoJSON at two different canvas sizes and taking the pixel bounding box
+of the drawn shape (not the canvas) under Vega-Lite's default geo `fit`
+behaviour: consistently ≈1.0825 (width/height) at both sizes tested.
+Applied this one ratio to all 4 specs: `height: 664` for the three
+`"width": "container"` maps (03, 04, 13, based on the container's
+measured ~719px real rendered width), and `height: 482` for #16's map
+sub-panel (width stays 522, since it intentionally shares space with the
+legend grid beside it). Also removed a leftover `padding: {top:10,
+left:5, right:5, bottom:5}` block on #13 that wasn't present on the
+other three and was a secondary (smaller) source of its slightly
+different scale. Verified by rendering all 4 in a real browser and
+comparing side by side — Australia now reads at a consistent scale
+across every map on the page.
+
 ---
 
 ## Open decisions / things to amend

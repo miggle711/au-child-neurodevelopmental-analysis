@@ -3,7 +3,7 @@
   "title": "Developmental vulnerability by local area, 2024",
   "description": "AEDC: % of children developmentally vulnerable on one or more domains, by Local Government Area (proportional symbol map, 514 of 544 LGAs with matched centroids). Colour encodes the vulnerability rate; size encodes the number of children surveyed, so a small, high-rate LGA doesn't read as visually equivalent to a large one.",
   "width": "container",
-  "height": 600,
+  "height": 664,
   "projection": {
     "type": "albers",
     "rotate": [
@@ -86,7 +86,9 @@
             "direction": "vertical"
           }
         },
-        "strokeWidth": {"value": 0.3},
+        "strokeWidth": {
+          "value": 0.3
+        },
         "tooltip": [
           {
             "field": "lga_name",
