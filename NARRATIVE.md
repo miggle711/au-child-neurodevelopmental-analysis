@@ -306,6 +306,21 @@ narrower than their own chart above them — the opposite sightline problem
 from the width-unification's own stated goal. Fixed with `.prose
 p:not(.chart-caption):not(.source-tag)`.
 
+**A third bug found later (2026-10-23):** charts #6 and #9's fixed
+per-sub-panel pixel widths (the two facet/concat specs that can't use
+`"width": "container"`, see above) were tuned slightly too wide —
+measured in a real browser at 719px and 714px respectively against a
+718px `.chart-frame`, just enough to trigger `.chart-frame`'s
+`overflow-x: auto` and show a horizontal scrollbar. Small (around
+15–20px) and easy to miss at a glance, but inconsistent with every other
+chart on the page (none of which scroll) and a real violation of the
+brief's "full width visible... without horizontal scrolling"
+requirement. Fixed by scaling both charts' sub-panel widths down by
+roughly 5% (chart #6: 328→310px per panel; chart #9: outer facet
+246→238px, inner icon-grid 153→148px, kept at the same ratio to each
+other), verified via the live browser's `scrollWidth` vs `clientWidth`
+comparison (not just a visual glance) to confirm zero overflow.
+
 ---
 
 ## Projection: Mercator → Albers (2026-10-23)

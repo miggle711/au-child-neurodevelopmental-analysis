@@ -47,8 +47,8 @@
     }
   },
   "spec": {
-    "width": 246,
-    "height": 246,
+    "width": 238,
+    "height": 238,
     "facet": {
       "column": {
         "field": "category",
@@ -63,8 +63,8 @@
       }
     },
     "spec": {
-      "width": 153,
-      "height": 153,
+      "width": 148,
+      "height": 148,
       "layer": [
         {
           "mark": {
