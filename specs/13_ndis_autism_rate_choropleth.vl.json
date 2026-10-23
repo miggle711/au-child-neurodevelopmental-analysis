@@ -11,7 +11,20 @@
     "bottom": 5
   },
   "projection": {
-    "type": "mercator"
+    "type": "albers",
+    "rotate": [
+      -132,
+      0,
+      0
+    ],
+    "center": [
+      0,
+      -27
+    ],
+    "parallels": [
+      -18,
+      -36
+    ]
   },
   "data": {
     "url": "data/geo/au_states.topo.json",

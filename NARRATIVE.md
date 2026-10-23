@@ -301,6 +301,40 @@ p:not(.chart-caption):not(.source-tag)`.
 
 ---
 
+## Projection: Mercator → Albers (2026-10-23)
+
+All 4 geo map specs (03, 04, 13, 16) switched from `{"type": "mercator"}`
+to a custom-tuned Albers equal-area conic projection (`rotate: [-132, 0,
+0]`, `center: [0, -27]`, `parallels: [-18, -36]`, chosen to centre and
+frame Australia correctly). Mercator preserves local shape/angle but
+distorts area, worse at higher latitudes — not a severe problem for
+Australia specifically since the continent sits in a fairly narrow
+mid-to-low latitude band, but Albers is the more textbook-correct choice
+for any map where colour encodes a **rate** (all 4 of these charts do),
+since a reader's eye also judges "how much area is this colour," and an
+equal-area projection keeps that judgement honest. Verified all 4 render
+undistorted in both the headless renderer and a real browser before
+committing.
+
+**Also fixed in the same pass:** chart #4 had `projection` declared
+twice (once per layer — the geoshape base layer and the circle-mark
+layer), the same duplicate-projection pattern that caused chart #16's
+earlier label-rendering bug (a confirmed open Vega-Lite bug,
+vega-lite#9321, around non-deterministic projection merging across
+layers). Moved to a single shared `projection` at the parent level,
+matching how #16 was already fixed.
+
+**Known pre-existing bug found during verification (not caused by this
+change, not yet fixed):** the chart #3 → #4/#13 cross-chart click
+highlight does not currently work. Verified directly via the live Vega
+view's `state_select` signal (not just visual inspection) — clicking a
+state on chart #3 does not change `mapViews['chart04'].signal(
+'state_select')` from `[]`, confirmed on both the pre-Albers (Mercator)
+and post-Albers commits, so this is unrelated to the projection switch.
+Root cause not yet investigated.
+
+---
+
 ## Open decisions / things to amend
 
 - [x] Radar chart confirmed feasible using raw Vega (not Vega-Lite) —

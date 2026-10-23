@@ -11,6 +11,22 @@
       "bind": null
     }
   ],
+  "projection": {
+    "type": "albers",
+    "rotate": [
+      -132,
+      0,
+      0
+    ],
+    "center": [
+      0,
+      -27
+    ],
+    "parallels": [
+      -18,
+      -36
+    ]
+  },
   "layer": [
     {
       "data": {
@@ -19,9 +35,6 @@
           "type": "topojson",
           "feature": "au_states_raw"
         }
-      },
-      "projection": {
-        "type": "mercator"
       },
       "mark": {
         "type": "geoshape",
@@ -43,9 +56,6 @@
           "as": "state_upper"
         }
       ],
-      "projection": {
-        "type": "mercator"
-      },
       "mark": {
         "type": "circle",
         "stroke": "black"
