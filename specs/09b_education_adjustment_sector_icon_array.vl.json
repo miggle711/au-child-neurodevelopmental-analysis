@@ -1,0 +1,107 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Students receiving an educational adjustment, by school sector",
+  "description": "AIHW/NCCD: % of enrolled students who received an educational adjustment due to disability, by school sector (national data). Each square represents 1% of students; filled squares show the actual percentage.",
+  "data": {
+    "url": "data/processed/aihw_education_adjustment.csv"
+  },
+  "transform": [
+    {"filter": "datum.group === 'By school sector'"},
+    {"calculate": "sequence(0, 100)", "as": "seq"},
+    {"flatten": ["seq"]},
+    {"calculate": "datum.seq % 10", "as": "col"},
+    {"calculate": "floor(datum.seq / 10)", "as": "row"},
+    {"calculate": "datum.seq < round(datum.pct)", "as": "filled"}
+  ],
+  "facet": {
+    "column": {
+      "field": "category",
+      "type": "nominal",
+      "title": null,
+      "sort": ["Government", "Catholic", "Independent"],
+      "header": {
+        "labelFontSize": 10,
+        "labelAngle": 0,
+        "labelLimit": 140,
+        "labelPadding": 4,
+        "labelAlign": "left",
+        "labelAnchor": "start"
+      }
+    }
+  },
+  "spec": {
+    "width": 148,
+    "height": 148,
+    "layer": [
+      {
+        "mark": {"type": "square", "size": 60},
+        "encoding": {
+          "x": {"field": "col", "type": "ordinal", "axis": null},
+          "y": {"field": "row", "type": "ordinal", "axis": null, "sort": "descending"},
+          "color": {
+            "field": "filled",
+            "type": "nominal",
+            "scale": {"domain": [true, false], "range": ["#c4703f", "#ece6d8"]},
+            "legend": null
+          },
+          "tooltip": [
+            {"field": "category", "title": "Category"},
+            {"field": "pct", "title": "%"}
+          ]
+        }
+      },
+      {
+        "transform": [{"filter": "datum.seq === 0"}],
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "top",
+          "fontSize": 20,
+          "fontWeight": "bold",
+          "color": "#2b2a26",
+          "x": 0,
+          "y": -24
+        },
+        "encoding": {
+          "text": {"field": "pct", "type": "quantitative", "format": ".1f"}
+        }
+      }
+    ]
+  },
+  "resolve": {"scale": {"color": "independent"}},
+  "config": {
+    "title": {
+      "font": "Public Sans",
+      "fontSize": 15,
+      "fontWeight": 700,
+      "color": "#2b2a26",
+      "anchor": "start",
+      "offset": 16
+    },
+    "axis": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "legend": {
+      "labelFont": "Public Sans",
+      "labelFontSize": 9.5,
+      "labelColor": "#5c5a52",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600,
+      "titleColor": "#2b2a26"
+    },
+    "header": {
+      "labelFont": "Public Sans",
+      "titleFont": "Public Sans",
+      "titleFontSize": 10.5,
+      "titleFontWeight": 600
+    },
+    "text": {"font": "Public Sans"}
+  }
+}
