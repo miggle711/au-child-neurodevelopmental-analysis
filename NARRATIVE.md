@@ -543,16 +543,61 @@ to the first point) are written to
 `mark: "line"` (not `geoshape`) using ordinary `x`/`y` quantitative
 encodings, `detail: bin_id` to group vertices into separate shapes, and
 `order: order` to keep them in the right sequence — completely avoiding
-the broken `geoshape`/auto-fit code path. **Trade-off disclosed
-honestly:** this means chart #17 does not resize responsively via
-`"width": "container"` the way the other 3 geo maps do, since its
-coordinates are pre-baked in pixels for a specific frame width; verified
-it does not overflow/scroll at the page's actual ~756px frame width, but
-it would need re-generating at a different fixed width if the page's
-layout changed significantly.
+the broken `geoshape`/auto-fit code path.
 
-125 occupied hexagons from 422 LGA points (a hex radius of 20px on the
-project's standard map canvas). Added as chart #17, right after chart #4
+**Three more bugs found and fixed after the initial version shipped
+(2026-10-23):**
+
+1. **State outline dropped entirely, after a real misalignment was
+   spotted on review.** The first version layered the hexagons over the
+   usual `au_states.topo.json` outline for context, sharing one top-level
+   `projection`. Compared side by side, hexagons visibly spilled into the
+   ocean in several places (the Gulf of Carpentaria area, the southern
+   coastline) — the state layer's own `geoshape` auto-fit and the
+   hexagons' pre-baked pixel coordinates were computed against two
+   different assumed canvas sizes (`"width": "container"`'s *actual*
+   resolved width turned out to differ from the fixed 760px the hex data
+   was built against) and drifted apart. Tried fixing the projection
+   signal directly (`autosize: {"type": "none"}`) and confirmed it worked,
+   but decided the outline wasn't worth the ongoing fragility it
+   creates — it's pure decoration, not data, and the hexagon pattern by
+   itself is already recognisably Australia-shaped. Dropped the outline
+   layer and the geo-projection dependency entirely; the chart is now a
+   single coordinate system with nothing else to drift out of sync with.
+2. **Shape was upside-down and squashed after removing the outline.**
+   Switching back to `"width": "container"` once there was no second
+   layer to keep in sync caused the chart to stretch to whatever width
+   the container resolved to, independent of the hex data's actual
+   pixel extent — producing a wrong aspect ratio, and the y-axis defaults
+   to increasing *upward* in Vega-Lite's quantitative scale convention,
+   while the pre-computed pixel data increases *downward* (standard
+   screen/SVG convention), so without an explicit `scale: {"reverse":
+   true}` the whole map rendered flipped top-to-bottom. Fixed by going
+   back to a fixed `width`/`height` matching the data's real measured
+   extent (708×694, from the actual min/max of the x/y columns) and
+   adding the explicit y-reversal.
+3. **Pale pink filled cells visually indistinguishable from "no data"
+   cells.** The empty-but-in-the-pattern hexagons (gaps directly
+   adjacent to real data, drawn outlined but unfilled rather than left
+   as a blank hole) were originally given a warm, near-background fill
+   colour, which looked too similar to the palest end of the orange
+   sequential scale at a glance. Fixed by using a neutral grey
+   (`#dcdcdc`, matching the grey already used for chart #4's base map)
+   instead — clearly outside the orange family, unambiguous. Also found
+   and fixed a silent bug in the `has_data` flag itself: the Python
+   script originally wrote `True`/`False` (Python's capitalisation),
+   which Vega-Lite's boolean CSV parser doesn't recognise (it expects
+   lowercase `true`/`false`), so every row was silently treated as
+   truthy and no cell ever used the grey fallback at all — caught by
+   inspecting the actual rendered SVG fill colours, not by a thrown
+   error. Finally, added a small manual legend entry (a grey swatch + "No
+   data" text, positioned as two extra layers past the plot's right
+   edge) since Vega-Lite doesn't automatically generate a legend entry
+   for a conditional encoding's static fallback value — without it, a
+   reader had no on-chart explanation for what the grey cells meant.
+
+125 occupied hexagons + 187 empty-but-adjacent hexagons from 422 LGA
+points (a hex radius of 20px). Added as chart #17, right after chart #4
 in the maps section, since it's a direct re-presentation of the same
 LGA-level dataset through a different lens.
 

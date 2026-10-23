@@ -129,7 +129,38 @@ def main():
         bins[(q, r)].append(p)
     print(f'{len(bins)} occupied hex bins')
 
+    # Also draw empty hexagons, but only right next to a real one - otherwise
+    # we'd end up drawing hexagons out over open ocean again, which is the
+    # whole reason the outline got dropped in the first place. A gap that's
+    # actually inside the pattern (next to real data) is worth showing as an
+    # outlined-but-empty cell, so it reads as "no data here" rather than
+    # looking like a random missing puzzle piece.
+    AXIAL_NEIGHBOURS = [(1, 0), (1, -1), (0, -1), (-1, 0), (-1, 1), (0, 1)]
+    empty_bins = set()
+    for (q, r) in bins:
+        for dq, dr in AXIAL_NEIGHBOURS:
+            neighbour = (q + dq, r + dr)
+            if neighbour not in bins:
+                empty_bins.add(neighbour)
+    print(f'{len(empty_bins)} empty neighbouring bins (drawn outlined, no fill)')
+
     out_rows = []
+
+    def add_hex(q, r, bin_id, has_data, avg_pct=None, n_lgas=0, total_children=0):
+        cx, cy = axial_to_pixel(q, r, HEX_RADIUS_PX * 0.95)  # shrink slightly so hexes don't touch
+        corners = hex_corners_px(cx, cy, HEX_RADIUS_PX * 0.95)
+        for i, (cx_, cy_) in enumerate(corners):
+            out_rows.append({
+                'bin_id': bin_id, 'order': i, 'x': round(cx_, 2), 'y': round(cy_, 2),
+                'has_data': 'true' if has_data else 'false',  # lowercase: Vega's boolean parser wants this, not Python's True/False
+                'avg_pct': round(avg_pct, 2) if avg_pct is not None else '',
+                'n_lgas': n_lgas, 'total_children': total_children,
+            })
+        # repeat the first corner at the end so the line mark closes the hexagon properly
+        first = dict(out_rows[-6])
+        first['order'] = 6
+        out_rows.append(first)
+
     for (q, r), pts in bins.items():
         total_n = sum(p['n'] for p in pts)
         weighted_pct = (
@@ -137,23 +168,16 @@ def main():
             if total_n > 0
             else sum(p['pct'] for p in pts) / len(pts)
         )
-        cx, cy = axial_to_pixel(q, r, HEX_RADIUS_PX * 0.95)  # shrink slightly so hexes don't touch
-        corners = hex_corners_px(cx, cy, HEX_RADIUS_PX * 0.95)
-        bin_id = f'{q}_{r}'
-        for i, (cx_, cy_) in enumerate(corners):
-            out_rows.append({
-                'bin_id': bin_id, 'order': i, 'x': round(cx_, 2), 'y': round(cy_, 2),
-                'avg_pct': round(weighted_pct, 2), 'n_lgas': len(pts), 'total_children': int(total_n),
-            })
-        # repeat the first corner at the end so the line mark closes the hexagon properly
-        first = dict(out_rows[-6])
-        first['order'] = 6
-        out_rows.append(first)
+        add_hex(q, r, f'{q}_{r}', has_data=True, avg_pct=weighted_pct, n_lgas=len(pts), total_children=int(total_n))
 
-    print(f'{len(out_rows)} vertex rows ({len(bins)} hexagons x 7, incl. closing vertex)')
+    for (q, r) in empty_bins:
+        add_hex(q, r, f'{q}_{r}', has_data=False)
+
+    print(f'{len(out_rows)} vertex rows '
+          f'({len(bins)} filled + {len(empty_bins)} empty hexagons x 7, incl. closing vertex)')
 
     with open('data/processed/aedc_lga_hexbins_px.csv', 'w', newline='') as f:
-        w = csv.DictWriter(f, fieldnames=['bin_id', 'order', 'x', 'y', 'avg_pct', 'n_lgas', 'total_children'])
+        w = csv.DictWriter(f, fieldnames=['bin_id', 'order', 'x', 'y', 'has_data', 'avg_pct', 'n_lgas', 'total_children'])
         w.writeheader()
         w.writerows(out_rows)
     print('wrote data/processed/aedc_lga_hexbins_px.csv')
