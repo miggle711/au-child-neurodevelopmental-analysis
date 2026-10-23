@@ -125,7 +125,7 @@ not longitudinal, but the same underlying question).
 
 | # | Act | Chart idiom | Basic/Advanced | Data source | What it shows |
 |---|-----|-------------|-----------------|--------------|----------------|
-| 1 | 1 | Stacked area chart | Basic | ABS Autism in Australia 2022 | Autism prevalence in Australian children, 2015/2018/2022 (national only) — ✅ built & rendered, `specs/01_autism_trend_area.vl.json` |
+| 1 | 1 | Grouped bar chart | Basic | ABS Autism in Australia 2022 | Autism prevalence in Australian children, 2015/2018/2022 (national only) — ✅ built & rendered, `specs/01_autism_trend_area.vl.json`. **Idiom fix (2026-10-23):** was a stacked area/line chart, correctly flagged on review for implying continuity between the three real survey waves — the ABS SDAC only runs every 3-4 years, so a connected line between 2015/2018/2022 visually asserts a trend shape for years with no actual measurement. An ordinal x-axis fixed the spacing (no false sense of annual granularity) but not the continuity problem, since connected points still draw an implied path between unmeasured years. Switched to a grouped bar chart (year on x, age group on xOffset) — each survey wave is now a genuinely discrete, disconnected set of bars, honestly showing 3 real measurements with no implied trajectory between them, while the rising trend is still immediately clear from bar height alone |
 | 2 | 1 | Dumbbell / connected dot plot | Advanced | ABS Autism in Australia 2022 (Table 4, national only) | Schooling difficulties/supports, autistic vs. non-autistic children with disability aged 5-20 (attends special classes, needs day off, has difficulty, uses assistance) — ✅ built & rendered, `specs/02_autism_schooling_dumbbell.vl.json`. **Replaced AEDC national trend** — this is genuinely condition-specific service-usage data instead of a general vulnerability proxy |
 | 3 | 2 | Choropleth map | Map idiom #1 (Advanced) | AEDC state trends | Developmental vulnerability % by state/territory (AEDC, general screening measure) — ✅ built & rendered, `specs/03_state_choropleth.vl.json`. NT stands out sharply (40.8% vs next-highest 25.9%) |
 | 4 | 2 | Proportional symbol map | Map idiom #2 (Advanced) | PHIDU LGA data + HughParsonage/ABS-data centroids | Developmental vulnerability % by LGA (514 of 544 LGAs matched by name to 2016-vintage centroids) — reveals within-state hotspots. ✅ built & rendered, `specs/04_lga_proportional_symbol.vl.json`. Swapped from choropleth to proportional-symbol: no small ready-made LGA boundary TopoJSON with matching codes exists, and a full 544-polygon choropleth would look noisy/patchy given ~19% suppressed LGAs. **Fixed (2026-10-20):** size and colour originally both mapped to `vulnerable_1plus_pct` — textbook double encoding, flagged by the lecturer as redundant/confusing. Size now maps to `vulnerable_1plus_valid_n` (children surveyed) instead, so the two channels carry genuinely different information and a small, extreme-reading LGA no longer looks visually equivalent to a large, reliable one. **Caption updated (2026-10-21)** to fold in chart #5's remoteness-gradient finding after #5 was removed as a redundant idiom (see note above) |
@@ -155,9 +155,9 @@ source with any sub-national geography (see caveat section above for why).
 Every other chart (1, 2, 6, 7, 8, 9, 10) now uses ABS/AIHW data that
 measures autism, disability, or specific support needs directly.
 
-**Idiom count — final (updated 2026-10-21, after chart #5 was removed):** 6
-basic (stacked area, lollipop, beeswarm — a labelled dot plot in substance,
-bar chart, line chart, multi-line chart), up to 9 advanced if a marker is
+**Idiom count — final (updated 2026-10-23, after chart #1's idiom fix):** 6
+basic (grouped bar, bar chart, lollipop, beeswarm — a labelled dot plot in
+substance, line chart, multi-line chart), up to 9 advanced if a marker is
 generous (dumbbell, choropleth ×2, proportional symbol map, population
 pyramid, icon array, bullet chart, streamgraph, bivariate choropleth).
 **Important correction:** an earlier version of this note incorrectly

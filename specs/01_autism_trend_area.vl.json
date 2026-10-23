@@ -1,16 +1,14 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Autistic children in Australia, 2015-2022",
-  "description": "ABS SDAC: estimated number of autistic children, by age group and survey year (national data only)",
+  "description": "ABS SDAC: estimated number of autistic children, by age group and survey year (national data only). The ABS SDAC survey runs roughly every 3-4 years, not annually, so 2015/2018/2022 are the only real measurements — shown as separate bars per year rather than a connected line, so the chart doesn't imply a continuous trend or a known trajectory in the years between surveys.",
   "data": {
     "url": "data/processed/abs_autism_trend.csv"
   },
   "width": "container",
   "height": 250,
   "mark": {
-    "type": "area",
-    "line": true,
-    "opacity": 0.6
+    "type": "bar"
   },
   "encoding": {
     "x": {
@@ -18,11 +16,13 @@
       "type": "ordinal",
       "title": "Survey year"
     },
+    "xOffset": {
+      "field": "age_group"
+    },
     "y": {
       "field": "estimate_000",
       "type": "quantitative",
-      "title": "Estimated number ('000)",
-      "stack": true
+      "title": "Estimated number ('000)"
     },
     "color": {
       "field": "age_group",
