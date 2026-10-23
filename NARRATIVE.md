@@ -129,7 +129,7 @@ not longitudinal, but the same underlying question).
 | 2 | 1 | Dumbbell / connected dot plot | Advanced | ABS Autism in Australia 2022 (Table 4, national only) | Schooling difficulties/supports, autistic vs. non-autistic children with disability aged 5-20 (attends special classes, needs day off, has difficulty, uses assistance) — ✅ built & rendered, `specs/02_autism_schooling_dumbbell.vl.json`. **Replaced AEDC national trend** — this is genuinely condition-specific service-usage data instead of a general vulnerability proxy |
 | 3 | 2 | Choropleth map | Map idiom #1 (Advanced) | AEDC state trends | Developmental vulnerability % by state/territory (AEDC, general screening measure) — ✅ built & rendered, `specs/03_state_choropleth.vl.json`. NT stands out sharply (40.8% vs next-highest 25.9%) |
 | 4 | 2 | Proportional symbol map | Map idiom #2 (Advanced) | PHIDU LGA data + HughParsonage/ABS-data centroids | Developmental vulnerability % by LGA (514 of 544 LGAs matched by name to 2016-vintage centroids) — reveals within-state hotspots. ✅ built & rendered, `specs/04_lga_proportional_symbol.vl.json`. Swapped from choropleth to proportional-symbol: no small ready-made LGA boundary TopoJSON with matching codes exists, and a full 544-polygon choropleth would look noisy/patchy given ~19% suppressed LGAs. **Fixed (2026-10-20):** size and colour originally both mapped to `vulnerable_1plus_pct` — textbook double encoding, flagged by the lecturer as redundant/confusing. Size now maps to `vulnerable_1plus_valid_n` (children surveyed) instead, so the two channels carry genuinely different information and a small, extreme-reading LGA no longer looks visually equivalent to a large, reliable one. **Caption updated (2026-10-21)** to fold in chart #5's remoteness-gradient finding after #5 was removed as a redundant idiom (see note above) |
-| ~~5~~ | — | ~~Small-multiples map by remoteness area~~ | **Removed (2026-10-21)** | — | Mechanically the same idiom as chart #4 (LGA points sized/coloured by vulnerability %), just faceted by remoteness band — not a genuinely distinct map idiom on honest review. Its finding (22.5% major cities → 35.8% remote/very remote) was folded into chart #4's caption instead of being lost. Old spec in `deprecated/specs/05_remoteness_small_multiples.vl.json`; see idiom-count note above for the two replacements considered and rejected (tile-grid cartogram, hex-bin) |
+| ~~5~~ | — | ~~Small-multiples map by remoteness area~~ | **Removed (2026-10-21)** | — | Mechanically the same idiom as chart #4 (LGA points sized/coloured by vulnerability %), just faceted by remoteness band — not a genuinely distinct map idiom on honest review. Its finding (22.5% major cities → 35.8% remote/very remote) was folded into chart #4's caption instead of being lost. Old spec in `deprecated/specs/05_remoteness_small_multiples.vl.json`. A tile-grid cartogram was considered as a replacement and rejected (told the same story as chart #3's choropleth, but worse); a hex-bin was also considered, initially rejected as redundant with chart #4, then revisited and actually built as chart #17 once the map-idiom-count risk became concrete — see that chart's own entry below |
 | 6 | 3 | Population pyramid | Advanced | ABS AutismDC01 (national only) | Autistic children by age group (0-4, 5-14, 15-24) × sex — ✅ built & rendered, `specs/06_autism_age_sex_pyramid.vl.json`. Shows males diagnosed at ~2-3x the rate of females across all age bands |
 | 7 | 3 | Sorted lollipop chart | Advanced | ABS Children and Young People with Disability 2022 (Table 3, national only) | % of children aged 0-14 with each disability group (Sensory & speech, Learning & understanding, Physical, Psychosocial, Head injury/ABI, Other) — ✅ built & rendered, `specs/07_disability_groups_lollipop.vl.json`. "Learning and understanding" (6.5%) is the largest slice. **Idiom fix (2026-10-16):** was a radar chart — an outside review correctly identified radar as the weakest idiom choice here, since these 6 categories have no natural circular order, so a radar's polygon shape/area implies a pattern that isn't actually in the data (a well-known general critique of radar charts, not specific to this dataset). Replaced with a sorted lollipop showing the same 6 numbers honestly, with no implied relationship between categories. This also removes the only raw-Vega (non-Vega-Lite) spec from the page, simplifying the embed logic. Old radar kept in `deprecated/specs/07_disability_groups_radar.vg.json` |
 | 8 | 3 | Beeswarm / jittered dot plot | Advanced | ABS Autism in Australia 2022 (Table 3, national, all ages not child-restricted) | Co-occurring characteristics among autistic Australians (e.g. "slow at learning" 71.4%, social/behavioural difficulties 62.4%, mental illness 52.5%) — ✅ built & rendered, `specs/08_autism_cooccurring_beeswarm.vl.json`. **Replaced AEDC SEIFA gradient** — shows autism rarely occurs in isolation. **Known remaining issue:** source table isn't age-restricted to children — a child-restricted equivalent for autism-specific co-occurring types doesn't exist in any source checked (see relevance fix #2 below); this chart stays framed as national context, not a children-only statistic |
@@ -155,16 +155,28 @@ source with any sub-national geography (see caveat section above for why).
 Every other chart (1, 2, 6, 7, 8, 9, 10) now uses ABS/AIHW data that
 measures autism, disability, or specific support needs directly.
 
-**Idiom count — final (updated 2026-10-23, after chart #1's idiom fix):** 6
-basic (grouped bar, bar chart, lollipop, beeswarm — a labelled dot plot in
-substance, line chart, multi-line chart), up to 9 advanced if a marker is
-generous (dumbbell, choropleth ×2, proportional symbol map, population
-pyramid, icon array, bullet chart, streamgraph, bivariate choropleth).
-**Important correction:** an earlier version of this note incorrectly
-counted the lollipop (chart #7) as advanced — a lollipop/dot plot is
-explicitly on the rubric's basic list. The beeswarm (chart #8) was also
-flagged by review as "really a labelled dot plot" rather than a genuine
-beeswarm, so it's counted as basic here too, pending a possible future fix.
+**Idiom count — final (updated 2026-10-23, after the teaching team's
+basic/advanced list and chart #17's addition):** the unit's teaching team
+published an authoritative basic/advanced idiom list on the Ed forum
+(2026-10-22 or earlier), which settles a few calls this doc had previously
+guessed at. Per that list: **lollipop charts are explicitly advanced**
+(chart #7 — an earlier version of this note had it wrong, counted as
+basic), population pyramids are explicitly advanced (chart #6), stream
+graphs are explicitly advanced (chart #12), and waffle/icon-array charts
+are explicitly advanced (chart #9). Dot plots are explicitly basic
+*excluding connected dot plots* — meaning chart #8 (a plain, unconnected
+scatter/dot plot, confirmed earlier in this doc to be "really" a dot plot
+rather than a genuine beeswarm) is basic, while chart #2's dumbbell (a
+connected dot plot) is advanced. The list doesn't cover map idioms or
+bullet charts at all — those sit in their own separate category, governed
+by the brief's "≥3 map idioms" rule, not this basic/advanced list.
+
+Non-map idioms: 5 confirmed basic (grouped bar #1, bar #11, dot plot #8,
+single-line #14, multi-line #15), 5 confirmed advanced (connected dot
+plot/dumbbell #2, population pyramid #6, lollipop #7, icon array #9,
+streamgraph #12), plus bullet chart (#10), which isn't named on the
+teaching team's list either way but doesn't resemble anything on the
+basic list, so almost certainly counts as advanced too.
 
 **Chart #5 removed (2026-10-21):** the small-multiples remoteness map was
 mechanically the same idiom as chart #4 (LGA points sized/coloured by
@@ -184,17 +196,38 @@ was folded into chart #4's caption as prose, so the insight survives
 without the redundant idiom. Old spec kept in
 `deprecated/specs/05_remoteness_small_multiples.vl.json`.
 
-15 charts built and rendered total (10 required + 5 bonus), 4 of them maps
-(10 required + 1 bonus) — see `specs/previews/` for PNG test renders. The
-real, distinct-idiom count for "Idioms and complexity" is closer to 7-8
-than a generous 9, since charts #3 and #13 are the same choropleth idiom
-applied to two different datasets, and a strict marker may only count that
-as one. **Chart #16 (bivariate choropleth) was added specifically to
-address this** — it merges #3 and #13's two measures into one genuinely
-distinct map idiom, both restoring an advanced idiom lost when the radar
-and heatmap were corrected to basic ones, and giving a 3rd distinct map
-idiom beyond "choropleth, counted once" + proportional symbol. See row 16
-below for the full reasoning.
+16 charts built and rendered total (10 required + 6 bonus), 5 of them maps
+(10 required + 2 bonus) — see `specs/previews/` for PNG test renders.
+
+**Map idioms — the real risk, now resolved (2026-10-23):** the teaching
+team separately clarified on the Ed forum that "two choropleth maps count
+as two charts but only one idiom" (same for two stream graphs, etc.) —
+i.e. idiom identity is about mechanism, not what data is shown. Applying
+that honestly to this project's 4 pre-existing maps: #3 (choropleth), #13
+(choropleth), and #16 (bivariate choropleth) are all fundamentally "fill a
+polygon by a colour derived from a value," the same underlying mechanism
+— a strict marker could reasonably collapse all three into **one** idiom,
+leaving only #4 (proportional symbol) as a second, genuinely distinct one.
+That's 2 map idioms against the brief's explicit requirement of ≥3, which
+caps "Idioms and Complexity" at 5% instead of 10% if true — a real,
+quantified risk, not a hypothetical one. **Chart #17 (hex-bin map) was
+built specifically to close this gap** — binning/aggregating points into a
+regular grid is a mechanically distinct technique from both colour-fill-a-
+polygon (choropleth family) and size/colour-a-point-at-its-real-location
+(proportional symbol), so it holds up as a 3rd distinct map idiom even
+under the strict "mechanism, not data" reading. See chart #17's own entry
+below for how it was built (including two confirmed Vega-Lite bugs hit and
+worked around along the way).
+
+**Chart #16 (bivariate choropleth) was added earlier (2026-10-16) to
+address an idiom-count risk**, before the teaching team's map-idiom
+clarification existed — it merges #3 and #13's two measures into one map,
+restoring an advanced idiom lost when the radar and heatmap were corrected
+to basic ones. It remains a genuinely useful chart on its own merits (the
+"NT is high-vulnerability AND low-access" finding it makes visible), but
+per the map-idiom note above, it's no longer the project's answer to the
+3rd-map-idiom question — chart #17 is. See row 16 below for the full
+reasoning behind #16 itself.
 **Chords/arc diagrams and ridge plots were considered and rejected** — no
 source has genuine pairwise co-occurrence data (needed for a chord diagram)
 or a continuous distribution (needed for a ridge plot); forcing either
@@ -437,6 +470,91 @@ from a single `mark` into a `layer` array to add the text marks, with
 to avoid the known Vega-Lite layer-projection bug documented earlier in
 this file. Verified in a real browser — labels are legible against every
 colour on both maps, no overlap with state borders or the legend.
+
+---
+
+## Chart #17: hex-bin map (added 2026-10-23)
+
+A genuinely distinct 3rd map idiom was needed after the unit's teaching
+team clarified (Ed forum, 2026-10-22) that "two choropleth maps count as
+two charts but only one idiom" — applying that rule honestly, charts #3,
+#13 and #16 (all colour-fill-a-polygon-by-value, same underlying
+mechanism) risk collapsing to a single idiom under a strict marker,
+leaving only choropleth + proportional-symbol (#4) as 2 confirmed
+distinct map idioms against the brief's required 3 ("if less than three
+maps are included, the maximum possible mark for 'Visualisation: Idioms
+and Complexity' will be reduced from 10% to 5%" — a real, quantified risk,
+not a hypothetical one).
+
+**What it is:** the same 422 geocoded LGAs from chart #4, aggregated into
+a regular hexagonal grid instead of shown as individual proportional
+symbols or administrative polygons — mechanically a genuinely different
+idiom (binning/aggregation, not per-feature display), matching the
+unit's own advanced-idiom list's closest real-world equivalent (binned
+spatial aggregation, as distinct from choropleth or proportional-symbol).
+Each hexagon's colour is the sample-size-weighted average vulnerability %
+across whichever LGAs fall in that cell.
+
+**Why this took real engineering effort, not just a config change:**
+Vega-Lite has no native hexbin transform (confirmed — the standard
+workaround elsewhere is precomputing bin geometry in Python, same
+approach already used for chart #16's bivariate colour). Two serious,
+confirmed bugs were hit and diagnosed in sequence before landing on a
+working approach:
+
+1. **GeoJSON `property` field required.** Inline/URL-loaded GeoJSON
+   `FeatureCollection`s need an explicit `"format": {"type": "json",
+   "property": "features"}` for Vega-Lite to unpack individual Feature
+   rows — without it, the whole collection loads as a single opaque
+   datum and every `properties.X` field reference silently resolves to
+   nothing (`"Infinite extent"` warning, blank chart, no hard error).
+   Confirmed via `view.data('source_0')` inspection showing one row
+   instead of many.
+
+2. **Auto-fit breaks with many small separate polygons (the real
+   blocker).** Even with the field-access bug fixed, every hexagon
+   rendered as one shared, bizarre fan/annulus shape spanning the full
+   canvas — confirmed via SVG path inspection to be ~191 separate,
+   correctly-shaped `<path>` elements, but every single one sharing an
+   identical, canvas-filling bounding box. Isolated down to a single
+   hexagon alone (not a multi-feature interaction) and reproduced
+   independently of file format (GeoJSON and hand-built TopoJSON both
+   failed identically) — this is a genuine Vega-Lite/d3-geo limitation
+   with automatic geo-`fit` on datasets of many small, separate polygon
+   features, not a data or syntax mistake. No existing fix found via
+   targeted search of Vega-Lite/d3-geo issue trackers and community
+   threads.
+
+**The actual fix:** bypassed Vega-Lite's geo-projection pipeline for this
+layer entirely. Each LGA's lon/lat is pre-projected in Python using a
+hand-implemented closed-form Albers equal-area conic projection formula
+(matching d3-geo's exact `rotate`/`center`/`parallels` construction
+already used by every other map on this page), verified against known
+city locations (Sydney/Perth/Darwin/Melbourne/Hobart landing in
+geographically correct screen positions) before trusting it. Hex-binning
+then happens in on-screen pixel space (not lon/lat), which is also more
+correct visually — binning in lon/lat space would produce visibly
+stretched/non-regular hexagons once projected, since Albers isn't a
+uniform-scale projection. The whole thing is a single script,
+`scripts/build_hexbin.py`, run once to regenerate the data (not run at
+page-load time). Each hexagon's 6 vertices (7 rows per bin, closing back
+to the first point) are written to
+`data/processed/aedc_lga_hexbins_px.csv` and drawn with a plain
+`mark: "line"` (not `geoshape`) using ordinary `x`/`y` quantitative
+encodings, `detail: bin_id` to group vertices into separate shapes, and
+`order: order` to keep them in the right sequence — completely avoiding
+the broken `geoshape`/auto-fit code path. **Trade-off disclosed
+honestly:** this means chart #17 does not resize responsively via
+`"width": "container"` the way the other 3 geo maps do, since its
+coordinates are pre-baked in pixels for a specific frame width; verified
+it does not overflow/scroll at the page's actual ~756px frame width, but
+it would need re-generating at a different fixed width if the page's
+layout changed significantly.
+
+125 occupied hexagons from 422 LGA points (a hex radius of 20px on the
+project's standard map canvas). Added as chart #17, right after chart #4
+in the maps section, since it's a direct re-presentation of the same
+LGA-level dataset through a different lens.
 
 ---
 
