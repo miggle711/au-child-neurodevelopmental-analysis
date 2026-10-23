@@ -60,7 +60,7 @@
       "title": "% of estimated eligible children (0-14) with an NDIS plan",
       "scale": {
         "domain": [
-          50,
+          0,
           100
         ]
       }
