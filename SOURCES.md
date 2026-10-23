@@ -84,13 +84,15 @@ Source: https://raw.githubusercontent.com/HughParsonage/ABS-data/master/LGA_NAME
 
 Source: https://regionalaustralia.org.au/common/Uploaded%20files/Files/2024/Good%20Life%20Guide/LGAs%20to%20RAI%20and%20ABS%20Classifications.pdf
 
-## 10. Productivity Commission — Report on Government Services (ROGS) 2025
+## 10. Productivity Commission — Report on Government Services (ROGS) 2026
 
 **Status: ✅.** File: `data/raw/rogs/rogs15.csv` (2.4MB; only a small slice of the full "Services for people with disability" section is actually used). State/territory and national totals, 2019–2025.
 
-Two tables from this large dataset close the "access to support over time" gap in the narrative, found only after a broad search confirmed none of AEDC, ABS, AIHW or NDIS's own dashboard has any multi-year service-usage series. Table 15A.20 gives NDIS participants aged 0-14 as a share of the estimated eligible population, 2019–2023 (chart #14) — disability-general rather than neurodevelopmental-specific, but a defensible proxy given how much of the NDIS 0-14 population is there for autism or developmental delay. Table 15A.45 gives first-plan approval wait times (median and 90th percentile) for young children, with two honest quirks disclosed on the page rather than hidden: 2023-24 is genuinely missing from the source itself, and the tracked age band shifts from "0-6" to "0-8" in the final year.
+Two tables from this large dataset close the "access to support over time" gap in the narrative, found only after a broad search confirmed none of AEDC, ABS, AIHW or NDIS's own dashboard has any multi-year service-usage series. Table 15A.20 gives NDIS participants aged 0-14 as a share of the estimated eligible population, 2019–2023 (chart #14) — disability-general rather than neurodevelopmental-specific, but a defensible proxy given how much of the NDIS 0-14 population is there for autism or developmental delay. The series genuinely stops at 2023 because the source stops publishing that specific metric for this age band after that year — 2024 and 2025 only report a "rate per 1,000 people" instead, a differently-scaled figure, not the "% of potential population" used in the chart. Table 15A.45 gives first-plan approval wait times (median and 90th percentile) for young children, with two honest quirks disclosed on the page rather than hidden: 2023-24 is genuinely missing from the source itself (the PC's own footnote attributes this to the NDIA's transition to a new information system that year), and the tracked age band shifts from "0-6" to "0-8" in the final year.
 
 One build note worth keeping: the empty 2023-24 cells were initially silently coerced to zero by Vega-Lite's default CSV parsing, which would have drawn a false dip in the line. Fixed with an explicit `format.parse` directive so the gap renders as a real break instead.
+
+**Verified against the live source (2026-10-23):** re-checked both tables directly against the PC's current published data (`assets.pc.gov.au/2026-01/rogs-2026-partf-section15-disability-services-data-tables.xlsx`) and separately against the already-downloaded `rogs15.csv` — every value used on the page matches the source exactly, and the 2023-24 gap in Table 15A.45 is confirmed "na" for every state/territory and both percentile measures, not an artifact of local processing.
 
 The same file also has Table 15A.6 (NDIS participants by primary disability type including autism, 2019–2025, all ages) and Table 15A.44 (a second wait-time measure, only populated for 2024-25) — both checked and set aside for now.
 

@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Children's access to NDIS support, 2019-2023",
-  "description": "Productivity Commission, Report on Government Services 2025, Table 15A.20: NDIS participants aged 0-14 as a proportion of the estimated potential population needing support, Australia (national, all disability types, not neurodevelopmental-specific, though autism and developmental delay make up the large majority of NDIS participants in this age group)",
+  "description": "Productivity Commission, Report on Government Services 2026, Table 15A.20: NDIS participants aged 0-14 as a proportion of the estimated potential population needing support, Australia (national, all disability types, not neurodevelopmental-specific, though autism and developmental delay make up the large majority of NDIS participants in this age group). Stops at 2023 because the source itself stops reporting this specific metric after that year. 2024 and 2025 only publish a differently-scaled \"rate per 1,000 people\" for this age band, not the \"% of potential population\" figure used here, so the series isn't artificially truncated, the metric itself isn't published further.",
   "width": "container",
   "height": 260,
   "data": {
