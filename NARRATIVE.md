@@ -77,10 +77,17 @@ choice): #7 radar (added a `symbol` mark layer with vertex points + a Vega
 #10 bullet chart, #14 NDIS access trend, #15 NDIS wait-time chart. All 15
 charts are now consistent.
 
-Possible further additions if time allows (optional, not required): a
+Possible further addition if time allows (optional, not required): a
 show/hide toggle revealing chart #15's detail after chart #14's headline
-story, or a hover-linked highlight between the state choropleth (#3) and
-LGA proportional symbol map (#4). Neither is necessary to meet the brief.
+story. Not necessary to meet the brief.
+
+A click-highlight linking the state choropleth (#3) to the LGA
+proportional symbol map (#4) and the NDIS choropleth (#13) was built,
+but found non-functional on inspection and removed on 2026-10-23 — see
+the "Cross-chart click highlight removed" note later in this document
+for the full story. Each of those three maps works correctly as a
+standalone chart; losing the cross-filter doesn't remove any finding
+from the page.
 
 ---
 
@@ -133,7 +140,7 @@ not longitudinal, but the same underlying question).
 | 13 | 2 | Choropleth map | Map idiom #4 (Advanced, bonus) | NDIS Data Research (state, Dec 2024) + ABS Estimated Resident Population (Dec 2024) | Autism NDIS participants per 1,000 population, by state/territory — ✅ built & rendered, `specs/13_ndis_autism_rate_choropleth.vl.json`. Genuinely autism-specific (unlike the AEDC-based maps) and a real per-capita rate (computed by dividing NDIS's raw participant counts by ABS population — the raw sheet's own "% of all NDIS participants" metric was rejected as it reflects scheme caseload mix, not prevalence). Notable finding: produces an almost inverse pattern to the AEDC choropleth — SA highest (13.6 per 1,000), NT *lowest* (5.9 per 1,000), suggesting NT's high AEDC vulnerability doesn't translate into high NDIS autism access, a possible sign of under-diagnosis/under-service in remote areas rather than lower true prevalence. This is a **4th, bonus map** — genuinely condition-specific, unlike maps 3-5 |
 | 14 | 1/4 | Line chart | Basic, bonus | Productivity Commission, Report on Government Services 2025 (Table 15A.20, national only) | % of estimated eligible children aged 0-14 who have an NDIS plan, 2019-2023 — ✅ built & rendered, `specs/14_ndis_children_access_trend.vl.json`. **Closes the "access to support over time" gap** (see relevance fix #2 below) — a genuine 5-year multi-year trend showing NDIS access for children rose from 60.2% to 90.2% of the estimated eligible population, with a visible dip in 2021 (not smoothed over). Disability-general, not neurodevelopmental-specific, but autism/developmental delay dominate the NDIS 0-14 population so it's a defensible proxy, clearly labelled as such |
 | 15 | 4 | Multi-line chart | Basic, bonus | Productivity Commission, Report on Government Services 2025 (Table 15A.45, national only) | Days to approve a first NDIS plan for young children (median and 90th percentile), 2020-21 to 2024-25 — ✅ built & rendered, `specs/15_ndis_wait_time_multiline.vl.json`. A distinct "access to support" story from chart #14 — this is a genuine wait-time reduction (median 28→46→29→10 days; 90th percentile 65→87→69→22 days), and the gap between the two lines shows how unevenly that wait is experienced. **Two honest data quirks disclosed in the chart caption, not hidden:** 2023-24 is missing from the source itself (rendered as a real visual break in the line, not interpolated — required a `format.parse` fix since Vega-Lite otherwise silently coerced the empty CSV value to 0, which would have been a serious, misleading defect), and the age band changed from "0-6" to "0-8" in the final year, so the last point isn't perfectly comparable to earlier ones. Deliberately built as a plain multi-line chart (basic, not advanced) rather than mislabelling it as a "slope chart" — a genuine slope chart is a 2-point before/after comparison, and forcing that framing onto 4 non-consecutive data points would have been dishonest about what the idiom actually is |
-| 16 | 2 | Bivariate choropleth | Map idiom #5 (Advanced, bonus) | AEDC state trends + NDIS Data Research + ABS Estimated Resident Population | Merges charts #3 and #13's two separate measures (developmental vulnerability % and NDIS autism rate per 1,000) into a single map, each state coloured by a precomputed 3×3 tercile-based bivariate class — ✅ built & rendered, `specs/16_bivariate_vulnerability_access_choropleth.vl.json`. **Added 2026-10-16** after an outside review flagged two risks: (1) the idiom count fell into D-band territory once the radar and heatmap were correctly downgraded to basic idioms, and (2) a strict marker could read charts #3 and #13 as the same choropleth idiom, capping the map-idiom score at 4% instead of 8%. This chart addresses both — it's a genuinely distinct idiom from a single-variable choropleth, and it makes the "NT is high-vulnerability but low-access" finding visible in one map instead of requiring a reader to compare two separate charts. Includes a 3×3 legend grid (built as a second small chart, `hconcat`-ed beside the map) since Vega-Lite has no native bivariate colour encoding — colour is precomputed per state in `data/processed/bivariate_vulnerability_access_state.csv` and passed through with `scale: null`. With only 8 states, terciles are coarse (roughly groups of 2-3), disclosed in the chart description, not hidden. **Known limitation (2026-10-17):** not wired into the chart #3 click-highlight that links #4/#13, unlike those two. Attempted once and hit a genuine compile-time error ("Undefined data set name: source_1") adding a point-selection param to this chart's multi-source layered structure — plausibly the same class of Vega-Lite layer-compositing fragility behind the earlier projection bug on this same chart. Reverted rather than ship something broken; chart #16 works correctly and tells its story on its own, just without the cross-chart link. **Palette fixed (2026-10-21):** the original 3×3 grid used two separate hues (orange for vulnerability, green for access), which crossed into confusing brown/olive blends and put the chart's single most important distinction — "bad on both" vs "good on both" — on a red/green axis that's indistinguishable to colourblind readers (flagged by an outside reviewer). Replaced with a single-hue ramp (one warm clay hue throughout): vulnerability drives how dark/saturated a cell is, access modifies within that range, so low-vulnerability states always stay pale regardless of access and the one genuinely worst cell (high vulnerability, low access — NT) is unambiguously the darkest, most saturated colour on the map. No hue discrimination required anywhere, fixing both the colourblind-safety issue and the original "hard to parse" complaint in one change |
+| 16 | 2 | Bivariate choropleth | Map idiom #5 (Advanced, bonus) | AEDC state trends + NDIS Data Research + ABS Estimated Resident Population | Merges charts #3 and #13's two separate measures (developmental vulnerability % and NDIS autism rate per 1,000) into a single map, each state coloured by a precomputed 3×3 tercile-based bivariate class — ✅ built & rendered, `specs/16_bivariate_vulnerability_access_choropleth.vl.json`. **Added 2026-10-16** after an outside review flagged two risks: (1) the idiom count fell into D-band territory once the radar and heatmap were correctly downgraded to basic idioms, and (2) a strict marker could read charts #3 and #13 as the same choropleth idiom, capping the map-idiom score at 4% instead of 8%. This chart addresses both — it's a genuinely distinct idiom from a single-variable choropleth, and it makes the "NT is high-vulnerability but low-access" finding visible in one map instead of requiring a reader to compare two separate charts. Includes a 3×3 legend grid (built as a second small chart, `hconcat`-ed beside the map) since Vega-Lite has no native bivariate colour encoding — colour is precomputed per state in `data/processed/bivariate_vulnerability_access_state.csv` and passed through with `scale: null`. With only 8 states, terciles are coarse (roughly groups of 2-3), disclosed in the chart description, not hidden. **Click-highlight attempt (2026-10-17, now moot):** an earlier attempt to wire this chart into the then-existing chart #3 click-highlight hit a genuine compile-time error ("Undefined data set name: source_1") adding a point-selection param to this chart's multi-source layered structure, plausibly the same class of Vega-Lite layer-compositing fragility behind the earlier projection bug on this same chart — reverted rather than ship something broken. That whole click-highlight mechanism was later found to be non-functional on #3/#4/#13 as well (see note below) and removed from the page entirely on 2026-10-23, so this is no longer a relevant gap; chart #16 was never going to need it. Chart #16 works correctly and tells its story on its own. **Palette fixed (2026-10-21):** the original 3×3 grid used two separate hues (orange for vulnerability, green for access), which crossed into confusing brown/olive blends and put the chart's single most important distinction — "bad on both" vs "good on both" — on a red/green axis that's indistinguishable to colourblind readers (flagged by an outside reviewer). Replaced with a single-hue ramp (one warm clay hue throughout): vulnerability drives how dark/saturated a cell is, access modifies within that range, so low-vulnerability states always stay pale regardless of access and the one genuinely worst cell (high vulnerability, low access — NT) is unambiguously the darkest, most saturated colour on the map. No hue discrimination required anywhere, fixing both the colourblind-safety issue and the original "hard to parse" complaint in one change |
 
 **Relevance fix (2026-09-18):** rows 2, 7, and 8 originally used AEDC
 "developmental vulnerability" data (a general school-readiness screen, not
@@ -324,14 +331,28 @@ vega-lite#9321, around non-deterministic projection merging across
 layers). Moved to a single shared `projection` at the parent level,
 matching how #16 was already fixed.
 
-**Known pre-existing bug found during verification (not caused by this
-change, not yet fixed):** the chart #3 → #4/#13 cross-chart click
-highlight does not currently work. Verified directly via the live Vega
+**Cross-chart click highlight removed (2026-10-23):** a known bug was
+found during verification — the chart #3 → #4/#13 cross-chart click
+highlight did not actually work. Verified directly via the live Vega
 view's `state_select` signal (not just visual inspection) — clicking a
-state on chart #3 does not change `mapViews['chart04'].signal(
+state on chart #3 did not change `mapViews['chart04'].signal(
 'state_select')` from `[]`, confirmed on both the pre-Albers (Mercator)
-and post-Albers commits, so this is unrelated to the projection switch.
-Root cause not yet investigated.
+and post-Albers commits, so it was unrelated to the projection switch
+and predates it. Root cause not investigated (plausibly the same class
+of multi-view signal-propagation fragility as the earlier chart #16
+layer-compositing bugs, but not confirmed). Rather than leave broken,
+silently-dead interactivity code shipped on the page, the whole
+mechanism was removed: the `state_select` selection param on #3 and #13,
+the plain `state_select` param and `state_upper` calculate transform on
+#4, the conditional `opacity`/`strokeWidth`/`stroke` encodings on all
+three, and the `addSignalListener`/`mapViews` wiring in `index.html`.
+Also removed the "Click a state to highlight it" line from #3's caption,
+since it described a feature that no longer exists. All three maps keep
+their static styling (plain white borders, 0.7 opacity on #4's dots) and
+work correctly as standalone, non-interactive choropleth/proportional-
+symbol maps — losing the cross-filter doesn't remove any chart or any
+finding from the page, each map's own caption already states its own
+story independently.
 
 ---
 

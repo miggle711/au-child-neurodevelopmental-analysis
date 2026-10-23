@@ -49,18 +49,6 @@
       }
     }
   ],
-  "params": [
-    {
-      "name": "state_select",
-      "select": {
-        "type": "point",
-        "fields": [
-          "properties.STATE_NAME"
-        ],
-        "empty": "none"
-      }
-    }
-  ],
   "mark": {
     "type": "geoshape",
     "stroke": "white",
@@ -87,20 +75,6 @@
         "gradientLength": 180,
         "tickCount": 5
       }
-    },
-    "strokeWidth": {
-      "condition": {
-        "param": "state_select",
-        "value": 2.5
-      },
-      "value": 1
-    },
-    "stroke": {
-      "condition": {
-        "param": "state_select",
-        "value": "#6b7c5e"
-      },
-      "value": "white"
     },
     "tooltip": [
       {
