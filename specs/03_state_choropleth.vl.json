@@ -20,60 +20,94 @@
       -36
     ]
   },
-  "data": {
-    "url": "data/geo/au_states.topo.json",
-    "format": {
-      "type": "topojson",
-      "feature": "au_states_raw"
-    }
-  },
-  "transform": [
+  "layer": [
     {
-      "lookup": "properties.STATE_NAME",
-      "from": {
-        "data": {
-          "url": "data/processed/aedc_state_2024.csv"
+      "data": {
+        "url": "data/geo/au_states.topo.json",
+        "format": {
+          "type": "topojson",
+          "feature": "au_states_raw"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.STATE_NAME",
+          "from": {
+            "data": {
+              "url": "data/processed/aedc_state_2024.csv"
+            },
+            "key": "state",
+            "fields": [
+              "vulnerable_1plus_pct",
+              "abbr"
+            ]
+          }
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "vulnerable_1plus_pct",
+          "type": "quantitative",
+          "title": ["% developmentally", "vulnerable"],
+          "scale": {
+            "scheme": "oranges"
+          },
+          "legend": {
+            "orient": "right",
+            "direction": "vertical",
+            "titleLimit": 160,
+            "gradientLength": 160
+          }
         },
-        "key": "state",
-        "fields": [
-          "vulnerable_1plus_pct",
-          "abbr"
+        "tooltip": [
+          {
+            "field": "properties.STATE_NAME",
+            "title": "State"
+          },
+          {
+            "field": "vulnerable_1plus_pct",
+            "title": "% vulnerable",
+            "format": ".1f"
+          }
         ]
+      }
+    },
+    {
+      "data": {"url": "data/processed/state_label_positions.csv"},
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "stroke": "white",
+        "strokeWidth": 3,
+        "strokeOpacity": 0.7
+      },
+      "encoding": {
+        "longitude": {"field": "label_lon", "type": "quantitative"},
+        "latitude": {"field": "label_lat", "type": "quantitative"},
+        "text": {"field": "abbr", "type": "nominal"}
+      }
+    },
+    {
+      "data": {"url": "data/processed/state_label_positions.csv"},
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#2b2a26"
+      },
+      "encoding": {
+        "longitude": {"field": "label_lon", "type": "quantitative"},
+        "latitude": {"field": "label_lat", "type": "quantitative"},
+        "text": {"field": "abbr", "type": "nominal"}
       }
     }
   ],
-  "mark": {
-    "type": "geoshape",
-    "stroke": "white",
-    "strokeWidth": 1
-  },
-  "encoding": {
-    "color": {
-      "field": "vulnerable_1plus_pct",
-      "type": "quantitative",
-      "title": ["% developmentally", "vulnerable"],
-      "scale": {
-        "scheme": "oranges"
-      },
-      "legend": {
-        "orient": "right",
-        "direction": "vertical",
-        "titleLimit": 160,
-        "gradientLength": 160
-      }
-    },
-    "tooltip": [
-      {
-        "field": "properties.STATE_NAME",
-        "title": "State"
-      },
-      {
-        "field": "vulnerable_1plus_pct",
-        "title": "% vulnerable",
-        "format": ".1f"
-      }
-    ]
-  },
   "config": {
     "title": {
       "font": "Public Sans",

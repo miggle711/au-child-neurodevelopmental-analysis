@@ -416,6 +416,28 @@ of 1). Verified in a real browser — all three legends now render in
 full with no clipping, and the three maps' total widths are
 consistent.
 
+**State abbreviation labels added to charts 3 and 13 (2026-10-23):** only
+chart #16 (bivariate choropleth) had state abbreviation text labels
+(NT, WA, QLD...) — flagged on review as an inconsistency, since #3 and
+#13 are the same kind of single-variable choropleth and a reader
+shouldn't need to already know Australia's state shapes by heart to read
+them. Chart #4 (514 LGA dots) was deliberately left unlabelled — adding
+8 state labels on top of an already-dense point map risked clutter
+without much benefit, since dots there aren't grouped by state
+visually. Added a small shared lookup file,
+`data/processed/state_label_positions.csv` (state, abbr, and
+approximate label lat/lon per state — the same coordinates already used
+by chart #16, pulled out into their own reusable file rather than
+duplicated), and replicated chart #16's existing two-layer label
+pattern (a white-stroke halo text layer, then a solid dark-ink text
+layer on top) on #3 and #13 so the same abbreviation reads legibly
+against any background colour, light or dark. Both specs restructured
+from a single `mark` into a `layer` array to add the text marks, with
+`projection` kept at the shared parent level (not redeclared per layer)
+to avoid the known Vega-Lite layer-projection bug documented earlier in
+this file. Verified in a real browser — labels are legible against every
+colour on both maps, no overlap with state borders or the legend.
+
 ---
 
 ## Open decisions / things to amend

@@ -20,69 +20,103 @@
       -36
     ]
   },
-  "data": {
-    "url": "data/geo/au_states.topo.json",
-    "format": {
-      "type": "topojson",
-      "feature": "au_states_raw"
-    }
-  },
-  "transform": [
+  "layer": [
     {
-      "lookup": "properties.STATE_NAME",
-      "from": {
-        "data": {
-          "url": "data/processed/ndis_autism_rate_by_state.csv"
+      "data": {
+        "url": "data/geo/au_states.topo.json",
+        "format": {
+          "type": "topojson",
+          "feature": "au_states_raw"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.STATE_NAME",
+          "from": {
+            "data": {
+              "url": "data/processed/ndis_autism_rate_by_state.csv"
+            },
+            "key": "state",
+            "fields": [
+              "rate_per_1000",
+              "abbr",
+              "autism_ndis_participants"
+            ]
+          }
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "color": {
+          "field": "rate_per_1000",
+          "type": "quantitative",
+          "title": ["NDIS autism rate", "(per 1,000)"],
+          "scale": {
+            "range": [
+              "#e3c4a8",
+              "#c4703f",
+              "#6b3a1f"
+            ]
+          },
+          "legend": {
+            "orient": "right",
+            "direction": "vertical",
+            "titleLimit": 160,
+            "gradientLength": 160,
+            "tickCount": 5
+          }
         },
-        "key": "state",
-        "fields": [
-          "rate_per_1000",
-          "abbr",
-          "autism_ndis_participants"
+        "tooltip": [
+          {
+            "field": "properties.STATE_NAME",
+            "title": "State"
+          },
+          {
+            "field": "rate_per_1000",
+            "title": "Per 1,000 people"
+          },
+          {
+            "field": "autism_ndis_participants",
+            "title": "Total participants"
+          }
         ]
+      }
+    },
+    {
+      "data": {"url": "data/processed/state_label_positions.csv"},
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "stroke": "white",
+        "strokeWidth": 3,
+        "strokeOpacity": 0.7
+      },
+      "encoding": {
+        "longitude": {"field": "label_lon", "type": "quantitative"},
+        "latitude": {"field": "label_lat", "type": "quantitative"},
+        "text": {"field": "abbr", "type": "nominal"}
+      }
+    },
+    {
+      "data": {"url": "data/processed/state_label_positions.csv"},
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#2b2a26"
+      },
+      "encoding": {
+        "longitude": {"field": "label_lon", "type": "quantitative"},
+        "latitude": {"field": "label_lat", "type": "quantitative"},
+        "text": {"field": "abbr", "type": "nominal"}
       }
     }
   ],
-  "mark": {
-    "type": "geoshape",
-    "stroke": "white",
-    "strokeWidth": 1
-  },
-  "encoding": {
-    "color": {
-      "field": "rate_per_1000",
-      "type": "quantitative",
-      "title": ["NDIS autism rate", "(per 1,000)"],
-      "scale": {
-        "range": [
-          "#e3c4a8",
-          "#c4703f",
-          "#6b3a1f"
-        ]
-      },
-      "legend": {
-        "orient": "right",
-        "direction": "vertical",
-        "titleLimit": 160,
-        "gradientLength": 160,
-        "tickCount": 5
-      }
-    },
-    "tooltip": [
-      {
-        "field": "properties.STATE_NAME",
-        "title": "State"
-      },
-      {
-        "field": "rate_per_1000",
-        "title": "Per 1,000 people"
-      },
-      {
-        "field": "autism_ndis_participants",
-        "title": "Total participants"
-      }
-    ]
-  },
   "config": {
     "title": {
       "font": "Public Sans",
