@@ -393,6 +393,29 @@ different scale. Verified by rendering all 4 in a real browser and
 comparing side by side — Australia now reads at a consistent scale
 across every map on the page.
 
+**Legend clipping and remaining width inconsistency fixed (2026-10-23):**
+even after the height fix above, charts #3 and #13's legend titles were
+visibly cut off mid-word ("% developmentally vulnerabl[e]", "...per
+1,000 people[]"), and the three `"width": "container"` maps (03, 04, 13)
+still rendered at slightly different total widths. Root cause: each
+chart's `color` legend had its own ad-hoc, inconsistent configuration —
+#3 had no explicit `legend` block at all (pure Vega-Lite default
+layout), #4 had `orient`/`direction` set but no `titleLimit`, #13 had a
+`titleLimit: 140` that turned out too narrow for its title. Because
+`"width": "container"` only governs the map's *plot area*, not the
+legend sitting beside it, each chart's differently-sized legend added a
+different amount of extra width on top of the same container width,
+which is what made the three maps' total rendered widths diverge even
+though their plot areas were now identical. Fixed by giving all three
+maps the same explicit legend config (`orient: "right"`, `direction:
+"vertical"`, `titleLimit: 160`, `gradientLength: 160`) and shortening
+the two overlong titles to fit cleanly on 2 lines each (chart #13's
+41-character 3-line title shortened to "NDIS autism rate (per 1,000)";
+chart #3/#4's "% developmentally vulnerable" wrapped to 2 lines instead
+of 1). Verified in a real browser — all three legends now render in
+full with no clipping, and the three maps' total widths are
+consistent.
+
 ---
 
 ## Open decisions / things to amend

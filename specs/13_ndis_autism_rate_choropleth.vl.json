@@ -52,11 +52,7 @@
     "color": {
       "field": "rate_per_1000",
       "type": "quantitative",
-      "title": [
-        "Autism NDIS",
-        "participants",
-        "per 1,000 people"
-      ],
+      "title": ["NDIS autism rate", "(per 1,000)"],
       "scale": {
         "range": [
           "#e3c4a8",
@@ -65,8 +61,10 @@
         ]
       },
       "legend": {
-        "titleLimit": 140,
-        "gradientLength": 180,
+        "orient": "right",
+        "direction": "vertical",
+        "titleLimit": 160,
+        "gradientLength": 160,
         "tickCount": 5
       }
     },

@@ -71,19 +71,23 @@
           },
           "legend": {
             "orient": "right",
-            "direction": "vertical"
+            "direction": "vertical",
+            "titleLimit": 160,
+            "gradientLength": 160
           }
         },
         "color": {
           "field": "vulnerable_1plus_pct",
           "type": "quantitative",
-          "title": "% developmentally vulnerable",
+          "title": ["% developmentally", "vulnerable"],
           "scale": {
             "scheme": "oranges"
           },
           "legend": {
             "orient": "right",
-            "direction": "vertical"
+            "direction": "vertical",
+            "titleLimit": 160,
+            "gradientLength": 160
           }
         },
         "strokeWidth": {
