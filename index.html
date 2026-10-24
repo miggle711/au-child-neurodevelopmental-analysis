@@ -194,6 +194,13 @@
     font-weight: 600;
   }
 
+  .chart-footnote {
+    font-size: 0.8rem;
+    color: var(--fg-muted);
+    opacity: 0.85;
+    margin-top: 6px;
+  }
+
   .source-tag {
     font-family: var(--mono);
     font-size: 0.72rem;
@@ -267,7 +274,8 @@
 
       <div class="chart-block">
         <div class="chart-frame"><div id="chart01"></div></div>
-        <p class="chart-caption">Among children aged 5&ndash;14, the estimated number of autistic children grew by more than 70% in seven years. <em>Click an age group in the legend to isolate it.</em></p>
+        <p class="chart-caption">Among children aged 5&ndash;14, the estimated number of autistic children grew by more than 70% in seven years.</p>
+        <p class="chart-footnote">Click an age group in the legend to isolate it.</p>
         <p class="source-tag">Source: ABS, Survey of Disability, Ageing and Carers, 2022</p>
       </div>
 
@@ -275,7 +283,8 @@
 
       <div class="chart-block">
         <div class="chart-frame"><div id="chart02"></div></div>
-        <p class="chart-caption">Autistic children face <span class="callout">consistently higher rates</span> of schooling difficulty and need for support than other children with disability, across every measure we checked. <em>Click a group in the legend to compare it on its own.</em></p>
+        <p class="chart-caption">Autistic children face <span class="callout">consistently higher rates</span> of schooling difficulty and need for support than other children with disability, across every measure we checked.</p>
+        <p class="chart-footnote">Click a group in the legend to compare it on its own.</p>
         <p class="source-tag">Source: ABS, Survey of Disability, Ageing and Carers, 2022 (Autism in Australia)</p>
       </div>
     </div>
@@ -302,13 +311,15 @@
 
         <div class="chart-block">
           <div class="chart-frame"><div id="chart04"></div></div>
-          <p class="chart-caption">Zooming into individual local areas shows the state figures hide enormous variation. Some regions inside "average" states are just as vulnerable as anywhere in the NT with much of the variation tracking remoteness. Vulnerability climbs from <span class="callout">22.5%</span> in major cities to <span class="callout">35.8%</span> in remote and very remote communities.
+          <p class="chart-caption">Zooming into individual local areas shows the state figures hide enormous variation. Some regions inside "average" states are just as vulnerable as anywhere in the NT, with much of that variation tracking remoteness: vulnerability climbs from <span class="callout">22.5%</span> in major cities to <span class="callout">35.8%</span> in remote and very remote communities.</p>
+          <p class="chart-footnote">Circle size shows how many children were surveyed in that area, so a small, extreme reading doesn't visually outweigh a large, reliable one.</p>
           <p class="source-tag">Source: AEDC 2024; centroids from HughParsonage/ABS-data (2016 boundaries, 514 of 544 areas matched); remoteness classification from Regional Australia Institute</p>
         </div>
 
         <div class="chart-block">
           <div class="chart-frame"><div id="chart17"></div></div>
-          <p class="chart-caption">Grouping those same local areas into a regular hexagonal grid, makes the regional clustering easier to see. A dense band of elevated vulnerability runs across the north, while the populous southeast is mixed but generally lower. <em>The empty gaps are caused by either no data being available for that area, or the data being suppressed for small-sample privacy reasons.</em></p>
+          <p class="chart-caption">Grouping those same local areas into a regular hexagonal grid makes the regional clustering easier to see. A dense band of elevated vulnerability runs across the north, while the populous southeast is mixed but generally lower.</p>
+          <p class="chart-footnote">Empty gaps mean no data was available for that area, or the data was suppressed for small-sample privacy reasons.</p>
           <p class="source-tag">Source: AEDC 2024; centroids from HughParsonage/ABS-data</p>
         </div>
 
@@ -342,7 +353,7 @@
         <p class="source-tag">Source: ABS, Survey of Disability, Ageing and Carers, 2022</p>
       </div>
 
-      <p> Among Australian children aged 0&ndash;14 who have a disability, "learning and understanding" difficulties are the single largest category.</p>
+      <p>Disability doesn't come in one type. Among Australian children aged 0&ndash;14 who have a disability, "learning and understanding" difficulties are the single largest category.</p>
 
       <div class="chart-block">
         <div class="chart-frame"><div id="chart07"></div></div>
@@ -371,27 +382,35 @@
 
       <div class="chart-block">
         <div class="chart-frame"><div id="chart12"></div></div>
-        <p class="chart-caption">Intellectual disability is rarely diagnosed at age 0&ndash;4, but by age 10&ndash;14 it accounts for <span class="callout">6.9%</span> of children. That's most likely diagnosis catching up as children get older, not more children actually being affected. <em>Click a group in the legend to trace it on its own.</em></p>
+        <p class="chart-caption">Intellectual disability is rarely diagnosed at age 0&ndash;4, but by age 10&ndash;14 it accounts for <span class="callout">6.9%</span> of children. That's most likely diagnosis catching up as children get older, not more children actually being affected.</p>
+        <p class="chart-footnote">Click a group in the legend to trace it on its own.</p>
         <p class="source-tag">Source: AIHW, Australia's Children, 2018</p>
       </div>
 
+      <p>Once in school, children with disability may receive an <strong>educational adjustment</strong>, a change the school makes to teaching, the classroom or assessment because of a student's disability. These range from informal in-class help to a fully individualised program.</p>
+
       <div class="chart-block">
         <div class="chart-frame"><div id="chart09a"></div></div>
-        <p class="chart-caption">Most of that support is informal: <span class="callout">6.8%</span> of students get differentiated teaching or supplementary help, while only 1.6% need the most intensive, extensive adjustment. Each square represents 1% of students.</p>
+        <p class="chart-caption">Most adjustments are informal. <span class="callout">6.8%</span> of students get differentiated teaching or supplementary help, while only 1.6% need the most intensive, extensive adjustment.</p>
+        <p class="chart-footnote">Each square represents 1% of students.</p>
         <p class="source-tag">Source: AIHW, Australia's Children, 2020 (NCCD)</p>
       </div>
 
       <div class="chart-block">
         <div class="chart-frame"><div id="chart09b"></div></div>
-        <p class="chart-caption">Around 1 in 5 students receive a formal educational adjustment for disability, broadly consistent across government, Catholic and independent schools. Each square represents 1% of students.</p>
+        <p class="chart-caption">Around 1 in 5 students receive a formal educational adjustment for disability, broadly consistent across government, Catholic and independent schools.</p>
+        <p class="chart-footnote">Each square represents 1% of students.</p>
         <p class="source-tag">Source: AIHW, Australia's Children, 2020 (NCCD)</p>
       </div>
 
       <div class="chart-block">
         <div class="chart-frame"><div id="chart11"></div></div>
-        <p class="chart-caption">Among children with disability who need help, it's the practical daily needs like health care and self-care that are <span class="callout">least</span> likely to be fully met. <em>Click "Need met" or "Need not met" in the legend to focus on one.</em></p>
+        <p class="chart-caption">Among children with disability who need help, it's the practical daily needs like health care and self-care that are <span class="callout">least</span> likely to be fully met.</p>
+        <p class="chart-footnote">Click "Need met" or "Need not met" in the legend to focus on one.</p>
         <p class="source-tag">Source: ABS, Children and Young People with Disability, 2022</p>
       </div>
+
+      <p>Beyond formal adjustments, the ABS also tracks a <strong>schooling restriction</strong>, where a child's disability causes real difficulty at school, such as needing a special class, missing regular days, or being unable to attend at all.</p>
 
       <div class="chart-block">
         <div class="chart-frame"><div id="chart10"></div></div>
@@ -409,7 +428,8 @@
 
       <div class="chart-block">
         <div class="chart-frame"><div id="chart15"></div></div>
-        <p class="chart-caption">For families who do get a plan, the wait has fallen sharply: a median of 10 days in 2024&ndash;25, down from 28&ndash;46 days in earlier years. 2023&ndash;24 data is missing because the NDIA was transitioning to a new information system that year, and the age band tracked changed slightly in the most recent year. <em>Click a line in the legend to follow it on its own.</em></p>
+        <p class="chart-caption">For families who do get a plan, the wait has fallen sharply: a median of 10 days in 2024&ndash;25, down from 28&ndash;46 days in earlier years.</p>
+        <p class="chart-footnote">2023&ndash;24 data is missing because the NDIA was transitioning to a new information system that year, and the age band tracked changed slightly in the most recent year. Click a line in the legend to follow it on its own.</p>
         <p class="source-tag">Source: Productivity Commission, Report on Government Services, 2026</p>
       </div>
     </div>
