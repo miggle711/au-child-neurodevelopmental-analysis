@@ -39,6 +39,16 @@
         "size": 150,
         "opacity": 1
       },
+      "params": [
+        {
+          "name": "group_select",
+          "select": {
+            "type": "point",
+            "fields": ["group"]
+          },
+          "bind": "legend"
+        }
+      ],
       "encoding": {
         "y": {
           "field": "category",
@@ -68,6 +78,13 @@
             "direction": "vertical",
             "symbolLimit": 0
           }
+        },
+        "opacity": {
+          "condition": {
+            "param": "group_select",
+            "value": 1
+          },
+          "value": 0.25
         },
         "tooltip": [
           {

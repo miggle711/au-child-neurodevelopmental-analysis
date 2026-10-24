@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Support needs not fully met, children with disability aged 0-14",
-  "description": "ABS SDAC 2022 (Children and young people with disability): among children aged 0-14 who need assistance with an activity, the share whose need is NOT fully met, by activity type, sorted highest to lowest (national data only, all disability types, not autism-specific)",
+  "title": "Support needs met vs. not met, children with disability aged 0-14",
+  "description": "ABS SDAC 2022 (Children and young people with disability): among children aged 0-14 who need assistance with an activity, the share whose need is fully met vs. not fully met, by activity type, sorted by highest unmet need (national data only, all disability types, not autism-specific)",
   "width": "container",
   "height": 220,
   "data": {
@@ -9,7 +9,21 @@
   },
   "transform": [
     {
-      "filter": "datum.status === 'Need not met'"
+      "calculate": "datum.status === 'Need not met' ? datum.pct : 0",
+      "as": "unmet_pct"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "max",
+          "field": "unmet_pct",
+          "as": "sort_pct"
+        }
+      ],
+      "groupby": ["activity"]
+    },
+    {
+      "filter": "datum.status === 'Need not met' || datum.status === 'Need met'"
     }
   ],
   "encoding": {
@@ -17,20 +31,55 @@
       "field": "activity",
       "type": "nominal",
       "title": null,
-      "sort": "-x"
+      "sort": {
+        "op": "max",
+        "field": "sort_pct",
+        "order": "descending"
+      }
     },
     "x": {
       "field": "pct",
       "type": "quantitative",
-      "title": "% of children whose need is not fully met"
+      "title": "% of children with that need"
+    },
+    "yOffset": {
+      "field": "status",
+      "sort": ["Need not met", "Need met"]
+    },
+    "color": {
+      "field": "status",
+      "type": "nominal",
+      "title": null,
+      "scale": {
+        "domain": ["Need not met", "Need met"],
+        "range": ["#c4703f", "#d9d1bd"]
+      },
+      "legend": {
+        "orient": "bottom",
+        "columns": 1
+      }
+    },
+    "opacity": {
+      "condition": {
+        "param": "status_select",
+        "value": 1
+      },
+      "value": 0.25
     }
   },
   "layer": [
     {
-      "mark": {
-        "type": "bar",
-        "color": "#c4703f"
-      },
+      "mark": "bar",
+      "params": [
+        {
+          "name": "status_select",
+          "select": {
+            "type": "point",
+            "fields": ["status"]
+          },
+          "bind": "legend"
+        }
+      ],
       "encoding": {
         "tooltip": [
           {
@@ -38,8 +87,12 @@
             "title": "Activity"
           },
           {
+            "field": "status",
+            "title": "Status"
+          },
+          {
             "field": "pct",
-            "title": "% not fully met",
+            "title": "%",
             "format": ".1f"
           }
         ]

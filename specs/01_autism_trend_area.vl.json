@@ -7,6 +7,16 @@
   },
   "width": "container",
   "height": 250,
+  "params": [
+    {
+      "name": "age_select",
+      "select": {
+        "type": "point",
+        "fields": ["age_group"]
+      },
+      "bind": "legend"
+    }
+  ],
   "mark": {
     "type": "bar"
   },
@@ -34,6 +44,13 @@
           "#d94801"
         ]
       }
+    },
+    "opacity": {
+      "condition": {
+        "param": "age_select",
+        "value": 1
+      },
+      "value": 0.25
     },
     "tooltip": [
       {

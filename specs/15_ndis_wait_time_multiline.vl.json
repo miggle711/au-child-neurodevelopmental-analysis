@@ -20,6 +20,16 @@
         "strokeWidth": 2,
         "point": false
       },
+      "params": [
+        {
+          "name": "measure_select",
+          "select": {
+            "type": "point",
+            "fields": ["measure"]
+          },
+          "bind": "legend"
+        }
+      ],
       "encoding": {
         "x": {
           "field": "year",
@@ -55,6 +65,13 @@
             "orient": "bottom",
             "columns": 1
           }
+        },
+        "opacity": {
+          "condition": {
+            "param": "measure_select",
+            "value": 1
+          },
+          "value": 0.25
         }
       }
     },
@@ -86,6 +103,13 @@
               "#c4703f"
             ]
           }
+        },
+        "opacity": {
+          "condition": {
+            "param": "measure_select",
+            "value": 1
+          },
+          "value": 0.25
         },
         "tooltip": [
           {
@@ -136,6 +160,13 @@
               "#c4703f"
             ]
           }
+        },
+        "opacity": {
+          "condition": {
+            "param": "measure_select",
+            "value": 1
+          },
+          "value": 0.25
         }
       }
     }

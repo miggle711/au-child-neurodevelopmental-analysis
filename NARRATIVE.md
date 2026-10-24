@@ -89,6 +89,41 @@ for the full story. Each of those three maps works correctly as a
 standalone chart; losing the cross-filter doesn't remove any finding
 from the page.
 
+### Legend click-to-highlight extended to 4 more charts (2026-10-24)
+
+Chart #12 (streamgraph) already had a `point` selection bound to its
+legend (click a series to isolate it, everything else fades to 0.15
+opacity) — this doesn't count as the "filters/dropdowns/free-form
+querying" the brief says not to add, since it doesn't change what data
+is shown, only which series is visually emphasised. Given how few
+charts actually used it, extended the same pattern to #1 (autism trend
+area, click an age group), #2 (dumbbell, click autistic vs. other
+disability), and #15 (NDIS wait time, click median vs. 90th
+percentile).
+
+Also reworked #11 (children's unmet need) from a single-series bar
+showing only "% not fully met" into a grouped bar showing "Need met"
+vs. "Need not met" side by side, with the same legend-click filter —
+this is a strictly more complete chart (shows the full picture per
+activity, not just one slice of it) as well as a legend worth clicking.
+Sorting by "highest unmet need" required a `calculate` step to zero out
+the "Need met" row before the `joinaggregate` max, since joining on the
+raw `pct` field would have picked up whichever status had the larger
+number for that activity (almost always "Need met", since need-met %
+is usually >50%) — an easy one-line mistake that would have silently
+sorted the chart by the wrong column. Caught by compiling each spec
+through vega-lite's own `compile()` + running the resulting Vega view
+in Node and inspecting the materialised data rows directly, not by
+visual inspection.
+
+Also hit a real Vega-Lite bug pattern (not project-specific, confirmed
+across all 3 layered specs touched): a `params` block placed at the
+top level of a `layer` spec gets duplicated into every layer during
+compilation, throwing `Duplicate signal name: "..._tuple"`. Fix is to
+declare the `params` on exactly one layer, not at the top level,
+whenever the spec containing the selection is a `layer` composition
+rather than a single mark.
+
 ---
 
 ## Narrative arc (4 acts)
