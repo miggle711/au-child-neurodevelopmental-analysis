@@ -50,6 +50,17 @@
         "stroke": "white",
         "strokeWidth": 1
       },
+      "params": [
+        {
+          "name": "state_hover",
+          "select": {
+            "type": "point",
+            "on": "pointerover",
+            "clear": "pointerout",
+            "nearest": true
+          }
+        }
+      ],
       "encoding": {
         "color": {
           "field": "rate_per_1000",
@@ -69,6 +80,13 @@
             "gradientLength": 160,
             "tickCount": 5
           }
+        },
+        "strokeWidth": {
+          "condition": {
+            "param": "state_hover",
+            "value": 2.5
+          },
+          "value": 1
         },
         "tooltip": [
           {

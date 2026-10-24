@@ -124,6 +124,24 @@ declare the `params` on exactly one layer, not at the top level,
 whenever the spec containing the selection is a `layer` composition
 rather than a single mark.
 
+### Hover highlight added to 3 maps (2026-10-24)
+
+The maps (#3, #4, #13, #16, #17) all use a quantitative/gradient color
+scale, not a discrete category legend, so the legend click-to-highlight
+pattern above doesn't apply to them (there's nothing discrete to
+click). Added a different, self-contained interaction instead: a
+`point` selection with `on: "pointerover"` / `clear: "pointerout"` /
+`nearest: true` on #3 and #13 (state choropleths) and #4 (LGA
+proportional symbol map), conditioning `strokeWidth` so the state or
+circle under the cursor gets a bolder outline while hovered. Unlike
+the earlier cross-chart click-highlight (built then found
+non-functional and removed on 2026-10-23), this doesn't link separate
+charts together, each map's hover effect is local to itself, which
+sidesteps whatever caused that one to break. Skipped #16 (bivariate,
+two nominal "color" fields already drive the grid) and #17 (hexbin,
+pixel-space line marks, not a standard geoshape/point mark) for this
+pass.
+
 ---
 
 ## Narrative arc (4 acts)

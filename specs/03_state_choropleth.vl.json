@@ -49,6 +49,17 @@
         "stroke": "white",
         "strokeWidth": 1
       },
+      "params": [
+        {
+          "name": "state_hover",
+          "select": {
+            "type": "point",
+            "on": "pointerover",
+            "clear": "pointerout",
+            "nearest": true
+          }
+        }
+      ],
       "encoding": {
         "color": {
           "field": "vulnerable_1plus_pct",
@@ -63,6 +74,13 @@
             "titleLimit": 160,
             "gradientLength": 160
           }
+        },
+        "strokeWidth": {
+          "condition": {
+            "param": "state_hover",
+            "value": 2.5
+          },
+          "value": 1
         },
         "tooltip": [
           {
